@@ -17,7 +17,6 @@ function Sidebar({}: SidebarProps) {
                 </Link>
             </div>
             <ul css={menuStyle}>
-                <SidebarItem icon="globe" text="Home" to="/" />
                 <SidebarItem icon="workspace" text="Write" to="/write" />
                 <SidebarItem icon="flask" text="Log" to="/log" />
             </ul>
@@ -33,6 +32,7 @@ const sidebarStyle = css`
     display: flex;
     flex-direction: column;
     .logo {
+        width: 40%;
         font-weight: bold;
         font-size: 1.5rem;
         color: ${palette.blueGrey[900]};
