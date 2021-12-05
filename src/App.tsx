@@ -1,26 +1,42 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Global, css } from '@emotion/react';
 import './App.css';
+import { Route, Routes } from 'react-router-dom';
+import Main from './main';
+import AppLayout from './components/AppLayout';
+import Sidebar from './components/SideBar';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <>
+            <AppLayout>
+                <AppLayout.Side>
+                    <Sidebar />
+                </AppLayout.Side>
+                <AppLayout.Main>
+                    <Routes>
+                        <Route path="/" element={<Main />} />
+                    </Routes>
+                </AppLayout.Main>
+            </AppLayout>
+            <Global styles={globalStyle} />
+        </>
+    );
 }
 
 export default App;
+
+const globalStyle = css`
+    html,
+    body,
+    #root {
+        height: 100%;
+    }
+    html {
+        box-sizing: border-box;
+
+        * {
+            box-sizing: inherit;
+        }
+    }
+`;
