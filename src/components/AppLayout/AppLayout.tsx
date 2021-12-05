@@ -7,7 +7,7 @@ export type AppLayoutProps = {
 };
 
 export default function AppLayout({ children }: AppLayoutProps) {
-    return <div>{children}</div>;
+    return <div css={containerStyle}>{children}</div>;
 }
 
 export type SideProps = {
@@ -16,6 +16,13 @@ export type SideProps = {
 
 function Side({ children }: SideProps) {
     return <aside css={sidebarStyle}>{children}</aside>;
+}
+
+export type FooterProps = {
+    children: React.ReactNode;
+};
+function Footer({ children }: FooterProps) {
+    return <footer css={footerStyle}>{children}</footer>;
 }
 
 export type MainProps = {
@@ -27,6 +34,7 @@ function Main({ children }: MainProps) {
 }
 
 AppLayout.Side = Side;
+AppLayout.Footer = Footer;
 AppLayout.Main = Main;
 
 const sidebarStyle = css`
@@ -46,6 +54,27 @@ const sidebarStyle = css`
     }
 `;
 
+const footerStyle = css`
+    padding-left: 2rem;
+    margin-left: 16.25rem;
+    ${media.xlarge} {
+        margin-left: 5rem;
+    }
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    ${media.small} {
+        margin-left: 0;
+        padding: 0;
+    }
+    margin-right: auto;
+    margin-left: auto;
+    color: rgba(107, 114, 128, 0.41);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 2px solid rgba(49, 120, 198, 0.332);
+`;
+
 const mainStyle = css`
     padding-left: 2rem;
     margin-left: 16.25rem;
@@ -58,4 +87,11 @@ const mainStyle = css`
         margin-left: 0;
         padding: 0;
     }
+`;
+
+const containerStyle = css`
+    outline: none;
+    max-width: 1000px;
+    max-height: 100vh;
+    margin: 0 auto;
 `;

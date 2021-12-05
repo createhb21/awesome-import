@@ -1,10 +1,11 @@
 import React from 'react';
-import { Global, css } from '@emotion/react';
+import { GlobalStyle } from '../src/lib/styles/GlobalStyles';
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import Main from './pages/Home/main';
 import AppLayout from './components/AppLayout';
 import Sidebar from './components/Sidebar';
+import Footer from './components/Footer';
 import Write from './pages/Write';
 import Log from './pages/Log';
 
@@ -22,25 +23,13 @@ function App() {
                         <Route path="/log" element={<Log />} />
                     </Routes>
                 </AppLayout.Main>
+                <AppLayout.Footer>
+                    <Footer />
+                </AppLayout.Footer>
             </AppLayout>
-            <Global styles={globalStyle} />
+            <GlobalStyle />
         </>
     );
 }
 
 export default App;
-
-const globalStyle = css`
-    html,
-    body,
-    #root {
-        height: 100%;
-    }
-    html {
-        box-sizing: border-box;
-
-        * {
-            box-sizing: inherit;
-        }
-    }
-`;
