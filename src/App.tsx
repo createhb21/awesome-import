@@ -4,7 +4,7 @@ import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import Main from './main';
 import AppLayout from './components/AppLayout';
-import Sidebar from './components/SideBar';
+import Sidebar from './components/Sidebar';
 
 function App() {
     return (

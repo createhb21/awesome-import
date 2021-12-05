@@ -4,6 +4,7 @@ import { css } from '@emotion/react';
 import { logo } from '../../assets/images';
 import palette from '../../lib/palette';
 import media from '../../lib/styles/media';
+import SidebarItem from '../SidebarItem/SidebarItem';
 
 export type SidebarProps = {};
 
@@ -16,8 +17,9 @@ function Sidebar({}: SidebarProps) {
                 </Link>
             </div>
             <ul css={menuStyle}>
-                <li>Log</li>
-                <li>Write</li>
+                <SidebarItem icon="globe" text="Home" to="/" />
+                <SidebarItem icon="workspace" text="Write" to="/write" />
+                <SidebarItem icon="flask" text="Log" to="/log" />
             </ul>
         </div>
     );

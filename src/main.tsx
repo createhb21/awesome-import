@@ -4,7 +4,7 @@ import logo from './logo.svg';
 const Main = () => {
     return (
         <div>
-            this is Main COmpoennts
+            this is Main Compoennts
             <img src={logo} className="App-logo" alt="logo" />
         </div>
     );
