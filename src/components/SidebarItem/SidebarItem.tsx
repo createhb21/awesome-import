@@ -2,7 +2,7 @@
 import { css } from '@emotion/react';
 import { NavLink } from 'react-router-dom';
 import palette from '../../lib/palette';
-import AwesomeIcon, { AwesomeIconType } from '../Awesomecon/AwesomeIcon';
+import AwesomeIcon, { AwesomeIconType } from '../Awesomecon/Awesomecon';
 
 export type SidebarItemProps = {
     icon: AwesomeIconType;

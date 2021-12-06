@@ -2,7 +2,6 @@
 import { Link } from 'react-router-dom';
 import { css } from '@emotion/react';
 import { logo } from '../../assets/images';
-import palette from '../../lib/palette';
 import media from '../../lib/styles/media';
 import SidebarItem from '../SidebarItem/SidebarItem';
 
@@ -25,27 +24,21 @@ function Sidebar({}: SidebarProps) {
 }
 
 const sidebarStyle = css`
-    ${media.xlarge} {
-        display: none;
-    }
     flex: 1;
     display: flex;
     flex-direction: column;
     .logo {
-        width: 19%;
-        font-weight: bold;
-        font-size: 1.5rem;
-        color: ${palette.blueGrey[900]};
-        img {
-            display: block;
-        }
+        opacity: 0.785;
+        width: 2.5rem;
+        height: 2.5rem;
+        margin-left: -0.5rem;
     }
 `;
 
 const menuStyle = css`
     list-style: none;
     padding: 0;
-    margin-top: 3.925rem;
+    margin-top: 5.325rem;
     margin-left: -1rem;
     flex: 1;
 `;

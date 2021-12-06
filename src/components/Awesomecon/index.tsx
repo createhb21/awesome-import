@@ -1,1 +1,1 @@
-export { default } from './AwesomeIcon';
+export { default } from './Awesomecon';
