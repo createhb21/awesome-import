@@ -1,4 +1,4 @@
-# Toy Project - Maing Own Blogging Site
+# Toy Project - Making Own Blogging Site
 
 ## It is a repository for Own Blogging Site. <br />  
 _Title is <b>@_import(awesome_import)</b>._
