@@ -2,8 +2,9 @@
     "singleQuote": true,
     "semi": true,
     "useTabs": false,
-    "tabWidth": 2,
+    "tabWidth": 4,
     "trailingComma": "all",
-    "printWidth": 80,
-    "parser": "typescript"
+    "printWidth": 200,
+    "endOfLine": "auto",
+    "arrowParens": "avoid"
 }
