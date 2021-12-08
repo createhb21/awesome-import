@@ -313,7 +313,7 @@ export const lightIcons = {
     inactive: 'rgba(255, 255, 255, 0.5)',
 };
 
-export const brandColor = '#3472AD';
+export const brandColor = 'rgba(49, 120, 198, 0.332)';
 
 export default {
     red: red,
