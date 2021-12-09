@@ -10,12 +10,12 @@ interface themeDarkDispatch {
 }
 type ThemeDispatchType = themeLightDispatch | themeDarkDispatch;
 
-export const switchThemeLight = () => (dispatch: Dispatch<ThemeDispatchType>) => {
+export const switchThemeLight = () => (dispatch: Dispatch<themeLightDispatch>) => {
     dispatch({
         type: THEME_LIGHT,
     });
 };
-export const switchThemeDark = () => (dispatch: Dispatch<ThemeDispatchType>) => {
+export const switchThemeDark = () => (dispatch: Dispatch<themeDarkDispatch>) => {
     dispatch({
         type: THEME_DARK,
     });

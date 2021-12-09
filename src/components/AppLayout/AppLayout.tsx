@@ -57,17 +57,14 @@ const sidebarStyle = css`
 `;
 
 const footerStyle = (theme: ITheme) => css`
+    ${media.small} {
+        display: none;
+    }
     padding-left: 2rem;
     margin-left: 16.25rem;
-    ${media.xlarge} {
-        margin-left: 5rem;
-    }
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
-    ${media.small} {
-        margin-left: 0;
-        padding: 0;
-    }
+
     margin-top: 2.5rem;
     margin-right: auto;
     margin-left: auto;
@@ -79,17 +76,18 @@ const footerStyle = (theme: ITheme) => css`
 `;
 
 const mainStyle = css`
-    padding-left: 2rem;
-    margin-left: 16.25rem;
     ${media.xlarge} {
-        margin-left: 5rem;
+        margin-left: 11.5rem;
     }
-    padding-top: 3rem;
-    padding-bottom: 3rem;
     ${media.small} {
         margin-left: 0;
         padding: 0;
     }
+    padding-left: 2rem;
+    margin-left: 16.25rem;
+
+    padding-top: 3rem;
+    padding-bottom: 3rem;
 `;
 
 const containerStyle = css`
