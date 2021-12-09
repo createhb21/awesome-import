@@ -13,7 +13,7 @@ export interface ITheme {
     buttonBgHover: string;
 }
 
-export const themeLight: ITheme = {
+export const themeLight: Readonly<ITheme> = {
     primaryColor: brandColor,
     text: darkText.primary,
     textGray: palette.blueGrey[600],
@@ -26,10 +26,10 @@ export const themeLight: ITheme = {
     buttonBgHover: palette.blueGrey[900],
 };
 
-export const themeDark: ITheme = {
+export const themeDark: Readonly<ITheme> = {
     primaryColor: '#3178c6',
     text: '#C9D1D9',
-    textGray: palette.blueGrey[800],
+    textGray: '#C9D1D9',
     background: '#121212',
     grayBorder: palette.blueGrey[600],
     buttonText: '#C9D1D9',

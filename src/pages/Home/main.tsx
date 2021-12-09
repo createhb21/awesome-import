@@ -96,9 +96,6 @@ const ulStyle = (theme: ITheme) => css`
     list-style: none;
     margin: 0;
     padding: 0;
-    border-bottom-width: 1px;
-    border-top-width: 1px;
-    border-color: ${theme.grayBorder};
 `;
 const mainStyle = (theme: ITheme) => css`
     padding-top: 1rem;

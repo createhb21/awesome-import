@@ -1,39 +1,66 @@
 /** @jsxImportSource @emotion/react */
+import { RootReducerType } from '../../index';
 import { css, useTheme } from '@emotion/react';
 import { ITheme } from '../../lib/styles/Theme';
+import { switchThemeDark, switchThemeLight } from '../../modules/ThemeSwitch';
+import AwesomeIcon, { AwesomeIconType } from '../Awesomecon/Awesomecon';
+import { useDispatch, useSelector } from 'react-redux';
+import palette from '../../lib/palette';
 
 export type ThemeSwitchBtnProps = {
-    isDark: boolean;
-    setIsDark: (arg0: boolean) => void;
+    icon: AwesomeIconType;
+    text?: string;
 };
 
-function ThemeSwitchBtn({ isDark, setIsDark }: ThemeSwitchBtnProps) {
+function ThemeSwitchBtn({ icon }: ThemeSwitchBtnProps) {
     const theme = useTheme();
-
-    const changeThemeColor = () => {
-        isDark ? setIsDark(false) : setIsDark(true);
+    const { isDarkMode } = useSelector((state: RootReducerType) => state.ThemeSwitchReducer);
+    const dispatch = useDispatch();
+    const switchTheme = () => {
+        isDarkMode ? dispatch(switchThemeLight()) : dispatch(switchThemeDark());
     };
+
+    let text = isDarkMode ? 'LightMode' : 'DarkMode';
     return (
-        <div css={buttonStyle(theme)} onClick={changeThemeColor}>
-            <button css={themeStyle(theme)}>Change</button>
-        </div>
+        <li>
+            <span css={linkStyle(theme)} onClick={switchTheme}>
+                <AwesomeIcon name={icon} />
+                <span>{text}</span>
+            </span>
+        </li>
     );
 }
 
 export default ThemeSwitchBtn;
 
-const buttonStyle = (theme: ITheme) => css`
-    position: fixed;
-    top: 2.7rem;
-    right: 16.5rem;
-    width: 5.5rem;
-    height: 5.5rem;
-`;
-
-const themeStyle = (theme: ITheme) => css`
+const linkStyle = (theme: ITheme) => css`
+    border-radius: 0.5rem;
+    height: 3.75rem;
+    display: flex;
+    align-items: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    color: ${palette.blueGrey[600]};
+    text-decoration: none;
     cursor: pointer;
-    color: ${theme.text};
-    background-color: ${theme.background};
-    transition-duration: 0.3s;
-    transition-property: background-color, color;
+
+    &:hover {
+        background: ${palette.blueGrey[50]};
+    }
+    svg {
+        width: 1.75rem;
+        height: 1.75rem;
+    }
+    span {
+        font-size: 1.125rem;
+        margin-left: 1rem;
+    }
+
+    &.active {
+        background: ${palette.blueGrey[50]};
+        color: ${palette.blueGrey[900]};
+        span {
+            font-weight: bold;
+        }
+    }
 `;
