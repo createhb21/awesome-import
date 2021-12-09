@@ -1,6 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css, useTheme } from '@emotion/react';
 import { useScroll } from '../../hooks/useScroll';
+import { brandColor } from '../../lib/palette';
+import media from '../../lib/styles/media';
 import { ITheme } from '../../lib/styles/Theme';
 import AwesomeIcon, { AwesomeIconType } from '../Awesomecon/Awesomecon';
 
@@ -27,6 +29,11 @@ function ArrowUpBtn({ icon, text }: ArrowUpBtnProps) {
 export default ArrowUpBtn;
 
 const buttonStyle = (scrollY: number, theme: ITheme) => css`
+    ${media.small} {
+        right: 1rem;
+        bottom: 5rem;
+        background-color: ${brandColor};
+    }
     width: 3rem;
     bottom: 2rem;
     right: 2rem;

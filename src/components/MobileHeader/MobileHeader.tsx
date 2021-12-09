@@ -1,18 +1,18 @@
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
+import { css, useTheme } from '@emotion/react';
 import { Link } from 'react-router-dom';
 import { logo } from '../../assets/images';
 import palette from '../../lib/palette';
 import media from '../../lib/styles/media';
 import { resetButton } from '../../lib/styles/resetButton';
+import { ITheme } from '../../lib/styles/Theme';
 import Awesomecon from '../Awesomecon';
 
-export type MobileHeaderProps = {};
-
-function MobileHeader({}: MobileHeaderProps) {
+function MobileHeader() {
+    const theme = useTheme();
     return (
         <>
-            <header css={[common, headerStyle]}>
+            <header css={[common, headerStyle(theme)]}>
                 <Link to="/">
                     <img src={logo} className="logo" alt="logo" />
                 </Link>
@@ -39,12 +39,12 @@ const common = css`
     height: 4rem;
 `;
 
-const headerStyle = css`
+const headerStyle = (theme: ITheme) => css`
     position: fixed;
     align-items: center;
     justify-content: center;
     width: 100%;
-    background: white;
+    background: ${theme.buttonBg};
     z-index: 30;
     box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.125);
     a {

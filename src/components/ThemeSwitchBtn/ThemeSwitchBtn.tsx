@@ -1,15 +1,16 @@
 /** @jsxImportSource @emotion/react */
-import { RootReducerType } from '../../index';
 import { css, useTheme } from '@emotion/react';
+import { RootReducerType } from '../..';
 import { ITheme } from '../../lib/styles/Theme';
 import { switchThemeDark, switchThemeLight } from '../../modules/ThemeSwitch';
 import AwesomeIcon, { AwesomeIconType } from '../Awesomecon/Awesomecon';
 import { useDispatch, useSelector } from 'react-redux';
 import palette from '../../lib/palette';
+import media from '../../lib/styles/media';
 
 export type ThemeSwitchBtnProps = {
     icon: AwesomeIconType;
-    text?: string;
+    mode?: string;
 };
 
 function ThemeSwitchBtn({ icon }: ThemeSwitchBtnProps) {
@@ -25,7 +26,7 @@ function ThemeSwitchBtn({ icon }: ThemeSwitchBtnProps) {
         <li>
             <span css={linkStyle(theme)} onClick={switchTheme}>
                 <AwesomeIcon name={icon} />
-                <span>{text}</span>
+                <span css={mediaStyle}>{text}</span>
             </span>
         </li>
     );
@@ -34,6 +35,28 @@ function ThemeSwitchBtn({ icon }: ThemeSwitchBtnProps) {
 export default ThemeSwitchBtn;
 
 const linkStyle = (theme: ITheme) => css`
+    ${media.small} {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        svg {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+        text-decoration: none;
+        span {
+            font-size: 0.75rem;
+        }
+
+        color: ${palette.blueGrey[400]};
+
+        &.active {
+            color: ${palette.cyan[600]};
+            border-radius: 0.25rem;
+        }
+    }
     border-radius: 0.5rem;
     height: 3.75rem;
     display: flex;
@@ -44,9 +67,6 @@ const linkStyle = (theme: ITheme) => css`
     text-decoration: none;
     cursor: pointer;
 
-    &:hover {
-        background: ${palette.blueGrey[50]};
-    }
     svg {
         width: 1.75rem;
         height: 1.75rem;
@@ -62,5 +82,11 @@ const linkStyle = (theme: ITheme) => css`
         span {
             font-weight: bold;
         }
+    }
+`;
+
+const mediaStyle = css`
+    ${media.small} {
+        display: none;
     }
 `;

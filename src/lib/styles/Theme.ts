@@ -20,10 +20,10 @@ export const themeLight: Readonly<ITheme> = {
     background: lightText.primary,
     grayBorder: palette.blueGrey[50],
     buttonText: darkText.primary,
-    buttonTextHover: '#f8f7f4',
+    buttonTextHover: lightText.primary,
     buttonBorder: darkText.primary,
-    buttonBg: darkText.primary,
-    buttonBgHover: palette.blueGrey[900],
+    buttonBg: lightText.primary,
+    buttonBgHover: '#C9D1D9',
 };
 
 export const themeDark: Readonly<ITheme> = {
@@ -35,6 +35,6 @@ export const themeDark: Readonly<ITheme> = {
     buttonText: '#C9D1D9',
     buttonTextHover: '#000',
     buttonBorder: '#C9D1D9',
-    buttonBg: 'rgba(255,255,255,0)',
-    buttonBgHover: '#C9D1D9',
+    buttonBg: '#161b22',
+    buttonBgHover: palette.blueGrey[900],
 };

@@ -1,8 +1,9 @@
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
-import { NavLink } from 'react-router-dom';
+import { css, useTheme } from '@emotion/react';
 import palette from '../../lib/palette';
+import { NavLink } from 'react-router-dom';
 import Awesomecon, { AwesomeIconType } from '../Awesomecon/Awesomecon';
+import { ITheme } from '../../lib/styles/Theme';
 
 export type MobilerFooterItemProps = {
     icon: AwesomeIconType;
@@ -11,22 +12,23 @@ export type MobilerFooterItemProps = {
     ignore?: boolean;
 };
 
-function MobileFooterItem({ icon, text, to }: MobilerFooterItemProps) {
+function MobileFooterItem({ icon, to }: MobilerFooterItemProps) {
+    const theme = useTheme();
     return (
-        <NavLink to={to} css={item}>
+        <NavLink to={to} css={item(theme)}>
             <Awesomecon name={icon} />
         </NavLink>
     );
 }
 
-const item = css`
+const item = (theme: ITheme) => css`
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     flex: 1;
     &:hover {
-        background: ${palette.blueGrey[50]};
+        background: ${theme.buttonBgHover};
     }
     svg {
         width: 1.5rem;

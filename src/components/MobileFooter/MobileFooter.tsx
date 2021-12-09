@@ -1,16 +1,21 @@
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
+import { css, useTheme } from '@emotion/react';
 import media from '../../lib/styles/media';
+import { ITheme } from '../../lib/styles/Theme';
+import ThemeSwitchBtn from '../ThemeSwitchBtn';
+import MobileThemeSwitch from '../ThemeSwitchBtn/MobileThemeSwitch';
 import MobileFooterItem from './MobileFooterItem';
+
 export type MobileFooterProps = {};
 
 function MobileFooter({}: MobileFooterProps) {
+    const theme = useTheme();
     return (
         <>
-            <footer css={[common, footerStyle]}>
+            <footer css={[common, footerStyle(theme)]}>
                 <MobileFooterItem icon="workspace" text="Write" to="/write" />
                 <MobileFooterItem icon="flask" text="Log" to="/log" />
-                <MobileFooterItem icon="globe" text="Explore" to="/explore" />
+                <MobileThemeSwitch icon="globe" />
             </footer>
             <div css={[common]}></div>
         </>
@@ -25,13 +30,13 @@ const common = css`
     height: 4rem;
     width: 100%;
 `;
-const footerStyle = css`
+const footerStyle = (theme: ITheme) => css`
     position: fixed;
     bottom: 0;
     left: 0;
     z-index: 30;
     box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.125);
-    background: white;
+    background: ${theme.buttonBg};
 `;
 
 export default MobileFooter;
