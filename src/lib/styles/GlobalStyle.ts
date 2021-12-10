@@ -11,8 +11,8 @@ export const GlobalStyle = (theme: ITheme) => css`
         margin: 0;
         padding: 0;
         line-height: 1.625;
-        font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', 나눔고딕, 'Nanum Gothic', 'Noto Sans KR', 'Noto Sans CJK KR', arial, 돋움,
-            Dotum, Tahoma, Geneva, sans-serif;
+        font-family: -apple-system, 'Noto Sans KR', 'Apple SD Gothic Neo', 'Noto Sans CJK KR', BlinkMacSystemFont, 'Helvetica Neue', 'Malgun Gothic', '맑은 고딕', 'Nanum Gothic', arial, 돋움, Dotum,
+            Tahoma, Geneva, sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         box-sizing: border-box;
