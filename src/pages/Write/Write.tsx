@@ -2,12 +2,13 @@
 import { Helmet } from 'react-helmet-async';
 import { css, useTheme } from '@emotion/react';
 import { ITheme } from '../../lib/styles/Theme';
-import { data } from '../../hooks/useWriteTextData';
+import { data, IWriteData } from '../../hooks/useWriteTextData';
 import WritePostCardGrid from '../../components/WritePostCardGrid';
 
 export type WriteProps = {};
 
 function Write({}: WriteProps) {
+    const { posts } = data;
     const theme = useTheme();
     return (
         <>
@@ -20,7 +21,10 @@ function Write({}: WriteProps) {
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat consequatur tempore culpa, consectetur dolores nam praesentium veritatis in quam nesciunt! Reiciendis </p>
                 </header>
                 <ul css={postListStyle(theme)}>
-                    <WritePostCardGrid data={data} />
+                    {posts &&
+                        posts.map((item: IWriteData) => {
+                            return <WritePostCardGrid post={item} />;
+                        })}
                 </ul>
             </div>
         </>

@@ -1,35 +1,35 @@
 /** @jsxImportSource @emotion/react */
 import { css, useTheme } from '@emotion/react';
 import { Link } from 'react-router-dom';
-import { IData } from '../../hooks/useWriteTextData';
+import { IWriteData } from '../../hooks/useWriteTextData';
 import { ITheme } from '../../lib/styles/Theme';
 
-export type TechPostCardGridProps = {
-    data: IData;
+export type WritePostCardGridProps = {
+    post: IWriteData;
 };
 
-function TechPostCardGrid({ data }: TechPostCardGridProps) {
+function TechPostCardGrid({ post }: WritePostCardGridProps) {
     const theme = useTheme();
     return (
         <li css={wrapperStyle(theme)}>
             <Link
                 to={{
-                    pathname: `/post/${data.id}`,
+                    pathname: `/post/${post.id}`,
                 }}
             >
                 <article css={containerStyle(theme)}>
                     <section css={categoryStyle(theme)}>
-                        <span>{data.category}</span>
+                        <span>{post.category}</span>
                     </section>
                     <section css={contentWrapperStyle(theme)}>
-                        <h1 css={titleStyle(theme)}>{data.title}</h1>
+                        <h1 css={titleStyle(theme)}>{post.title}</h1>
                         <div css={summaryStyle(theme)}>
-                            <p>{data.content}</p>
-                            <span>{data.date}</span>
+                            <p>{post.content}</p>
+                            <span>{post.date}</span>
                         </div>
                         <div css={imageStyle(theme)}>
                             <span>
-                                <img src={data.img} alt="img" />
+                                <img src={post.img} alt="img" />
                             </span>
                         </div>
                     </section>

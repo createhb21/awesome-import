@@ -1,24 +1,24 @@
 /** @jsxImportSource @emotion/react */
 import { css, useTheme } from '@emotion/react';
-import { IData } from '../../hooks/useLogTextData';
+import { ILogData } from '../../hooks/useLogTextData';
 import { ITheme } from '../../lib/styles/Theme';
 
-export type TechPostCardGridProps = {
-    data: IData;
+export type LogPostCardGridProps = {
+    post: ILogData;
 };
 
-function LogPostCardGrid({ data }: TechPostCardGridProps) {
+function LogPostCardGrid({ post }: LogPostCardGridProps) {
     const theme = useTheme();
 
     return (
         <li css={wrapperStyle(theme)}>
             <article>
                 <section css={headerStyle(theme)}>
-                    <h1>{data.title}</h1>
+                    <h1>{post.title}</h1>
                 </section>
-                <section css={dateStyle}>{data.date}</section>
+                <section css={dateStyle}>{post.date}</section>
                 <section css={contentStyle}>
-                    <main>{data.content}</main>
+                    <main>{post.content}</main>
                 </section>
             </article>
         </li>
