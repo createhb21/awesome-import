@@ -1,8 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import { css, useTheme } from '@emotion/react';
 import { Helmet } from 'react-helmet-async';
+import { data } from '../../hooks/useLogTextData';
 import LogPostCardGrid from '../../components/LogPostCardFrid';
 import { ITheme } from '../../lib/styles/Theme';
+
 export type LogProps = {};
 
 function Log({}: LogProps) {
@@ -17,11 +19,11 @@ function Log({}: LogProps) {
                     <h1>Log</h1>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat consequatur tempore culpa, consectetur dolores nam praesentium veritatis in quam nesciunt! Reiciendis </p>
                 </header>
-            </div>
-            <div css={writeLogStyle(theme)}>
-                <ul css={postListStyle(theme)}>
-                    <LogPostCardGrid />
-                </ul>
+                <div css={writeLogStyle(theme)}>
+                    <ul css={postListStyle(theme)}>
+                        <LogPostCardGrid data={data} />
+                    </ul>
+                </div>
             </div>
         </>
     );
@@ -43,8 +45,6 @@ const writeLogStyle = (theme: ITheme) => css`
 const wrapperStyle = (theme: ITheme) => css`
     width: 100%;
     margin-top: 1.525rem;
-    margin-right: auto;
-    margin-left: auto;
     padding-left: 1rem;
     padding-right: 1rem;
     display: block;

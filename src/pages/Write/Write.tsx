@@ -2,8 +2,8 @@
 import { Helmet } from 'react-helmet-async';
 import { css, useTheme } from '@emotion/react';
 import { ITheme } from '../../lib/styles/Theme';
-import { data } from '../../hooks/useTextData';
-import TechPostCardGrid from '../../components/TechPostCardGrid';
+import { data } from '../../hooks/useWriteTextData';
+import WritePostCardGrid from '../../components/WritePostCardGrid';
 
 export type WriteProps = {};
 
@@ -19,11 +19,9 @@ function Write({}: WriteProps) {
                     <h1>Write</h1>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat consequatur tempore culpa, consectetur dolores nam praesentium veritatis in quam nesciunt! Reiciendis </p>
                 </header>
-                <div css={writePageStyle(theme)}>
-                    <ul css={postListStyle(theme)}>
-                        <TechPostCardGrid data={data} />
-                    </ul>
-                </div>
+                <ul css={postListStyle(theme)}>
+                    <WritePostCardGrid data={data} />
+                </ul>
             </div>
         </>
     );
@@ -35,11 +33,6 @@ const postListStyle = (theme: ITheme) => css`
     list-style: none;
     margin: 0;
     padding: 0;
-`;
-
-const writePageStyle = (theme: ITheme) => css`
-    padding-top: 1rem;
-    padding-bottom: 1rem;
 `;
 
 const wrapperStyle = (theme: ITheme) => css`

@@ -9,6 +9,7 @@ import GlobalStyle from './lib/styles/GlobalStyle';
 import { themeDark, themeLight } from './lib/styles/Theme';
 import MobileHeader from './components/MobileHeader';
 import MobileFooter from './components/MobileFooter';
+import WritePostDetail from './components/WritePostDetail';
 import ArrowUpBtn from './components/ArrowUpBtn';
 import AppLayout from './components/AppLayout';
 import Sidebar from './components/Sidebar';
@@ -28,6 +29,7 @@ function App() {
                     <Routes>
                         <Route path="/" element={<HomePage />} />
                         <Route path="/write" element={<Write />} />
+                        <Route path="/post/:id" element={<WritePostDetail />} />
                         <Route path="/log" element={<Log />} />
                     </Routes>
                 </AppLayout.Main>
