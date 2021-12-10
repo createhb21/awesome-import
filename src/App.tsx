@@ -1,6 +1,6 @@
 import Log from './pages/Log';
 import Write from './pages/Write';
-import Main from './pages/Home/main';
+import HomePage from './pages/Home/HomePage';
 import { Global } from '@emotion/react';
 import { useSelector } from 'react-redux';
 import { ThemeProvider } from '@emotion/react';
@@ -26,7 +26,7 @@ function App() {
                 </AppLayout.Side>
                 <AppLayout.Main>
                     <Routes>
-                        <Route path="/" element={<Main />} />
+                        <Route path="/" element={<HomePage />} />
                         <Route path="/write" element={<Write />} />
                         <Route path="/log" element={<Log />} />
                     </Routes>

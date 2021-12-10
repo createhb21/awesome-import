@@ -10,6 +10,7 @@ export const GlobalStyle = (theme: ITheme) => css`
         transition-property: background-color, color;
         margin: 0;
         padding: 0;
+        line-height: 1.625;
         font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', 나눔고딕, 'Nanum Gothic', 'Noto Sans KR', 'Noto Sans CJK KR', arial, 돋움,
             Dotum, Tahoma, Geneva, sans-serif;
         -webkit-font-smoothing: antialiased;
@@ -70,6 +71,30 @@ export const GlobalStyle = (theme: ITheme) => css`
     a {
         color: inherit;
         text-decoration: none;
+    }
+
+    li {
+        display: list-item;
+        text-align: -webkit-match-parent;
+    }
+    ol,
+    ul {
+        list-style: none;
+    }
+    blockquote,
+    dd,
+    dl,
+    figure,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    hr,
+    p,
+    pre {
+        margin: 0;
     }
 `;
 

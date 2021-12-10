@@ -2,10 +2,10 @@
 import { css, useTheme } from '@emotion/react';
 import AppLayout from '../../components/AppLayout';
 import Footer from '../../components/Footer';
-import ProjectList from '../../components/ProjectList';
+import ProjectItem from '../../components/ProjectItem';
 import { ITheme } from '../../lib/styles/Theme';
 
-const Main = () => {
+const HomePage = () => {
     const theme = useTheme();
 
     return (
@@ -14,15 +14,15 @@ const Main = () => {
                 <h1>Hey, I'm Bummy 👷</h1>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat consequatur tempore culpa, consectetur dolores nam praesentium veritatis in quam nesciunt! Reiciendis </p>
             </header>
-            <div css={mainStyle(theme)}>
+            <div css={homePageStyle(theme)}>
                 <h2>
                     <span>👔</span>
                     I've worked at
                 </h2>
-                <ul css={ulStyle(theme)}>
-                    <ProjectList title="Abroad" date={2021.06} />
-                    <ProjectList title="CtrlF" date={2021.07} />
-                    <ProjectList title="PAYDAY" date={2021.12} />
+                <ul css={projectListStyle(theme)}>
+                    <ProjectItem title="Abroad" date={2021.06} />
+                    <ProjectItem title="CtrlF" date={2021.07} />
+                    <ProjectItem title="PAYDAY" date={2021.12} />
                 </ul>
             </div>
             <AppLayout.Footer>
@@ -32,14 +32,14 @@ const Main = () => {
     );
 };
 
-export default Main;
+export default HomePage;
 
-const ulStyle = (theme: ITheme) => css`
+const projectListStyle = (theme: ITheme) => css`
     list-style: none;
     margin: 0;
     padding: 0;
 `;
-const mainStyle = (theme: ITheme) => css`
+const homePageStyle = (theme: ITheme) => css`
     padding-top: 1rem;
     padding-bottom: 1rem;
 
