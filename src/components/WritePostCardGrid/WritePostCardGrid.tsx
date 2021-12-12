@@ -10,26 +10,28 @@ export type WritePostCardGridProps = {
 
 function TechPostCardGrid({ post }: WritePostCardGridProps) {
     const theme = useTheme();
+    const { id, category, title, content, date, img } = post;
     return (
         <li css={wrapperStyle(theme)}>
             <Link
                 to={{
-                    pathname: `/post/${post.id}`,
+                    pathname: `/posts/${id}`,
                 }}
+                state={post}
             >
                 <article css={containerStyle(theme)}>
                     <section css={categoryStyle(theme)}>
-                        <span>{post.category}</span>
+                        <span>{category}</span>
                     </section>
                     <section css={contentWrapperStyle(theme)}>
-                        <h1 css={titleStyle(theme)}>{post.title}</h1>
+                        <h1 css={titleStyle(theme)}>{title}</h1>
                         <div css={summaryStyle(theme)}>
-                            <p>{post.content}</p>
-                            <span>{post.date}</span>
+                            <p>{content}</p>
+                            <span>{date}</span>
                         </div>
                         <div css={imageStyle(theme)}>
                             <span>
-                                <img src={post.img} alt="img" />
+                                <img src={img} alt="img" />
                             </span>
                         </div>
                     </section>

@@ -293,7 +293,7 @@ export const blueGrey = {
 export const black = '#000000';
 export const white = '#ffffff';
 export const darkText = {
-    primary: 'rgba(0, 0, 0, 0.87)',
+    primary: '#4B5563',
     secondary: 'rgba(0, 0, 0, 0.54)',
     disabled: 'rgba(0, 0, 0, 0.38)',
     dividers: 'rgba(0, 0, 0, 0.12)',

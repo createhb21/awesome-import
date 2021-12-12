@@ -29,7 +29,7 @@ function App() {
                     <Routes>
                         <Route path="/" element={<HomePage />} />
                         <Route path="/write" element={<Write />} />
-                        <Route path="/post/:id" element={<WritePostDetail />} />
+                        <Route path="/posts/:id" element={<WritePostDetail />} />
                         <Route path="/log" element={<Log />} />
                     </Routes>
                 </AppLayout.Main>

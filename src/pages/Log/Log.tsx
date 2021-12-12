@@ -24,7 +24,7 @@ function Log({}: LogProps) {
                     <ul css={postListStyle(theme)}>
                         {posts &&
                             posts.map((item: ILogData) => {
-                                return <LogPostCardGrid post={item} />;
+                                return <LogPostCardGrid key={item.id} post={item} />;
                             })}
                     </ul>
                 </div>

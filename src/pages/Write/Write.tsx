@@ -23,7 +23,7 @@ function Write({}: WriteProps) {
                 <ul css={postListStyle(theme)}>
                     {posts &&
                         posts.map((item: IWriteData) => {
-                            return <WritePostCardGrid post={item} />;
+                            return <WritePostCardGrid key={item.id} post={item} />;
                         })}
                 </ul>
             </div>
