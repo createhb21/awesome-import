@@ -17,7 +17,6 @@ function TechPostCardGrid({ post }: WritePostCardGridProps) {
                 to={{
                     pathname: `/posts/${id}`,
                 }}
-                state={post}
             >
                 <article css={containerStyle(theme)}>
                     <section css={categoryStyle(theme)}>

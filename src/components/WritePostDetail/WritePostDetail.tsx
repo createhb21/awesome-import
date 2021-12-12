@@ -1,11 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import { css, useTheme } from '@emotion/react';
 import { ITheme } from '../../lib/styles/Theme';
-import { useLocation, useParams } from 'react-router-dom';
-import { IWriteData } from '../../hooks/useWriteTextData';
+import { useParams } from 'react-router-dom';
 import { data } from '../../hooks/useWriteTextData';
-import PostRoofBtn from '../PostRoofBtn';
 import media from '../../lib/styles/media';
+import PostLoopBtn from '../PostLoopBtn';
 
 function WritePostDetail() {
     const { posts } = data;
@@ -21,16 +20,16 @@ function WritePostDetail() {
                         <span>{category}</span>
                     </div>
                     <h1>{title}</h1>
-                    <div css={infoStyle(theme)}>
+                    <span css={infoStyle(theme)}>
                         Createhb21
                         <span>·</span>
                         {date}
-                    </div>
+                    </span>
                 </header>
                 <div>
                     <main css={contentStyle(theme)}>{content}</main>
                 </div>
-                <PostRoofBtn currentId={+id} />
+                <PostLoopBtn currentId={+id} data={data} />
             </div>
         </>
     );
@@ -48,7 +47,7 @@ const headerStyle = (theme: ITheme) => css`
     padding-top: 4rem;
     padding-bottom: 3rem;
 
-    & > div:first-child {
+    & > div {
     margin-bottom: .5rem;
         & > span {
             font-size: 1rem;
@@ -63,8 +62,8 @@ const infoStyle = (theme: ITheme) => css`
     color: ${theme.textGray};
     font-size: 0.875rem;
     line-height: 1.25rem;
+    display: inline-flex;
     align-items: center;
-    display: flex;
 
     & > span {
         margin-left: 0.375rem;
