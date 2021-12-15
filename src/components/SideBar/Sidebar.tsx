@@ -5,7 +5,7 @@ import SidebarItem from '../SidebarItem/SidebarItem';
 import ThemeSwitchBtn from '../ThemeSwitchBtn';
 import { logo } from '../../assets/images';
 
-function Sidebar() {
+function SideBar() {
     return (
         <div css={sidebarStyle}>
             <div className="logo">
@@ -42,4 +42,4 @@ const menuStyle = css`
     flex: 1;
 `;
 
-export default Sidebar;
+export default SideBar;

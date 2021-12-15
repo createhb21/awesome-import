@@ -3,8 +3,6 @@ import { ITheme } from '../../lib/styles/Theme';
 import { useNavigate } from 'react-router-dom';
 import { css, useTheme } from '@emotion/react';
 import { IDataContainer } from '../../hooks/useWriteTextData';
-import usePostLoopBtn from '../../hooks/usePostLoopBtn';
-import { InitialState } from '../../modules/PostLoopBtn';
 
 export type PostRoofBtnProps = {
     currentId: number;
@@ -14,17 +12,14 @@ export type PostRoofBtnProps = {
 function PostRoofBtn({ currentId, data }: PostRoofBtnProps) {
     const theme = useTheme();
     const navigate = useNavigate();
-    const { isPrevious, isNext } = usePostLoopBtn(currentId)! as InitialState;
     const roofToOtherPost = (num: boolean) => {
         num === true ? navigate(`/posts/${currentId + 1}`) : navigate(`/posts/${currentId - 1}`);
     };
 
     return (
         <div css={wrapperStyle(theme)}>
-            {/* <button onClick={() => roofToOtherPost(false)}>이전글</button> */}
-            {isPrevious && <button onClick={() => roofToOtherPost(false)}>이전글</button>}
-            {isNext && <button onClick={() => roofToOtherPost(true)}>다음글</button>}
-            {/* <button onClick={() => roofToOtherPost(true)}>다음글</button> */}
+            <button onClick={() => roofToOtherPost(false)}>이전글</button>
+            <button onClick={() => roofToOtherPost(true)}>다음글</button>
         </div>
     );
 }

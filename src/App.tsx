@@ -12,18 +12,17 @@ import MobileFooter from './components/MobileFooter';
 import WritePostDetail from './components/WritePostDetail';
 import ArrowUpBtn from './components/ArrowUpBtn';
 import AppLayout from './components/AppLayout';
-import Sidebar from './components/Sidebar';
 import { RootReducerType } from './index';
+import SideBar from './components/SideBar';
 
 function App() {
     const { isDarkMode } = useSelector((state: RootReducerType) => state.ThemeSwitchReducer);
-
     return (
         <ThemeProvider theme={isDarkMode ? themeLight : themeDark}>
             <MobileHeader />
             <AppLayout>
                 <AppLayout.Side>
-                    <Sidebar />
+                    <SideBar />
                 </AppLayout.Side>
                 <AppLayout.Main>
                     <Routes>
