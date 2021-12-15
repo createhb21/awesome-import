@@ -14,6 +14,7 @@ import ArrowUpBtn from './components/ArrowUpBtn';
 import AppLayout from './components/AppLayout';
 import { RootReducerType } from './index';
 import SideBar from './components/SideBar';
+import AwesomeEditor from './components/AwesomeEditor/AwesomeEditor';
 
 function App() {
     const { isDarkMode } = useSelector((state: RootReducerType) => state.ThemeSwitchReducer);
@@ -30,6 +31,7 @@ function App() {
                         <Route path="/write" element={<Write />} />
                         <Route path="/posts/:id" element={<WritePostDetail />} />
                         <Route path="/log" element={<Log />} />
+                        <Route path="/edit" element={<AwesomeEditor />} />
                     </Routes>
                 </AppLayout.Main>
             </AppLayout>
