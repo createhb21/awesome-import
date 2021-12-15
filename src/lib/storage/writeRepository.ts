@@ -1,11 +1,11 @@
 import { database } from './firebase';
 
 interface IPost {
-    author: string;
-    body: string;
     title: string;
-    starCount: number;
+    body: string;
+    author: string;
     authorPic: string;
+    starCount: number;
 }
 
 class WriteRepository {

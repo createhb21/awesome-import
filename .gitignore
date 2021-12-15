@@ -9,7 +9,7 @@
 /coverage
 
 # API keys
-.env
+.env*
 
 # production
 /build

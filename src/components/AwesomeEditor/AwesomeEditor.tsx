@@ -3,6 +3,7 @@ import React from 'react';
 import { css } from '@emotion/react';
 import { Editor, EditorState, RichUtils, AtomicBlockUtils, DraftEditorCommand, convertToRaw, convertFromRaw } from 'draft-js';
 import 'draft-js/dist/Draft.css';
+import { ITheme } from '../../lib/styles/Theme';
 import { linkDecorator } from './hooks/Link';
 import { mediaBlockRenderer } from './hooks/Media';
 
@@ -116,13 +117,14 @@ const TextEditor: React.FC = () => {
 
 export default TextEditor;
 
-const wrapperStyle = css`
+const wrapperStyle = (theme: ITheme) => css`
     text-align: center;
     width: 40rem;
 
     & > button {
         border: none;
-        background-color: white;
+        color: ${theme.textNormal};
+        background-color: ${theme.background};
         padding: 0.5rem 1rem;
     }
 

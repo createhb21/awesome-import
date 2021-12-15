@@ -3,6 +3,7 @@ import palette, { brandColor, darkText, lightText } from '../palette';
 export interface ITheme {
     primaryColor: string;
     text: string;
+    textNormal: string;
     textGray: string;
     mainContentText: string;
     background: string;
@@ -17,6 +18,7 @@ export interface ITheme {
 export const themeLight: Readonly<ITheme> = {
     primaryColor: brandColor,
     text: darkText.primary,
+    textNormal: darkText.primary,
     textGray: palette.blueGrey[600],
     mainContentText: palette.blueGrey[600],
     background: lightText.primary,
@@ -32,6 +34,7 @@ export const themeDark: Readonly<ITheme> = {
     primaryColor: '#3178c6',
     text: '#C9D1D9',
     textGray: '#C9D1D9',
+    textNormal: lightText.primary,
     mainContentText: 'rgba(75, 85, 99, 0.97)',
     background: '#121212',
     grayBorder: palette.blueGrey[600],
