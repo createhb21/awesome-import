@@ -1,19 +1,30 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react';
-import { css } from '@emotion/react';
+import { css, useTheme } from '@emotion/react';
 import { Editor, EditorState, RichUtils, AtomicBlockUtils, DraftEditorCommand, convertToRaw, convertFromRaw } from 'draft-js';
 import 'draft-js/dist/Draft.css';
 import { ITheme } from '../../lib/styles/Theme';
 import { linkDecorator } from './hooks/Link';
 import { mediaBlockRenderer } from './hooks/Media';
+import AwesomePreview from '../AwesomePreview';
+
+const TEXT_EDITOR_ITEM = 'text-editor-item';
 
 const TextEditor: React.FC = () => {
+    const theme = useTheme();
+    const [visiblePreview, setVisiblePreview] = React.useState<boolean>(false);
     const initialState = EditorState.createEmpty(linkDecorator);
     const [editorState, setEditorState] = React.useState<EditorState>(initialState);
 
     const handleSave = () => {
         const data = JSON.stringify(convertToRaw(editorState.getCurrentContent()));
         console.log(data);
+    };
+
+    const handlePreview = () => {
+        const data = JSON.stringify(convertToRaw(editorState.getCurrentContent()));
+        localStorage.setItem(TEXT_EDITOR_ITEM, data);
+        !visiblePreview ? setVisiblePreview(true) : setVisiblePreview(false);
     };
 
     const handleInsertImage = () => {
@@ -66,18 +77,39 @@ const TextEditor: React.FC = () => {
     };
 
     return (
-        <div css={wrapperStyle}>
-            <button onMouseDown={e => handleBlockClick(e, 'header-one')}>H1</button>
-            <button onMouseDown={e => handleBlockClick(e, 'header-two')}>H2</button>
-            <button onMouseDown={e => handleBlockClick(e, 'header-three')}>H3</button>
-            <button onMouseDown={e => handleBlockClick(e, 'unstyled')}>Normal</button>
-            <button onMouseDown={e => handleTogggleClick(e, 'BOLD')}>bold</button>
-            <button onMouseDown={e => handleTogggleClick(e, 'UNDERLINE')}>underline</button>
-            <button onMouseDown={e => handleTogggleClick(e, 'ITALIC')}>italic</button>
-            <button onMouseDown={e => handleTogggleClick(e, 'STRIKETHROUGH')}>strikthrough</button>
-            <button onMouseDown={e => handleBlockClick(e, 'ordered-list-item')}>Ordered List</button>
-            <button onMouseDown={e => handleBlockClick(e, 'unordered-list-item')}>Unordered List</button>
+        <div css={wrapperStyle(theme, visiblePreview)}>
+            <button id="func" onMouseDown={e => handleBlockClick(e, 'header-one')}>
+                H1
+            </button>
+            <button id="func" onMouseDown={e => handleBlockClick(e, 'header-two')}>
+                H2
+            </button>
+            <button id="func" onMouseDown={e => handleBlockClick(e, 'header-three')}>
+                H3
+            </button>
+            <button id="func" onMouseDown={e => handleBlockClick(e, 'unstyled')}>
+                Normal
+            </button>
+            <button id="func" onMouseDown={e => handleTogggleClick(e, 'BOLD')}>
+                bold
+            </button>
+            <button id="func" onMouseDown={e => handleTogggleClick(e, 'UNDERLINE')}>
+                underline
+            </button>
+            <button id="func" onMouseDown={e => handleTogggleClick(e, 'ITALIC')}>
+                italic
+            </button>
+            <button id="func" onMouseDown={e => handleTogggleClick(e, 'STRIKETHROUGH')}>
+                strikthrough
+            </button>
+            <button id="func" onMouseDown={e => handleBlockClick(e, 'ordered-list-item')}>
+                Ordered List
+            </button>
+            <button id="func" onMouseDown={e => handleBlockClick(e, 'unordered-list-item')}>
+                Unordered List
+            </button>
             <button
+                id="func"
                 onMouseDown={e => {
                     e.preventDefault();
                     handleInsertImage();
@@ -86,6 +118,7 @@ const TextEditor: React.FC = () => {
                 image
             </button>
             <button
+                id="func"
                 disabled={editorState.getSelection().isCollapsed()}
                 onMouseDown={e => {
                     e.preventDefault();
@@ -94,13 +127,13 @@ const TextEditor: React.FC = () => {
             >
                 link
             </button>
-            <button disabled={editorState.getUndoStack().size <= 0} onMouseDown={() => setEditorState(EditorState.undo(editorState))}>
+            <button id="func" disabled={editorState.getUndoStack().size <= 0} onMouseDown={() => setEditorState(EditorState.undo(editorState))}>
                 ⏪
             </button>
-            <button disabled={editorState.getRedoStack().size <= 0} onMouseDown={() => setEditorState(EditorState.redo(editorState))}>
+            <button id="func" disabled={editorState.getRedoStack().size <= 0} onMouseDown={() => setEditorState(EditorState.redo(editorState))}>
                 ⏩
             </button>
-            <Editor editorState={editorState} onChange={setEditorState} handleKeyCommand={handleKeyCommand} blockRendererFn={mediaBlockRenderer} />
+            {!visiblePreview ? <Editor editorState={editorState} onChange={setEditorState} handleKeyCommand={handleKeyCommand} blockRendererFn={mediaBlockRenderer} /> : <AwesomePreview />}
             <button
                 className="save"
                 type="button"
@@ -111,21 +144,28 @@ const TextEditor: React.FC = () => {
             >
                 save
             </button>
+            <button className="preview" onClick={handlePreview}>
+                {!visiblePreview ? 'Preview' : 'Write'}
+            </button>
         </div>
     );
 };
 
 export default TextEditor;
 
-const wrapperStyle = (theme: ITheme) => css`
+const wrapperStyle = (theme: ITheme, visiblePreview: boolean) => css`
     text-align: center;
     width: 40rem;
 
-    & > button {
+    & > #func {
         border: none;
         color: ${theme.textNormal};
         background-color: ${theme.background};
         padding: 0.5rem 1rem;
+        opacity: ${visiblePreview ? 0 : 1};
+        pointer-events: ${visiblePreview ? 'none' : 'auto'};
+        transition-duration: 0.7s;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .DraftEditor-root {
@@ -142,7 +182,11 @@ const wrapperStyle = (theme: ITheme) => css`
         min-height: 20rem;
     }
 
-    .save {
+    .save,
+    .preview {
+        border: none;
+        padding: 0.5rem 1rem;
+        margin: auto 0.5rem;
         background-color: #3ed3d2;
         color: white;
         border-radius: 0.5rem;

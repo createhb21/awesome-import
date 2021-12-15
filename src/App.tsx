@@ -15,6 +15,7 @@ import AppLayout from './components/AppLayout';
 import { RootReducerType } from './index';
 import SideBar from './components/SideBar';
 import AwesomeEditor from './components/AwesomeEditor/AwesomeEditor';
+import AwesomePreview from './components/AwesomePreview';
 
 function App() {
     const { isDarkMode } = useSelector((state: RootReducerType) => state.ThemeSwitchReducer);
@@ -32,6 +33,7 @@ function App() {
                         <Route path="/posts/:id" element={<WritePostDetail />} />
                         <Route path="/log" element={<Log />} />
                         <Route path="/edit" element={<AwesomeEditor />} />
+                        <Route path="/preview" element={<AwesomePreview />} />
                     </Routes>
                 </AppLayout.Main>
             </AppLayout>

@@ -9,7 +9,7 @@ interface BlockComponentProps {
 export const Image = (props: BlockComponentProps) => {
     const { block, contentState } = props;
     const { src } = contentState.getEntity(block.getEntityAt(0)).getData();
-    return <img src={src} alt={src} role="presentation" />;
+    return <img src={src} alt={src} role="presentation" width="377px" />;
 };
 
 const Media = (props: BlockComponentProps) => {
