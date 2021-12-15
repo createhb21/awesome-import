@@ -1,31 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import { Helmet } from 'react-helmet-async';
-import axios from 'axios';
 import { css, useTheme } from '@emotion/react';
 import { ITheme } from '../../lib/styles/Theme';
 import { data, IWriteData } from '../../hooks/useWriteTextData';
 import WritePostCardGrid from '../../components/WritePostCardGrid';
-import { useEffect } from 'react';
 
-export type WriteProps = {};
-
-function Write({}: WriteProps) {
-    const Axios = axios;
+function Write() {
     const { posts } = data;
     const theme = useTheme();
 
-    useEffect(() => {
-        Axios.get(`${process.env.REACT_APP_API_URL}/write.json`)
-            .then(res => {
-                if (res.status !== 200) {
-                    throw new Error(res.statusText);
-                }
-                return res.data;
-            })
-            .then(post => {
-                console.log(post);
-            });
-    }, []);
     return (
         <>
             <Helmet>

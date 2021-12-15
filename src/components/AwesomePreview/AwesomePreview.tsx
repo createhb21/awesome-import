@@ -4,11 +4,10 @@ import { css, useTheme } from '@emotion/react';
 import { Editor, EditorState, convertFromRaw } from 'draft-js';
 import { linkDecorator } from '../AwesomeEditor/hooks/Link';
 import { ITheme } from '../../lib/styles/Theme';
-export type AwesomePreviewProps = {};
 
 const TEXT_EDITOR_ITEM = 'text-editor-item';
 
-function AwesomePreview({}: AwesomePreviewProps) {
+function AwesomePreview() {
     const theme = useTheme();
     const [visible, setVisible] = useState<boolean>(false);
     const data = localStorage.getItem(TEXT_EDITOR_ITEM)! as string;

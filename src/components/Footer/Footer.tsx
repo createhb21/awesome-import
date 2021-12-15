@@ -1,14 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import media from '../../lib/styles/media';
+import React from 'react';
 
-export type FooterProps = {};
-
-function Footer({}: FooterProps) {
+function Footer() {
     return (
-        <>
+        <React.Fragment>
             <div css={copyrightStyle}>© 2021 Cretehb21.</div>
-        </>
+        </React.Fragment>
     );
 }
 

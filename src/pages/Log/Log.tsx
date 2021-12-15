@@ -5,9 +5,7 @@ import { data, ILogData } from '../../hooks/useLogTextData';
 import LogPostCardGrid from '../../components/LogPostCardFrid';
 import { ITheme } from '../../lib/styles/Theme';
 
-export type LogProps = {};
-
-function Log({}: LogProps) {
+function Log() {
     const { posts } = data;
     const theme = useTheme();
     return (

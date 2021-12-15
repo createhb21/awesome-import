@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react';
 import { css, useTheme } from '@emotion/react';
-import { Editor, EditorState, RichUtils, AtomicBlockUtils, DraftEditorCommand, convertToRaw, convertFromRaw } from 'draft-js';
+import { Editor, EditorState, RichUtils, AtomicBlockUtils, DraftEditorCommand, convertToRaw } from 'draft-js';
 import 'draft-js/dist/Draft.css';
 import { ITheme } from '../../lib/styles/Theme';
 import { linkDecorator } from './hooks/Link';
