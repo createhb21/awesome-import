@@ -4,10 +4,13 @@ import { css, useTheme } from '@emotion/react';
 import { ITheme } from '../../lib/styles/Theme';
 import { data, IWriteData } from '../../hooks/useWriteTextData';
 import WritePostCardGrid from '../../components/WritePostCardGrid';
+import UseAxiHook from '../../hooks/useAxiHook';
 
 function Write() {
     const { posts } = data;
     const theme = useTheme();
+
+    // const { posts, loading, error } = UseAxiHook('write');
 
     return (
         <>

@@ -3,7 +3,6 @@ import { css, useTheme } from '@emotion/react';
 import { Link } from 'react-router-dom';
 import { IWriteData } from '../../hooks/useWriteTextData';
 import { ITheme } from '../../lib/styles/Theme';
-
 export type WritePostCardGridProps = {
     post: IWriteData;
 };

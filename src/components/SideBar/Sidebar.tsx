@@ -16,6 +16,7 @@ function SideBar() {
             <ul css={menuStyle}>
                 <SidebarItem icon="workspace" text="Write" to="/write" />
                 <SidebarItem icon="flask" text="Log" to="/log" />
+                <SidebarItem icon="plus" text="Plus" to="/plus" />
                 <ThemeSwitchBtn icon="globe" mode="side" />
             </ul>
         </div>

@@ -169,6 +169,8 @@ const wrapperStyle = (theme: ITheme, visiblePreview: boolean) => css`
     }
 
     .DraftEditor-root {
+        max-height: 800px;
+        overflow-y: auto;
         border: 1px solid #eee;
         margin: 2rem 0;
         border-radius: 0.5rem;
