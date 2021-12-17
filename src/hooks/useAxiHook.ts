@@ -1,12 +1,6 @@
 import Axios from 'axios';
 import React, { useEffect } from 'react';
-
-interface IPost {
-    date: string;
-    title: string;
-    body: string;
-    starCount: number;
-}
+import { IPost } from '../modules/FetchPostData';
 
 type Cancel = () => void;
 

@@ -10,7 +10,7 @@ function WritePostDetail() {
     const { posts } = data;
     const theme = useTheme();
     const { id } = useParams()! as { id: string };
-    const { category, title, date, content } = posts[+id - 1];
+    const { category, title, date, content } = posts[+id];
 
     return (
         <>

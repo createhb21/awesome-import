@@ -2,15 +2,13 @@
 import { Helmet } from 'react-helmet-async';
 import { css, useTheme } from '@emotion/react';
 import { ITheme } from '../../lib/styles/Theme';
-import { data, IWriteData } from '../../hooks/useWriteTextData';
+import { IPost } from '../../modules/FetchPostData';
 import WritePostCardGrid from '../../components/WritePostCardGrid';
 import UseAxiHook from '../../hooks/useAxiHook';
 
 function Write() {
-    const { posts } = data;
     const theme = useTheme();
-
-    // const { posts, loading, error } = UseAxiHook('write');
+    const { posts, loading, error } = UseAxiHook('write');
 
     return (
         <>
@@ -24,7 +22,7 @@ function Write() {
                 </header>
                 <ul css={postListStyle(theme)}>
                     {posts &&
-                        posts.map((item: IWriteData) => {
+                        posts.map((item: IPost) => {
                             return <WritePostCardGrid key={item.id} post={item} />;
                         })}
                 </ul>

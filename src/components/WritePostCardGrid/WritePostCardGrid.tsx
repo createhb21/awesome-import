@@ -1,15 +1,18 @@
 /** @jsxImportSource @emotion/react */
 import { css, useTheme } from '@emotion/react';
 import { Link } from 'react-router-dom';
-import { IWriteData } from '../../hooks/useWriteTextData';
 import { ITheme } from '../../lib/styles/Theme';
+import { IPost } from '../../modules/FetchPostData';
+
 export type WritePostCardGridProps = {
-    post: IWriteData;
+    post: IPost;
 };
 
 function TechPostCardGrid({ post }: WritePostCardGridProps) {
     const theme = useTheme();
-    const { id, category, title, content, date, img } = post;
+    const { id, category, title, body, date, img, starCount } = post;
+    const { blocks } = body! as any;
+
     return (
         <li css={wrapperStyle(theme)}>
             <Link
@@ -24,7 +27,11 @@ function TechPostCardGrid({ post }: WritePostCardGridProps) {
                     <section css={contentWrapperStyle(theme)}>
                         <h1 css={titleStyle(theme)}>{title}</h1>
                         <div css={summaryStyle(theme)}>
-                            <p>{content}</p>
+                            <p>
+                                {blocks.slice(0, 2).map((item: any) => {
+                                    return <span>{item.text}</span>;
+                                })}
+                            </p>
                             <span>{date}</span>
                         </div>
                         <div css={imageStyle(theme)}>
@@ -117,14 +124,12 @@ const imageStyle = (theme: ITheme) => css`
     margin-left: 1.5rem;
     justify-self: stretch;
     align-self: stretch;
-
     & > span {
         display: inline-block;
         position: relative;
         overflow: hidden;
         width: 100%;
         height: 100%;
-
         & > img {
             position: absolute;
             top: 0px;

@@ -35,7 +35,6 @@ function App() {
                         <Route path="/log" element={<Log />} />
                         <Route path="/plus" element={<GuestBook />} />
                         <Route path="/edit" element={<AwesomeEditor />} />
-                        <Route path="/rend" element={<AwesomeRenderer />} />
                     </Routes>
                 </AppLayout.Main>
             </AppLayout>
