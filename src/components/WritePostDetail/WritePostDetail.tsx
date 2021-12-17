@@ -1,36 +1,49 @@
 /** @jsxImportSource @emotion/react */
+import React, { useEffect } from 'react';
 import { css, useTheme } from '@emotion/react';
 import { ITheme } from '../../lib/styles/Theme';
 import { useParams } from 'react-router-dom';
 import { data } from '../../hooks/useWriteTextData';
 import media from '../../lib/styles/media';
 import PostLoopBtn from '../PostLoopBtn';
+import { fetchPostData } from '../../modules/FetchPostData';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootReducerType } from '../..';
+import AwesomeRenderer from '../AwesomeRenderer';
 
 function WritePostDetail() {
-    const { posts } = data;
     const theme = useTheme();
     const { id } = useParams()! as { id: string };
-    const { category, title, date, content } = posts[+id];
+    const postReducer = useSelector((state: RootReducerType) => state.FetchPostReducer);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(fetchPostData('write', parseInt(id)));
+    }, []);
 
     return (
         <>
-            <div css={wrapperStyle(theme)}>
-                <header css={headerStyle(theme)}>
+            {postReducer.posts && (
+                <div css={wrapperStyle(theme)}>
+                    <header css={headerStyle(theme)}>
+                        <div>
+                            <span>{postReducer.posts.category}</span>
+                        </div>
+                        <h1>{postReducer.posts.title}</h1>
+                        <span css={infoStyle(theme)}>
+                            Createhb21
+                            <span>·</span>
+                            {postReducer.posts.date}
+                        </span>
+                    </header>
                     <div>
-                        <span>{category}</span>
+                        <main css={contentStyle(theme)}>
+                            <AwesomeRenderer>{postReducer.posts.body}</AwesomeRenderer>
+                        </main>
                     </div>
-                    <h1>{title}</h1>
-                    <span css={infoStyle(theme)}>
-                        Createhb21
-                        <span>·</span>
-                        {date}
-                    </span>
-                </header>
-                <div>
-                    <main css={contentStyle(theme)}>{content}</main>
+                    <PostLoopBtn currentId={+id} data={data} />
                 </div>
-                <PostLoopBtn currentId={+id} data={data} />
-            </div>
+            )}
         </>
     );
 }

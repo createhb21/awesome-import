@@ -15,6 +15,8 @@ function AwesomePreview() {
     const initialState = data ? EditorState.createWithContent(convertFromRaw(JSON.parse(data)), linkDecorator) : EditorState.createEmpty(linkDecorator);
     const [editorState, setEditorState] = React.useState<EditorState>(initialState);
 
+    console.log(data);
+
     useEffect(() => {
         setTimeout(() => setVisible(true), 450);
 

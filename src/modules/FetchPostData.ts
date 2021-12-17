@@ -4,13 +4,18 @@ import Axios from 'axios';
 export const POST_SUCCESS = 'POST_SUCCESS';
 export const POST_FAIL = 'POST_FAIL';
 
+export type MainBody = {
+    blocks: any;
+    entityMap?: any;
+};
+
 export interface IPost {
     id: number;
     category: string;
     title: string;
     date: string;
     img: string;
-    body: string;
+    body: MainBody;
     starCount: number;
 }
 
@@ -27,10 +32,10 @@ export interface postsSuccessDispatch {
 
 export type postsDispatchType = postsFailDispatch | postsSuccessDispatch;
 
-export const fetchPostData = (dataCategory: string) => async (dispatch: Dispatch<postsDispatchType>) => {
+export const fetchPostData = (dataCategory: string, id: number) => async (dispatch: Dispatch<postsDispatchType>) => {
     try {
         const res = await Axios.get(`${process.env.NODE_ENV === 'development' ? process.env.REACT_APP_DEVELOP_API_URL : process.env.REACT_APP_RELEASE_API_URL}/${dataCategory}.json`);
-        const data = res.data.posts[1];
+        const data = res.data.posts[id];
 
         dispatch({
             type: POST_SUCCESS,
