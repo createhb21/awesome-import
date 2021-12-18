@@ -19,7 +19,6 @@ function AwesomePreview() {
 
     useEffect(() => {
         setTimeout(() => setVisible(true), 450);
-
         return () => localStorage.removeItem(TEXT_EDITOR_ITEM);
     }, []);
     return (
@@ -33,6 +32,7 @@ export default AwesomePreview;
 
 const wrapperStyle = (theme: ITheme, visible: boolean) => css`
     height: 100%;
+    z-index: 30;
 
     .DraftEditor-root {
         border: ${visible ? '0.2px solid #3ed3d2' : '1px solid #eee;'};

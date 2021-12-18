@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import { ContentBlock, ContentState } from 'draft-js';
 import { css } from '@emotion/react';
+import { useSelector } from 'react-redux';
+import { RootReducerType } from '../../../';
 
 interface BlockComponentProps {
     contentState: ContentState;
@@ -32,10 +34,15 @@ const imgSize = (width: number | null) => css`
 export const Image = (props: BlockComponentProps) => {
     const { block, contentState } = props;
     const { src } = contentState.getEntity(block.getEntityAt(0)).getData();
-    const [width, setWidth] = useState(477);
+    const [width, setWidth] = useState(577);
+    const { isSetterMode } = useSelector((state: RootReducerType) => state.ImageSetterReducer);
 
     const getSize = () => {
+        if (!isSetterMode) return;
         const responseSize = prompt('Please enter your picture size');
+        if (!responseSize) {
+            return;
+        }
         if (Number.isNaN(Number(responseSize))) {
             return;
         } else {

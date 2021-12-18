@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { css, useTheme } from '@emotion/react';
 import { Editor, EditorState, RichUtils, AtomicBlockUtils, DraftEditorCommand, convertToRaw } from 'draft-js';
 import 'draft-js/dist/Draft.css';
@@ -7,6 +7,8 @@ import { ITheme } from '../../lib/styles/Theme';
 import { linkDecorator } from './hooks/Link';
 import { mediaBlockRenderer } from './hooks/Media';
 import AwesomePreview from '../AwesomePreview';
+import { useDispatch } from 'react-redux';
+import { switchImageGetterMode, switchImageSetterMode } from '../../modules/ImageSetter';
 
 const TEXT_EDITOR_ITEM = 'text-editor-item';
 
@@ -79,6 +81,15 @@ const TextEditor = ({ guest }: EditorProps) => {
         e.preventDefault();
         setEditorState(RichUtils.toggleBlockType(editorState, blockType));
     };
+
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(switchImageSetterMode());
+
+        return () => {
+            dispatch(switchImageGetterMode());
+        };
+    }, [dispatch]);
 
     return (
         <div css={wrapperStyle(theme, visiblePreview, guest)}>
