@@ -1,24 +1,26 @@
 /** @jsxImportSource @emotion/react */
 import { css, useTheme } from '@emotion/react';
 import { Helmet } from 'react-helmet-async';
-import { data, ILogData } from '../../hooks/useLogTextData';
 import LogPostCardGrid from '../../components/LogPostCardFrid';
 import { ITheme } from '../../lib/styles/Theme';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootReducerType } from '../..';
 import { useEffect } from 'react';
-import { getPostsAction } from '../../modules/FetchPostData';
+import { createSelector } from '@reduxjs/toolkit';
+import { getLogsAction } from '../../modules/Fetch/FetchLogData';
 
 function Log() {
-    // const { posts } = data;
     const theme = useTheme();
-
-    const { data, loading, error } = useSelector((state: RootReducerType) => state.FetchPostReducer.posts);
+    const getLog = (state: RootReducerType) => state.FetchLogReducer.posts;
+    const getLogs = createSelector(getLog, post => {
+        return post;
+    });
+    const { data, loading, error } = useSelector(getLogs);
     const dispatch = useDispatch();
 
     useEffect(() => {
         if (data) return;
-        dispatch(getPostsAction('log'));
+        dispatch(getLogsAction());
     }, [data, dispatch]);
 
     if (loading && !data) return <div>loading...</div>;

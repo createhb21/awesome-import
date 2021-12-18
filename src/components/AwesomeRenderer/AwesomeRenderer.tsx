@@ -11,9 +11,6 @@ function AwesomeRenderer({ children }: AwesomeRendererProps) {
     const initialState = children ? EditorState.createWithContent(convertFromRaw(children), linkDecorator) : EditorState.createEmpty(linkDecorator);
     const [editorState, setEditorState] = React.useState<EditorState>(initialState);
 
-    const contentState = editorState.getCurrentContent();
-    const entityKeys = Object.keys(convertToRaw(contentState).entityMap);
-
     return (
         <React.Fragment>
             <Editor editorState={editorState} onChange={setEditorState} blockRendererFn={mediaBlockRenderer} readOnly={true} />

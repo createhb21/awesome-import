@@ -1,8 +1,8 @@
 import Axios from 'axios';
-import { createPromiseThunk, reducerUtils, handleAsyncActions } from '../hooks/asyncUtils';
+import { createPromiseThunk, reducerUtils, handleAsyncActions } from '../../hooks/asyncUtils';
 
-const BASE_URL = (dataCategory: string): string => {
-    return `${process.env.NODE_ENV === 'development' ? process.env.REACT_APP_DEVELOP_API_URL : process.env.REACT_APP_RELEASE_API_URL}/${dataCategory}.json`;
+const BASE_URL = (): string => {
+    return `${process.env.NODE_ENV === 'development' ? process.env.REACT_APP_DEVELOP_API_URL : process.env.REACT_APP_RELEASE_API_URL}/write.json`;
 };
 
 export const GET_POSTS = 'GET_POSTS';
@@ -24,14 +24,14 @@ export interface PostType {
     starCount: number;
 }
 
-export const getPosts = async (category: string) => {
-    const res = await Axios.get(BASE_URL(category));
+export const getPosts = async () => {
+    const res = await Axios.get(BASE_URL());
     const posts = res.data.posts;
     return posts;
 };
 
-export const getPostById = async (category: string, id: number) => {
-    const res = await Axios.get(BASE_URL(category));
+export const getPostById = async (id: number) => {
+    const res = await Axios.get(BASE_URL());
     const posts = res.data.posts;
     const defaultUser = {};
     return posts[id] || defaultUser;

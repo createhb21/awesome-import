@@ -10,7 +10,11 @@ import AwesomePreview from '../AwesomePreview';
 
 const TEXT_EDITOR_ITEM = 'text-editor-item';
 
-const TextEditor: React.FC = () => {
+export type EditorProps = {
+    guest?: boolean;
+};
+
+const TextEditor = ({ guest }: EditorProps) => {
     const theme = useTheme();
     const [visiblePreview, setVisiblePreview] = React.useState<boolean>(false);
     const initialState = EditorState.createEmpty(linkDecorator);
@@ -77,62 +81,66 @@ const TextEditor: React.FC = () => {
     };
 
     return (
-        <div css={wrapperStyle(theme, visiblePreview)}>
-            <button id="func" onMouseDown={e => handleBlockClick(e, 'header-one')}>
-                H1
-            </button>
-            <button id="func" onMouseDown={e => handleBlockClick(e, 'header-two')}>
-                H2
-            </button>
-            <button id="func" onMouseDown={e => handleBlockClick(e, 'header-three')}>
-                H3
-            </button>
-            <button id="func" onMouseDown={e => handleBlockClick(e, 'unstyled')}>
-                Normal
-            </button>
-            <button id="func" onMouseDown={e => handleTogggleClick(e, 'BOLD')}>
-                bold
-            </button>
-            <button id="func" onMouseDown={e => handleTogggleClick(e, 'UNDERLINE')}>
-                underline
-            </button>
-            <button id="func" onMouseDown={e => handleTogggleClick(e, 'ITALIC')}>
-                italic
-            </button>
-            <button id="func" onMouseDown={e => handleTogggleClick(e, 'STRIKETHROUGH')}>
-                strikthrough
-            </button>
-            <button id="func" onMouseDown={e => handleBlockClick(e, 'ordered-list-item')}>
-                Ordered List
-            </button>
-            <button id="func" onMouseDown={e => handleBlockClick(e, 'unordered-list-item')}>
-                Unordered List
-            </button>
-            <button
-                id="func"
-                onMouseDown={e => {
-                    e.preventDefault();
-                    handleInsertImage();
-                }}
-            >
-                image
-            </button>
-            <button
-                id="func"
-                disabled={editorState.getSelection().isCollapsed()}
-                onMouseDown={e => {
-                    e.preventDefault();
-                    handleAddLink();
-                }}
-            >
-                link
-            </button>
-            <button id="func" disabled={editorState.getUndoStack().size <= 0} onMouseDown={() => setEditorState(EditorState.undo(editorState))}>
-                ⏪
-            </button>
-            <button id="func" disabled={editorState.getRedoStack().size <= 0} onMouseDown={() => setEditorState(EditorState.redo(editorState))}>
-                ⏩
-            </button>
+        <div css={wrapperStyle(theme, visiblePreview, guest)}>
+            {!guest && (
+                <>
+                    <button id="func" onMouseDown={e => handleBlockClick(e, 'header-one')}>
+                        H1
+                    </button>
+                    <button id="func" onMouseDown={e => handleBlockClick(e, 'header-two')}>
+                        H2
+                    </button>
+                    <button id="func" onMouseDown={e => handleBlockClick(e, 'header-three')}>
+                        H3
+                    </button>
+                    <button id="func" onMouseDown={e => handleBlockClick(e, 'unstyled')}>
+                        Normal
+                    </button>
+                    <button id="func" onMouseDown={e => handleTogggleClick(e, 'BOLD')}>
+                        bold
+                    </button>
+                    <button id="func" onMouseDown={e => handleTogggleClick(e, 'UNDERLINE')}>
+                        underline
+                    </button>
+                    <button id="func" onMouseDown={e => handleTogggleClick(e, 'ITALIC')}>
+                        italic
+                    </button>
+                    <button id="func" onMouseDown={e => handleTogggleClick(e, 'STRIKETHROUGH')}>
+                        strikthrough
+                    </button>
+                    <button id="func" onMouseDown={e => handleBlockClick(e, 'ordered-list-item')}>
+                        Ordered List
+                    </button>
+                    <button id="func" onMouseDown={e => handleBlockClick(e, 'unordered-list-item')}>
+                        Unordered List
+                    </button>
+                    <button
+                        id="func"
+                        onMouseDown={e => {
+                            e.preventDefault();
+                            handleInsertImage();
+                        }}
+                    >
+                        image
+                    </button>
+                    <button
+                        id="func"
+                        disabled={editorState.getSelection().isCollapsed()}
+                        onMouseDown={e => {
+                            e.preventDefault();
+                            handleAddLink();
+                        }}
+                    >
+                        link
+                    </button>
+                    <button id="func" disabled={editorState.getUndoStack().size <= 0} onMouseDown={() => setEditorState(EditorState.undo(editorState))}>
+                        ⏪
+                    </button>
+                    <button id="func" disabled={editorState.getRedoStack().size <= 0} onMouseDown={() => setEditorState(EditorState.redo(editorState))}>
+                        ⏩
+                    </button>
+                </>
+            )}
             {!visiblePreview ? <Editor editorState={editorState} onChange={setEditorState} handleKeyCommand={handleKeyCommand} blockRendererFn={mediaBlockRenderer} /> : <AwesomePreview />}
             <button
                 className="save"
@@ -144,16 +152,18 @@ const TextEditor: React.FC = () => {
             >
                 save
             </button>
-            <button className="preview" onClick={handlePreview}>
-                {!visiblePreview ? 'Preview' : 'Write'}
-            </button>
+            {!guest && (
+                <button className="preview" onClick={handlePreview}>
+                    {!visiblePreview ? 'Preview' : 'Write'}
+                </button>
+            )}
         </div>
     );
 };
 
 export default TextEditor;
 
-const wrapperStyle = (theme: ITheme, visiblePreview: boolean) => css`
+const wrapperStyle = (theme: ITheme, visiblePreview: boolean, guest: boolean | undefined) => css`
     text-align: center;
     width: 40rem;
 
@@ -162,14 +172,14 @@ const wrapperStyle = (theme: ITheme, visiblePreview: boolean) => css`
         color: ${theme.textNormal};
         background-color: ${theme.background};
         padding: 0.5rem 1rem;
-        opacity: ${visiblePreview ? 0 : 1};
-        pointer-events: ${visiblePreview ? 'none' : 'auto'};
+        opacity: ${visiblePreview || guest ? 0 : 1};
+        pointer-events: ${visiblePreview || guest ? 'none' : 'auto'};
         transition-duration: 0.7s;
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .DraftEditor-root {
-        max-height: 800px;
+        max-height: ${guest ? '115px' : '800px'};
         overflow-y: auto;
         border: 1px solid #eee;
         margin: 2rem 0;

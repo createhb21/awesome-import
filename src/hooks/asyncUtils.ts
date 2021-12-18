@@ -3,7 +3,7 @@ import { Dispatch } from 'redux';
 export const createPromiseThunk = (type: any, promiseCreator: any) => {
     const [SUCCESS, ERROR] = [`${type}_SUCCESS`, `${type}_ERROR`];
 
-    return (param: any, id?: number) => async (dispatch: Dispatch<any>) => {
+    return (param?: any, id?: number) => async (dispatch: Dispatch<any>) => {
         dispatch({ type, param });
         try {
             const payload = await promiseCreator(param, id);

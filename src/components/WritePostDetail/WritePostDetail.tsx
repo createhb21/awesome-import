@@ -8,7 +8,7 @@ import PostLoopBtn from '../PostLoopBtn';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootReducerType } from '../..';
 import AwesomeRenderer from '../AwesomeRenderer';
-import { clearPost, getPostAction } from '../../modules/FetchPostData';
+import { clearPost, getPostAction } from '../../modules/Fetch/FetchPostData';
 import { createSelector } from '@reduxjs/toolkit';
 
 function WritePostDetail() {
@@ -22,7 +22,7 @@ function WritePostDetail() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getPostAction('write', parseInt(id, 10)));
+        dispatch(getPostAction(parseInt(id, 10)));
         return () => {
             dispatch(clearPost());
         };

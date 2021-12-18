@@ -6,16 +6,21 @@ import WritePostCardGrid from '../../components/WritePostCardGrid';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootReducerType } from '../..';
-import { getPostsAction, PostType } from '../../modules/FetchPostData';
+import { getPostsAction, PostType } from '../../modules/Fetch/FetchPostData';
+import { createSelector } from '@reduxjs/toolkit';
 
 function Write() {
     const theme = useTheme();
-    const { data, loading, error } = useSelector((state: RootReducerType) => state.FetchPostReducer.posts);
+    const getPost = (state: RootReducerType) => state.FetchPostReducer.posts;
+    const getPosts = createSelector(getPost, post => {
+        return post;
+    });
+    const { data, loading, error } = useSelector(getPosts);
     const dispatch = useDispatch();
 
     useEffect(() => {
         if (data) return;
-        dispatch(getPostsAction('write'));
+        dispatch(getPostsAction());
     }, [data, dispatch]);
 
     if (loading && !data) return <div>loading...</div>;
