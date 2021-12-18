@@ -36,7 +36,11 @@ function GuestBook({}: GuestBookProps) {
             <div css={wrapperStyle(theme)}>
                 <header>
                     <h1>GuestBook</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat consequatur tempore culpa, consectetur dolores nam praesentium veritatis in quam nesciunt! Reiciendis </p>
+                    <p>
+                        Praise makes even whales dance 🐳
+                        <br />
+                        응원의 한마디! Createhb21님에게 보내보세요 :D
+                    </p>
                 </header>
                 <div>
                     <AwesomeEditor guest />
