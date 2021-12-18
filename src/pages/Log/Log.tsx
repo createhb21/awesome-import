@@ -4,10 +4,26 @@ import { Helmet } from 'react-helmet-async';
 import { data, ILogData } from '../../hooks/useLogTextData';
 import LogPostCardGrid from '../../components/LogPostCardFrid';
 import { ITheme } from '../../lib/styles/Theme';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootReducerType } from '../..';
+import { useEffect } from 'react';
+import { getPostsAction } from '../../modules/FetchPostData';
 
 function Log() {
-    const { posts } = data;
+    // const { posts } = data;
     const theme = useTheme();
+
+    const { data, loading, error } = useSelector((state: RootReducerType) => state.FetchPostReducer.posts);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (data) return;
+        dispatch(getPostsAction('log'));
+    }, [data, dispatch]);
+
+    if (loading && !data) return <div>loading...</div>;
+    if (!data) return null;
+
     return (
         <>
             <Helmet>
@@ -20,8 +36,8 @@ function Log() {
                 </header>
                 <div css={writeLogStyle(theme)}>
                     <ul css={postListStyle(theme)}>
-                        {posts &&
-                            posts.map((item: ILogData) => {
+                        {data &&
+                            data.map((item: any) => {
                                 return <LogPostCardGrid key={item.id} post={item} />;
                             })}
                     </ul>

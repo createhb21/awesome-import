@@ -1,20 +1,18 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { mediaBlockRenderer } from '../AwesomeEditor/hooks/Media';
 import { linkDecorator } from '../AwesomeEditor/hooks/Link';
-import { Editor, EditorState, convertFromRaw } from 'draft-js';
+import { Editor, EditorState, convertFromRaw, convertToRaw } from 'draft-js';
 
 export type AwesomeRendererProps = {
     children: any;
 };
 
 function AwesomeRenderer({ children }: AwesomeRendererProps) {
-    const initialState = EditorState.createEmpty(linkDecorator);
+    const initialState = children ? EditorState.createWithContent(convertFromRaw(children), linkDecorator) : EditorState.createEmpty(linkDecorator);
     const [editorState, setEditorState] = React.useState<EditorState>(initialState);
 
-    useEffect(() => {
-        const formattingState = children && EditorState.createWithContent(convertFromRaw(children), linkDecorator);
-        setEditorState(formattingState);
-    }, [children]);
+    const contentState = editorState.getCurrentContent();
+    const entityKeys = Object.keys(convertToRaw(contentState).entityMap);
 
     return (
         <React.Fragment>

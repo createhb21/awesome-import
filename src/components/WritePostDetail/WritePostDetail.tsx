@@ -9,11 +9,16 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootReducerType } from '../..';
 import AwesomeRenderer from '../AwesomeRenderer';
 import { clearPost, getPostAction } from '../../modules/FetchPostData';
+import { createSelector } from '@reduxjs/toolkit';
 
 function WritePostDetail() {
     const theme = useTheme();
     const { id } = useParams()! as { id: string };
-    const { data, loading, error } = useSelector((state: RootReducerType) => state.FetchPostReducer.post);
+    const getPost = (state: RootReducerType) => state.FetchPostReducer.post;
+    const getPostCreateSelector = createSelector(getPost, post => {
+        return post;
+    });
+    const { data, loading, error } = useSelector(getPostCreateSelector);
     const dispatch = useDispatch();
 
     useEffect(() => {

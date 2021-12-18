@@ -1,10 +1,16 @@
 /** @jsxImportSource @emotion/react */
 import { css, useTheme } from '@emotion/react';
-import { ILogData } from '../../hooks/useLogTextData';
 import { ITheme } from '../../lib/styles/Theme';
+import AwesomeRenderer from '../AwesomeRenderer';
 
 export type LogPostCardGridProps = {
-    post: ILogData;
+    post: {
+        title: string;
+        date: string;
+        body: any;
+        starCount: number;
+        id: number;
+    };
 };
 
 function LogPostCardGrid({ post }: LogPostCardGridProps) {
@@ -18,7 +24,9 @@ function LogPostCardGrid({ post }: LogPostCardGridProps) {
                 </section>
                 <section css={dateStyle}>{post.date}</section>
                 <section css={contentStyle}>
-                    <main>{post.content}</main>
+                    <main>
+                        <AwesomeRenderer>{post.body}</AwesomeRenderer>
+                    </main>
                 </section>
             </article>
         </li>
@@ -31,6 +39,7 @@ const wrapperStyle = (theme: ITheme) => css`
     align-items: center;
     line-height: 1.625;
     word-break: break-all;
+    border-bottom: 0.2px solid ${theme.grayBorder};
 
     & > article {
         padding-top: 2rem;
