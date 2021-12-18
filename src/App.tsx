@@ -21,7 +21,7 @@ import AwesomeRenderer from './components/AwesomeRenderer';
 function App() {
     const { isDarkMode } = useSelector((state: RootReducerType) => state.ThemeSwitchReducer);
     return (
-        <ThemeProvider theme={isDarkMode ? themeLight : themeDark}>
+        <ThemeProvider theme={!isDarkMode ? themeLight : themeDark}>
             <MobileHeader />
             <AppLayout>
                 <AppLayout.Side>
@@ -31,7 +31,7 @@ function App() {
                     <Routes>
                         <Route path="/" element={<HomePage />} />
                         <Route path="/write" element={<Write />} />
-                        <Route path="/posts/:id" element={<WritePostDetail />} />
+                        <Route path="/write/:id" element={<WritePostDetail />} />
                         <Route path="/log" element={<Log />} />
                         <Route path="/plus" element={<GuestBook />} />
                         <Route path="/edit" element={<AwesomeEditor />} />
@@ -40,7 +40,7 @@ function App() {
             </AppLayout>
             <MobileFooter />
             <ArrowUpBtn icon="arrow_up" text="Arrow_up" />
-            <Global styles={GlobalStyle(isDarkMode ? themeLight : themeDark)} />
+            <Global styles={GlobalStyle(!isDarkMode ? themeLight : themeDark)} />
         </ThemeProvider>
     );
 }

@@ -1,85 +1,68 @@
-import { Dispatch } from 'redux';
 import Axios from 'axios';
+import { createPromiseThunk, reducerUtils, handleAsyncActions } from '../hooks/asyncUtils';
 
-export const POST_SUCCESS = 'POST_SUCCESS';
-export const POST_FAIL = 'POST_FAIL';
-
-export type MainBody = {
-    blocks: any;
-    entityMap?: any;
+const BASE_URL = (dataCategory: string): string => {
+    return `${process.env.NODE_ENV === 'development' ? process.env.REACT_APP_DEVELOP_API_URL : process.env.REACT_APP_RELEASE_API_URL}/${dataCategory}.json`;
 };
 
-export interface IPost {
+export const GET_POSTS = 'GET_POSTS';
+export const GET_POSTS_SUCCESS = 'GET_POSTS_SUCCESS';
+export const GET_POSTS_ERROR = 'GET_POSTS_ERROR';
+export const GET_POST = 'GET_POST';
+export const GET_POST_SUCCESS = 'GET_POST_SUCCESS';
+export const GET_POST_ERROR = 'GET_POST_ERROR';
+
+const CLEAR_POST = 'CLEAR_POST';
+
+export interface PostType {
     id: number;
     category: string;
     title: string;
     date: string;
     img: string;
-    body: MainBody;
+    body: any;
     starCount: number;
 }
 
-export type PostType = Array<IPost> | any;
-
-export interface postsFailDispatch {
-    type: typeof POST_FAIL;
-}
-
-export interface postsSuccessDispatch {
-    type: typeof POST_SUCCESS;
-    payload: PostType;
-}
-
-export type postsDispatchType = postsFailDispatch | postsSuccessDispatch;
-
-export const fetchPostData = (dataCategory: string, id: number) => async (dispatch: Dispatch<postsDispatchType>) => {
-    try {
-        const res = await Axios.get(`${process.env.NODE_ENV === 'development' ? process.env.REACT_APP_DEVELOP_API_URL : process.env.REACT_APP_RELEASE_API_URL}/${dataCategory}.json`);
-        const data = res.data.posts[id];
-
-        dispatch({
-            type: POST_SUCCESS,
-            payload: data,
-        });
-    } catch (err) {
-        dispatch({ type: POST_FAIL });
-    }
+export const getPosts = async (category: string) => {
+    const res = await Axios.get(BASE_URL(category));
+    const posts = res.data.posts;
+    return posts;
 };
 
-interface InitialState {
-    success: boolean;
-    posts?: IPost;
-}
-
-const initialState: InitialState = {
-    success: false,
+export const getPostById = async (category: string, id: number) => {
+    const res = await Axios.get(BASE_URL(category));
+    const posts = res.data.posts;
+    const defaultUser = {};
+    return posts[id] || defaultUser;
 };
 
-const FetchPostReducer = (state = initialState, action: postsDispatchType): InitialState => {
+export const getPostsAction = createPromiseThunk(GET_POSTS, getPosts);
+export const getPostAction = createPromiseThunk(GET_POST, getPostById);
+
+export const clearPost = () => ({ type: CLEAR_POST });
+
+const initialState = {
+    posts: reducerUtils.initial(),
+    post: reducerUtils.initial(),
+};
+
+export default function FetchPostReducer(state = initialState, action: any) {
     switch (action.type) {
-        case POST_FAIL:
+        case GET_POSTS:
+        case GET_POSTS_SUCCESS:
+        case GET_POSTS_ERROR:
+            return handleAsyncActions(GET_POSTS, 'posts', true)(state, action);
+        case GET_POST:
+        case GET_POST_SUCCESS:
+        case GET_POST_ERROR:
+            return handleAsyncActions(GET_POST, 'post')(state, action);
+        case CLEAR_POST:
             return {
                 ...state,
-                success: false,
-            };
-        case POST_SUCCESS:
-            const { id, category, title, date, img, body, starCount } = action.payload;
-            return {
-                ...state,
-                success: true,
-                posts: {
-                    id,
-                    img,
-                    category,
-                    date,
-                    title,
-                    body,
-                    starCount,
-                },
+                post: reducerUtils.initial(),
             };
         default:
             return state;
     }
-};
-
-export default FetchPostReducer;
+}

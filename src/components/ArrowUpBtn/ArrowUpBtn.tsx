@@ -33,6 +33,7 @@ const buttonStyle = (scrollY: number, theme: ITheme) => css`
         right: 1rem;
         bottom: 5rem;
         background-color: ${brandColor};
+        z-index: 30;
     }
     width: 3rem;
     bottom: 2rem;

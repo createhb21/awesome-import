@@ -26,7 +26,7 @@ interface InitialState {
 }
 
 const initialState: InitialState = {
-    isDarkMode: true,
+    isDarkMode: false,
 };
 
 const ThemeSwitchReducer = (state = initialState, action: ThemeDispatchType): InitialState => {

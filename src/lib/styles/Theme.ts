@@ -32,11 +32,11 @@ export const themeLight: Readonly<ITheme> = {
 
 export const themeDark: Readonly<ITheme> = {
     primaryColor: '#3178c6',
-    text: '#C9D1D9',
-    textGray: '#C9D1D9',
+    text: '#BEBFC2',
+    textGray: '#BEBFC2',
     textNormal: lightText.primary,
     mainContentText: 'rgba(75, 85, 99, 0.97)',
-    background: '#121212',
+    background: '#272A33',
     grayBorder: palette.blueGrey[600],
     buttonText: '#C9D1D9',
     buttonTextHover: '#000',

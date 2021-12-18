@@ -4,7 +4,7 @@ import { CompositeDecorator, DraftDecoratorComponentProps } from 'draft-js';
 export const Link = (props: DraftDecoratorComponentProps) => {
     const { url } = props.contentState.getEntity(props.entityKey).getData();
     return (
-        <a rel="noopener noreferrer" target="_blank" href={url}>
+        <a rel="noopener noreferrer" target="_blank" href={url} style={{ color: 'red' }}>
             {props.children}
         </a>
     );
