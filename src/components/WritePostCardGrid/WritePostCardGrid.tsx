@@ -2,22 +2,22 @@
 import { css, useTheme } from '@emotion/react';
 import { Link } from 'react-router-dom';
 import { ITheme } from '../../lib/styles/Theme';
-import { IPost } from '../../modules/FetchPostData';
+import { PostType } from '../../modules/FetchPostData';
 
 export type WritePostCardGridProps = {
-    post: IPost;
+    post: PostType;
 };
 
 function TechPostCardGrid({ post }: WritePostCardGridProps) {
     const theme = useTheme();
-    const { id, category, title, body, date, img, starCount } = post;
+    const { id, category, title, body, date, img } = post;
     const { blocks } = body! as any;
 
     return (
         <li css={wrapperStyle(theme)}>
             <Link
                 to={{
-                    pathname: `/posts/${id}`,
+                    pathname: `/write/${id}`,
                 }}
             >
                 <article css={containerStyle(theme)}>
@@ -28,8 +28,8 @@ function TechPostCardGrid({ post }: WritePostCardGridProps) {
                         <h1 css={titleStyle(theme)}>{title}</h1>
                         <div css={summaryStyle(theme)}>
                             <p>
-                                {blocks.slice(0, 2).map((item: any) => {
-                                    return <span>{item.text}</span>;
+                                {blocks.slice(0, 2).map((item: any, index: number) => {
+                                    return <span key={index}>{item.text}</span>;
                                 })}
                             </p>
                             <span>{date}</span>

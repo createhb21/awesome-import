@@ -3,42 +3,46 @@ import React, { useEffect } from 'react';
 import { css, useTheme } from '@emotion/react';
 import { ITheme } from '../../lib/styles/Theme';
 import { useParams } from 'react-router-dom';
-import { data } from '../../hooks/useWriteTextData';
 import media from '../../lib/styles/media';
 import PostLoopBtn from '../PostLoopBtn';
-import { fetchPostData } from '../../modules/FetchPostData';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootReducerType } from '../..';
 import AwesomeRenderer from '../AwesomeRenderer';
+import { clearPost, getPostAction } from '../../modules/FetchPostData';
 
 function WritePostDetail() {
     const theme = useTheme();
     const { id } = useParams()! as { id: string };
-    const postReducer = useSelector((state: RootReducerType) => state.FetchPostReducer);
+    const { data, loading, error } = useSelector((state: RootReducerType) => state.FetchPostReducer.post);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fetchPostData('write', parseInt(id)));
-    }, []);
+        dispatch(getPostAction('write', parseInt(id, 10)));
+        return () => {
+            dispatch(clearPost());
+        };
+    }, [dispatch, id]);
+
+    if (!data) return null;
 
     return (
         <>
-            {postReducer.posts && (
+            {data && (
                 <div css={wrapperStyle(theme)}>
                     <header css={headerStyle(theme)}>
                         <div>
-                            <span>{postReducer.posts.category}</span>
+                            <span>{data?.category}</span>
                         </div>
-                        <h1>{postReducer.posts.title}</h1>
+                        <h1>{data?.title}</h1>
                         <span css={infoStyle(theme)}>
                             Createhb21
                             <span>·</span>
-                            {postReducer.posts.date}
+                            {data?.date}
                         </span>
                     </header>
                     <div>
                         <main css={contentStyle(theme)}>
-                            <AwesomeRenderer>{postReducer.posts.body}</AwesomeRenderer>
+                            <AwesomeRenderer>{data?.body}</AwesomeRenderer>
                         </main>
                     </div>
                     <PostLoopBtn currentId={+id} data={data} />

@@ -12,8 +12,9 @@ import { BrowserRouter } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import rootReducer from './modules';
+import logger from 'redux-logger';
 
-const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk, logger)));
 const persistor = persistStore(store);
 export type RootReducerType = ReturnType<typeof rootReducer>;
 

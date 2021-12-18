@@ -1,6 +1,6 @@
-import React from 'react';
-import { mediaBlockRenderer } from '../../components/AwesomeEditor/hooks/Media';
-import { linkDecorator } from '../../components/AwesomeEditor/hooks/Link';
+import React, { useEffect } from 'react';
+import { mediaBlockRenderer } from '../AwesomeEditor/hooks/Media';
+import { linkDecorator } from '../AwesomeEditor/hooks/Link';
 import { Editor, EditorState, convertFromRaw } from 'draft-js';
 
 export type AwesomeRendererProps = {
@@ -8,9 +8,13 @@ export type AwesomeRendererProps = {
 };
 
 function AwesomeRenderer({ children }: AwesomeRendererProps) {
-    const initialState = children && EditorState.createWithContent(convertFromRaw(children), linkDecorator);
+    const initialState = EditorState.createEmpty(linkDecorator);
     const [editorState, setEditorState] = React.useState<EditorState>(initialState);
-    console.log(children);
+
+    useEffect(() => {
+        const formattingState = children && EditorState.createWithContent(convertFromRaw(children), linkDecorator);
+        setEditorState(formattingState);
+    }, [children]);
 
     return (
         <React.Fragment>

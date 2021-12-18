@@ -2,13 +2,24 @@
 import { Helmet } from 'react-helmet-async';
 import { css, useTheme } from '@emotion/react';
 import { ITheme } from '../../lib/styles/Theme';
-import { IPost } from '../../modules/FetchPostData';
 import WritePostCardGrid from '../../components/WritePostCardGrid';
-import UseAxiHook from '../../hooks/useAxiHook';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootReducerType } from '../..';
+import { getPostsAction, PostType } from '../../modules/FetchPostData';
 
 function Write() {
     const theme = useTheme();
-    const { posts, loading, error } = UseAxiHook('write');
+    const { data, loading, error } = useSelector((state: RootReducerType) => state.FetchPostReducer.posts);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (data) return;
+        dispatch(getPostsAction('write'));
+    }, [data, dispatch]);
+
+    if (loading && !data) return <div>loading...</div>;
+    if (!data) return null;
 
     return (
         <>
@@ -21,8 +32,8 @@ function Write() {
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat consequatur tempore culpa, consectetur dolores nam praesentium veritatis in quam nesciunt! Reiciendis </p>
                 </header>
                 <ul css={postListStyle(theme)}>
-                    {posts &&
-                        posts.map((item: IPost) => {
+                    {data &&
+                        data.map((item: PostType) => {
                             return <WritePostCardGrid key={item.id} post={item} />;
                         })}
                 </ul>
