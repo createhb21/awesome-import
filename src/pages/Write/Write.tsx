@@ -3,14 +3,33 @@ import { Helmet } from 'react-helmet-async';
 import { css, useTheme } from '@emotion/react';
 import { ITheme } from '../../lib/styles/Theme';
 import WritePostCardGrid from '../../components/WritePostCardGrid';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootReducerType } from '../..';
 import { getPostsAction, PostType } from '../../modules/Fetch/FetchPostData';
 import { createSelector } from '@reduxjs/toolkit';
+import { child, get, getDatabase, ref } from 'firebase/database';
+import firebaseApp from '../../lib/storage/firebase';
 
 function Write() {
     const theme = useTheme();
+    const [posts, setPosts] = useState([]);
+    const dbRef = ref(getDatabase(firebaseApp));
+
+    // useEffect(() => {
+    //     get(child(dbRef, 'write'))
+    //         .then((snapshot: any) => {
+    //             if (snapshot.exists()) {
+    //                 setPosts(snapshot.val().posts);
+    //             } else {
+    //                 console.log('No data available');
+    //             }
+    //         })
+    //         .catch((error: any) => {
+    //             console.error(error);
+    //         });
+    // }, [dbRef]);
+
     const getPost = (state: RootReducerType) => state.FetchPostReducer.posts;
     const getPosts = createSelector(getPost, post => {
         return post;

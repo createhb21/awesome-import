@@ -16,19 +16,6 @@ const imgWrapStyle = css`
     justify-content: center;
     align-items: center;
     position: relative;
-
-    & > input {
-        z-index: 999;
-        position: absolute;
-        right: 0;
-        bottom: -30px;
-        width: 5.5rem;
-        height: 1rem;
-    }
-`;
-
-const imgSize = (width: number | null) => css`
-    width: ${width}px;
 `;
 
 export const Image = (props: BlockComponentProps) => {
@@ -52,7 +39,7 @@ export const Image = (props: BlockComponentProps) => {
 
     return (
         <div css={imgWrapStyle}>
-            <img src={src} alt={src} role="presentation" onClick={getSize} css={imgSize(Number(width))} />
+            <img src={src} alt={src} role="presentation" onClick={getSize} width={width} />
         </div>
     );
 };

@@ -2,12 +2,12 @@ import Axios from 'axios';
 import { createPromiseThunk, reducerUtils, handleAsyncActions } from '../../hooks/asyncUtils';
 
 const BASE_URL = (): string => {
-    return `${process.env.NODE_ENV === 'development' ? process.env.REACT_APP_DEVELOP_API_URL : process.env.REACT_APP_RELEASE_API_URL}/geustbook.json`;
+    return `${process.env.NODE_ENV === 'development' ? process.env.REACT_APP_DEVELOP_API_URL : process.env.REACT_APP_RELEASE_API_URL}/guestbook.json`;
 };
 
 export const GET_MESSAGES = 'GET_MESSAGES';
 export const GET_MESSAGES_SUCCESS = 'GET_MESSAGES_SUCCESS';
-export const GET_MESSAGES_ERROR = 'GET_LOGS_MESSAGEOR';
+export const GET_MESSAGES_ERROR = 'GET_MESSAGES_ERROR';
 
 export interface MessageType {
     id: number;

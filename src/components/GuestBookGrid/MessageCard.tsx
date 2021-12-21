@@ -1,15 +1,16 @@
 /** @jsxImportSource @emotion/react */
 import { css, useTheme } from '@emotion/react';
 import { ITheme } from '../../lib/styles/Theme';
+import AwesomeRenderer from '../AwesomeRenderer';
 
 export type MessageCardProps = {
     post: any;
 };
 
 function MessageCard({ post }: MessageCardProps) {
-    console.log(post);
-
     const theme = useTheme();
+
+    console.log(post);
 
     return (
         <li css={wrapperStyle(theme)}>
@@ -19,7 +20,10 @@ function MessageCard({ post }: MessageCardProps) {
                 </section>
                 <section css={dateStyle}>{post.date}</section>
                 <section css={contentStyle}>
-                    <main>{post.body}</main>
+                    <main id="main-message">
+                        <AwesomeRenderer guest>{post.body}</AwesomeRenderer>
+                        {/* {post.body} */}
+                    </main>
                 </section>
             </article>
         </li>
@@ -32,7 +36,7 @@ const wrapperStyle = (theme: ITheme) => css`
     align-items: center;
     line-height: 1.625;
     word-break: break-all;
-    border: 1px solid white;
+    border: 1px solid #eee;
     border-radius: 25px;
     width: 40rem;
     padding: 1.5em;
@@ -45,7 +49,7 @@ const headerStyle = (theme: ITheme) => css`
     cursor: pointer;
 
     & > h1 {
-        font-size: 1.25rem;
+        font-size: 1rem;
         font-weight: 500;
         line-height: 2rem;
     }

@@ -5,12 +5,31 @@ import LogPostCardGrid from '../../components/LogPostCardFrid';
 import { ITheme } from '../../lib/styles/Theme';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootReducerType } from '../..';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { createSelector } from '@reduxjs/toolkit';
 import { getLogsAction } from '../../modules/Fetch/FetchLogData';
+import { child, get, getDatabase, ref } from 'firebase/database';
+import firebaseApp from '../../lib/storage/firebase';
 
 function Log() {
     const theme = useTheme();
+    const [posts, setPosts] = useState([]);
+    const dbRef = ref(getDatabase(firebaseApp));
+
+    // useEffect(() => {
+    //     get(child(dbRef, 'log'))
+    //         .then((snapshot: any) => {
+    //             if (snapshot.exists()) {
+    //                 setPosts(snapshot.val().posts);
+    //             } else {
+    //                 console.log('No data available');
+    //             }
+    //         })
+    //         .catch((error: any) => {
+    //             console.error(error);
+    //         });
+    // }, [dbRef]);
+
     const getLog = (state: RootReducerType) => state.FetchLogReducer.posts;
     const getLogs = createSelector(getLog, post => {
         return post;
@@ -34,7 +53,7 @@ function Log() {
             <div css={wrapperStyle(theme)}>
                 <header>
                     <h1>Log</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat consequatur tempore culpa, consectetur dolores nam praesentium veritatis in quam nesciunt! Reiciendis </p>
+                    <p>Createhb21 👨‍💻, 제 일상을 기록하는 공간입니다 :D </p>
                 </header>
                 <div css={writeLogStyle(theme)}>
                     <ul css={postListStyle(theme)}>
@@ -75,7 +94,6 @@ const wrapperStyle = (theme: ITheme) => css`
 
     & > header {
         padding-top: 3.5rem;
-        padding-bottom: 3.5rem;
 
         & > h1 {
             font-weight: 700;

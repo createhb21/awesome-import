@@ -19,6 +19,10 @@ function GuestBook({}: GuestBookProps) {
         return message;
     });
     const { data, loading, error } = useSelector(getMessages);
+    const comments = [];
+    for (let key in data) {
+        comments.push(data[key]);
+    }
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -27,6 +31,7 @@ function GuestBook({}: GuestBookProps) {
     }, [data, dispatch]);
 
     if (loading && !data) return <div>loading...</div>;
+    if (!data) return null;
 
     return (
         <>
@@ -47,9 +52,9 @@ function GuestBook({}: GuestBookProps) {
                 </div>
                 <div css={writeLogStyle(theme)}>
                     <ul css={postListStyle(theme)}>
-                        {data &&
-                            data.map((msgBox: any) => {
-                                return <MessageCard post={msgBox} />;
+                        {comments &&
+                            comments.map((msgBox: any, index: number) => {
+                                return <MessageCard key={index} post={msgBox} />;
                             })}
                     </ul>
                 </div>
@@ -64,6 +69,7 @@ const postListStyle = (theme: ITheme) => css`
     list-style: none;
     margin: 0;
     padding: 0;
+    margin-top: 1.5rem;
 `;
 
 const writeLogStyle = (theme: ITheme) => css`
@@ -84,6 +90,7 @@ const wrapperStyle = (theme: ITheme) => css`
 
     & > header {
         padding-top: 3.5rem;
+        padding-bottom: 3.5rem;
 
         & > h1 {
             font-weight: 700;

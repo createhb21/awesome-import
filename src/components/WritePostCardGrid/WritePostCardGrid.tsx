@@ -28,7 +28,7 @@ function TechPostCardGrid({ post }: WritePostCardGridProps) {
                         <h1 css={titleStyle(theme)}>{title}</h1>
                         <div css={summaryStyle(theme)}>
                             <p>
-                                {blocks.slice(0, 2).map((item: any, index: number) => {
+                                {blocks.map((item: any, index: number) => {
                                     return <span key={index}>{item.text}</span>;
                                 })}
                             </p>
