@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css, useTheme } from '@emotion/react';
 import { createSelector } from '@reduxjs/toolkit';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootReducerType } from '../..';
@@ -9,11 +9,41 @@ import AwesomeEditor from '../../components/AwesomeEditor/AwesomeEditor';
 import { getMsgAction } from '../../modules/Fetch/FetchGuestBook';
 import { ITheme } from '../../lib/styles/Theme';
 import MessageCard from '../../components/GuestBookGrid';
+import { child, get, getDatabase, onValue, ref } from 'firebase/database';
+import firebaseApp from '../../lib/storage/firebase';
 
 export type GuestBookProps = {};
 
+interface GuestBookTypes {
+    userName: string;
+    password: number;
+    body: string;
+    date: string;
+    starCount: number;
+    id: any;
+}
+
 function GuestBook({}: GuestBookProps) {
     const theme = useTheme();
+
+    // firebase
+    const db = getDatabase(firebaseApp);
+    const guestbookRef = ref(db, 'guestbook');
+    const [comments, setComments] = useState<any[]>([]);
+
+    useEffect(() => {
+        onValue(guestbookRef, snapshot => {
+            const commentData: Array<GuestBookTypes> = [];
+            const objdata = snapshot.val();
+            for (let key in objdata) {
+                commentData.push(objdata[key]);
+            }
+            setComments(commentData.reverse());
+        });
+    }, []);
+
+    // redux-thunk
+    /*
     const getMessage = (state: RootReducerType) => state.FetchGuestBookReducer.posts;
     const getMessages = createSelector(getMessage, message => {
         return message;
@@ -32,6 +62,7 @@ function GuestBook({}: GuestBookProps) {
 
     if (loading && !data) return <div>loading...</div>;
     if (!data) return null;
+    */
 
     return (
         <>

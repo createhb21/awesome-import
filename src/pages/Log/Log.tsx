@@ -8,28 +8,13 @@ import { RootReducerType } from '../..';
 import { useEffect, useState } from 'react';
 import { createSelector } from '@reduxjs/toolkit';
 import { getLogsAction } from '../../modules/Fetch/FetchLogData';
-import { child, get, getDatabase, ref } from 'firebase/database';
+import { child, get, getDatabase, onValue, ref } from 'firebase/database';
 import firebaseApp from '../../lib/storage/firebase';
 
 function Log() {
     const theme = useTheme();
-    const [posts, setPosts] = useState([]);
-    const dbRef = ref(getDatabase(firebaseApp));
 
-    // useEffect(() => {
-    //     get(child(dbRef, 'log'))
-    //         .then((snapshot: any) => {
-    //             if (snapshot.exists()) {
-    //                 setPosts(snapshot.val().posts);
-    //             } else {
-    //                 console.log('No data available');
-    //             }
-    //         })
-    //         .catch((error: any) => {
-    //             console.error(error);
-    //         });
-    // }, [dbRef]);
-
+    // redux-thunk
     const getLog = (state: RootReducerType) => state.FetchLogReducer.posts;
     const getLogs = createSelector(getLog, post => {
         return post;
@@ -44,6 +29,20 @@ function Log() {
 
     if (loading && !data) return <div>loading...</div>;
     if (!data) return null;
+
+    // firebase sdk
+    /*
+    const [posts, setPosts] = useState([]);
+    const db = getDatabase(firebaseApp);
+    const logRef = ref(db, 'log');
+
+    useEffect(() => {
+        onValue(logRef, snapshot => {
+            const data = snapshot.val();
+            setPosts(data.posts);
+        });
+    }, [logRef]);
+    */
 
     return (
         <>

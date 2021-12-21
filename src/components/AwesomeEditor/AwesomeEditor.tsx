@@ -45,7 +45,8 @@ const TextEditor = ({ guest }: EditorProps) => {
             starCount: 0,
             id: newPostKey,
         };
-        set(ref(db, 'guestbook/' + newPostKey), commentData);
+        // set(ref(db, 'guestbook/' + newPostKey), commentData);
+        FirebasePosting('guestbook', commentData);
     };
 
     const handlePreview = () => {
@@ -105,7 +106,7 @@ const TextEditor = ({ guest }: EditorProps) => {
 
     const dispatch = useDispatch();
     useEffect(() => {
-        !visiblePreview ? dispatch(switchImageSetterMode()) : dispatch(switchImageGetterMode());
+        !visiblePreview && !guest ? dispatch(switchImageSetterMode()) : dispatch(switchImageGetterMode());
 
         return () => {
             dispatch(switchImageGetterMode());
@@ -174,7 +175,7 @@ const TextEditor = ({ guest }: EditorProps) => {
             {guest && (
                 <div className="user-info">
                     <input type="text" placeholder="닉네임" onChange={e => setUserName(e.target.value)} />
-                    <input type="password" placeholder="비밀번호" onChange={e => setPassword(+e.target.value)} maxLength={6} />
+                    <input type="password" placeholder="비밀번호" onChange={e => setPassword(+e.target.value)} maxLength={15} />
                 </div>
             )}
             {!visiblePreview ? <Editor editorState={editorState} onChange={setEditorState} handleKeyCommand={handleKeyCommand} blockRendererFn={mediaBlockRenderer} /> : <AwesomePreview />}

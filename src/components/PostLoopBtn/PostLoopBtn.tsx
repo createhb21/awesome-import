@@ -2,11 +2,10 @@
 import { ITheme } from '../../lib/styles/Theme';
 import { useNavigate } from 'react-router-dom';
 import { css, useTheme } from '@emotion/react';
-import { IDataContainer } from '../../hooks/useWriteTextData';
 
 export type PostRoofBtnProps = {
     currentId: number;
-    data: IDataContainer;
+    data: any;
 };
 
 function PostRoofBtn({ currentId, data }: PostRoofBtnProps) {

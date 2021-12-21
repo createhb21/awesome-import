@@ -27,7 +27,7 @@ function AwesomeRenderer({ children, guest }: AwesomeRendererProps) {
                 setEditorState(editorState);
             }
         }
-    }, []);
+    }, [children]);
 
     return (
         <Fragment>

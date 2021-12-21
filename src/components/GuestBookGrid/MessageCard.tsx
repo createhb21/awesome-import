@@ -10,8 +10,6 @@ export type MessageCardProps = {
 function MessageCard({ post }: MessageCardProps) {
     const theme = useTheme();
 
-    console.log(post);
-
     return (
         <li css={wrapperStyle(theme)}>
             <article>
@@ -22,7 +20,6 @@ function MessageCard({ post }: MessageCardProps) {
                 <section css={contentStyle}>
                     <main id="main-message">
                         <AwesomeRenderer guest>{post.body}</AwesomeRenderer>
-                        {/* {post.body} */}
                     </main>
                 </section>
             </article>
