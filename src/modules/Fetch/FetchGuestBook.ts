@@ -2,7 +2,7 @@ import Axios from 'axios';
 import { createPromiseThunk, reducerUtils, handleAsyncActions } from '../../hooks/asyncUtils';
 
 const BASE_URL = (): string => {
-    return `${process.env.NODE_ENV === 'development' ? process.env.REACT_APP_DEVELOP_API_URL : process.env.REACT_APP_RELEASE_API_URL}/guestbook.json`;
+    return `${process.env.REACT_APP_API_BASE_URL}/guestbook.json`;
 };
 
 export const GET_MESSAGES = 'GET_MESSAGES';

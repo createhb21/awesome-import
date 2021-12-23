@@ -14,7 +14,7 @@ function MainSectionList({ title, date }: MainSectionListProps) {
             <div>
                 <h3>{title}</h3>
                 <div css={portFolioStyle(theme)}>
-                    <p>Web Frontend Lead | {date} - Now</p>
+                    <p>Web Frontend | {date} - Now</p>
                 </div>
             </div>
         </li>

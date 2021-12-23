@@ -146,26 +146,28 @@ const TextEditor = ({ guest }: EditorProps) => {
                 Unordered List
             </button>
             {!guest && (
-                <button
-                    id="func"
-                    onMouseDown={e => {
-                        e.preventDefault();
-                        handleInsertImage();
-                    }}
-                >
-                    image
-                </button>
+                <>
+                    <button
+                        id="func"
+                        onMouseDown={e => {
+                            e.preventDefault();
+                            handleInsertImage();
+                        }}
+                    >
+                        image
+                    </button>
+                    <button
+                        id="func"
+                        disabled={editorState.getSelection().isCollapsed()}
+                        onMouseDown={e => {
+                            e.preventDefault();
+                            handleAddLink();
+                        }}
+                    >
+                        link
+                    </button>
+                </>
             )}
-            <button
-                id="func"
-                disabled={editorState.getSelection().isCollapsed()}
-                onMouseDown={e => {
-                    e.preventDefault();
-                    handleAddLink();
-                }}
-            >
-                link
-            </button>
             <button id="func" disabled={editorState.getUndoStack().size <= 0} onMouseDown={() => setEditorState(EditorState.undo(editorState))}>
                 ⏪
             </button>
