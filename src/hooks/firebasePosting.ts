@@ -2,6 +2,7 @@ import draftToHtml from 'draftjs-to-html';
 import { child, getDatabase, push, ref, set } from 'firebase/database';
 import moment from 'moment';
 import firebaseApp from '../lib/storage/firebase';
+import { WritePostType } from '../modules/Fetch/FetchPostData';
 
 export const FirebasePosting = (dir: string, postingData: any) => {
     const db = getDatabase(firebaseApp);
@@ -20,10 +21,10 @@ export const FirebasePosting = (dir: string, postingData: any) => {
 
 export const writePostCreateApi = async (category: any, title: any, data: any, img?: any) => {
     const db = getDatabase(firebaseApp);
-    const newPostKey = push(child(ref(db), 'write/posts')).key;
-    const commentMoment = moment().format('YYYY년MM월DD일 HH:mm');
+    const newPostKey = push(child(ref(db), 'write/posts')).key! as string;
+    const commentMoment = moment().format('YYYY년 MM월 DD일 HH:mm');
 
-    const postingData = {
+    const postingData: WritePostType = {
         category,
         title,
         body: data,
@@ -38,34 +39,23 @@ export const writePostCreateApi = async (category: any, title: any, data: any, i
     });
 };
 
-// export const logPostCreateApi = async (data: any) => {
-//     const db = getDatabase(firebaseApp);
-//     const newPostKey = push(child(ref(db), 'guestbook')).key;
-//     const commentMoment = moment().format('YYYY년MM월DD일 HH:mm:ss');
-//     const formatData = draftToHtml(data);
-//     const userName = nickNameRef.current && nickNameRef.current.value;
-//     const password = pwRef.current && pwRef.current.value;
+export const logPostCreateApi = async (title: any, data: any) => {
+    const db = getDatabase(firebaseApp);
+    const newPostKey = push(child(ref(db), 'log/posts')).key! as string;
+    const commentMoment = moment().format('YYYY년 MM월 DD일 HH:mm');
 
-//     const commentData = {
-//         userName,
-//         password,
-//         body: formatData,
-//         date: commentMoment,
-//         starCount: 0,
-//         id: newPostKey,
-//     };
+    const postingData: any = {
+        title,
+        body: data,
+        date: commentMoment,
+        starCount: 0,
+        id: newPostKey,
+    };
 
-//     if (!(userName == '') && !(password == '') && !(data.blocks[0].text == '')) {
-//         await FirebasePosting('guestbook', commentData).then(() => {
-//             if (nickNameRef.current && pwRef.current) {
-//                 nickNameRef.current.value = '';
-//                 pwRef.current.value = '';
-//             }
-//         });
-//     } else {
-//         alert('내용을 모두 입력해주세요 :D');
-//     }
-// };
+    await FirebasePosting('log/posts', postingData).then(() => {
+        console.log('success');
+    });
+};
 
 export const guestBookCommentCreateApi = async (data: any, nickNameRef: any, pwRef: any) => {
     const db = getDatabase(firebaseApp);

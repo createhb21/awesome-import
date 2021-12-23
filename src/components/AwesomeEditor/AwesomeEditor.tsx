@@ -14,7 +14,7 @@ import { switchImageGetterMode, switchImageSetterMode } from '../../modules/Imag
 import firebaseApp from '../../lib/storage/firebase';
 import { child, getDatabase, push, ref, set } from 'firebase/database';
 import draftToHtml from 'draftjs-to-html';
-import { FirebasePosting, guestBookCommentCreateApi, writePostCreateApi } from '../../hooks/firebasePosting';
+import { FirebasePosting, guestBookCommentCreateApi, logPostCreateApi, writePostCreateApi } from '../../hooks/firebasePosting';
 import { useNavigate } from 'react-router-dom';
 
 const TEXT_EDITOR_ITEM = 'text-editor-item';
@@ -40,7 +40,7 @@ const TextEditor = ({ cellection, guest }: EditorProps) => {
             guestCommentCreateApi(data);
             return;
         } else {
-            writeCreateApi(data);
+            logCreateApi(data);
         }
         // switch (cellection) {
         // case 'write':
@@ -62,9 +62,10 @@ const TextEditor = ({ cellection, guest }: EditorProps) => {
     };
 
     const logCreateApi = async (data: any) => {
-        // await guestBookCommentCreateApi(data, nickNameRef, pwRef).then(() => {
-        //     setEditorState(initialState);
-        // });
+        const title = '크리스마스 이브라니 ㅎㅎ';
+        await logPostCreateApi(title, data).then(() => {
+            navigate('/write');
+        });
     };
 
     const guestCommentCreateApi = async (data: any) => {

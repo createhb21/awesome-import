@@ -6,7 +6,7 @@ import WritePostCardGrid from '../../components/WritePostCardGrid';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootReducerType } from '../..';
-import { getPostsAction, PostType } from '../../modules/Fetch/FetchPostData';
+import { getPostsAction, WritePostType } from '../../modules/Fetch/FetchPostData';
 import { createSelector } from '@reduxjs/toolkit';
 import { child, get, getDatabase, onValue, ref } from 'firebase/database';
 import firebaseApp from '../../lib/storage/firebase';
@@ -59,7 +59,7 @@ function Write() {
                 </header>
                 <ul css={postListStyle(theme)}>
                     {posts &&
-                        posts.map((item: PostType) => {
+                        posts.map((item: WritePostType) => {
                             return <WritePostCardGrid key={item.id} post={item} />;
                         })}
                 </ul>

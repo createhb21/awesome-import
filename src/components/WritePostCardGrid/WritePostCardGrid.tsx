@@ -2,10 +2,10 @@
 import { css, useTheme } from '@emotion/react';
 import { Link } from 'react-router-dom';
 import { ITheme } from '../../lib/styles/Theme';
-import { PostType } from '../../modules/Fetch/FetchPostData';
+import { WritePostType } from '../../modules/Fetch/FetchPostData';
 
 export type WritePostCardGridProps = {
-    post: PostType;
+    post: WritePostType;
 };
 
 function TechPostCardGrid({ post }: WritePostCardGridProps) {

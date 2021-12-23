@@ -19,8 +19,13 @@ function Log() {
     const getLogs = createSelector(getLog, post => {
         return post;
     });
+
+    const posts = [];
     const { data, loading, error } = useSelector(getLogs);
     const dispatch = useDispatch();
+    for (let key in data) {
+        posts.push(data[key]);
+    }
 
     useEffect(() => {
         if (data) return;
@@ -56,8 +61,8 @@ function Log() {
                 </header>
                 <div css={writeLogStyle(theme)}>
                     <ul css={postListStyle(theme)}>
-                        {data &&
-                            data.map((item: any) => {
+                        {posts &&
+                            posts.map((item: any) => {
                                 return <LogPostCardGrid key={item.id} post={item} />;
                             })}
                     </ul>
