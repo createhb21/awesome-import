@@ -6,11 +6,13 @@ export const FirebasePosting = (dir: string, postingData: any) => {
     const commentList = ref(db, dir);
     const newCommentRef = push(commentList);
 
-    set(newCommentRef, postingData)
-        .then(() => {
-            console.log('Data saved successfully!');
+    const request = set(newCommentRef, postingData)
+        .then(res => {
+            return res;
         })
         .catch(error => {
             console.log(error);
         });
+
+    return request;
 };

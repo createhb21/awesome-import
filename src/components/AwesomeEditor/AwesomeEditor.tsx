@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import moment from 'moment';
 import 'moment/locale/ko';
 import { css, useTheme } from '@emotion/react';
@@ -28,25 +28,37 @@ const TextEditor = ({ guest }: EditorProps) => {
     const initialState = EditorState.createEmpty(linkDecorator);
     const [editorState, setEditorState] = React.useState<EditorState>(initialState);
 
-    const [userName, setUserName] = React.useState<string>('');
-    const [password, setPassword] = React.useState<any>(null);
+    const nickNameRef = useRef<HTMLInputElement>(null);
+    const pwRef = useRef<HTMLInputElement>(null);
 
     const db = getDatabase(firebaseApp);
     const handleSave = () => {
         const newPostKey = push(child(ref(db), 'guestbook')).key;
         const commentTime = moment().format('YYYY년MM월DD일 HH:mm:ss');
-        const data = draftToHtml(convertToRaw(editorState.getCurrentContent()));
+        const data = convertToRaw(editorState.getCurrentContent());
+        const formatData = draftToHtml(convertToRaw(editorState.getCurrentContent()));
+        const nickName = nickNameRef.current && nickNameRef.current.value;
+        const password = pwRef.current && pwRef.current.value;
 
         const commentData = {
-            userName,
+            nickName,
             password,
-            body: data,
+            body: formatData,
             date: commentTime,
             starCount: 0,
             id: newPostKey,
         };
-        // set(ref(db, 'guestbook/' + newPostKey), commentData);
-        FirebasePosting('guestbook', commentData);
+        if (!(nickName == '') && !(password == '') && !(data.blocks[0].text == '')) {
+            FirebasePosting('guestbook', commentData).then(() => {
+                if (nickNameRef.current && pwRef.current) {
+                    nickNameRef.current.value = '';
+                    pwRef.current.value = '';
+                    setEditorState(initialState);
+                }
+            });
+        } else {
+            alert('내용을 모두 입력해주세요 :D');
+        }
     };
 
     const handlePreview = () => {
@@ -176,8 +188,8 @@ const TextEditor = ({ guest }: EditorProps) => {
             </button>
             {guest && (
                 <div className="user-info">
-                    <input type="text" placeholder="닉네임" onChange={e => setUserName(e.target.value)} />
-                    <input type="password" placeholder="비밀번호" onChange={e => setPassword(+e.target.value)} maxLength={15} />
+                    <input type="text" placeholder="닉네임" ref={nickNameRef} />
+                    <input type="password" placeholder="비밀번호" maxLength={15} ref={pwRef} />
                 </div>
             )}
             {!visiblePreview ? <Editor editorState={editorState} onChange={setEditorState} handleKeyCommand={handleKeyCommand} blockRendererFn={mediaBlockRenderer} /> : <AwesomePreview />}
