@@ -14,15 +14,17 @@ import { switchImageGetterMode, switchImageSetterMode } from '../../modules/Imag
 import firebaseApp from '../../lib/storage/firebase';
 import { child, getDatabase, push, ref, set } from 'firebase/database';
 import draftToHtml from 'draftjs-to-html';
-import { FirebasePosting } from '../../hooks/firebasePosting';
+import { FirebasePosting, guestBookCommentCreateApi, writePostCreateApi } from '../../hooks/firebasePosting';
+import { useNavigate } from 'react-router-dom';
 
 const TEXT_EDITOR_ITEM = 'text-editor-item';
 
 export type EditorProps = {
+    cellection?: string;
     guest?: boolean;
 };
 
-const TextEditor = ({ guest }: EditorProps) => {
+const TextEditor = ({ cellection, guest }: EditorProps) => {
     const theme = useTheme();
     const [visiblePreview, setVisiblePreview] = React.useState<boolean>(false);
     const initialState = EditorState.createEmpty(linkDecorator);
@@ -31,38 +33,48 @@ const TextEditor = ({ guest }: EditorProps) => {
     const nickNameRef = useRef<HTMLInputElement>(null);
     const pwRef = useRef<HTMLInputElement>(null);
 
-    const db = getDatabase(firebaseApp);
+    const navigate = useNavigate();
     const handleSave = () => {
-        const newPostKey = push(child(ref(db), 'guestbook')).key;
-        const commentTime = moment().format('YYYY년MM월DD일 HH:mm:ss');
         const data = convertToRaw(editorState.getCurrentContent());
-        const formatData = draftToHtml(convertToRaw(editorState.getCurrentContent()));
-        const nickName = nickNameRef.current && nickNameRef.current.value;
-        const password = pwRef.current && pwRef.current.value;
-
-        const commentData = {
-            nickName,
-            password,
-            body: formatData,
-            date: commentTime,
-            starCount: 0,
-            id: newPostKey,
-        };
-        if (!(nickName == '') && !(password == '') && !(data.blocks[0].text == '')) {
-            FirebasePosting('guestbook', commentData).then(() => {
-                if (nickNameRef.current && pwRef.current) {
-                    nickNameRef.current.value = '';
-                    pwRef.current.value = '';
-                    setEditorState(initialState);
-                }
-            });
+        if (guest) {
+            guestCommentCreateApi(data);
+            return;
         } else {
-            alert('내용을 모두 입력해주세요 :D');
+            writeCreateApi(data);
         }
+        // switch (cellection) {
+        // case 'write':
+        // break;
+        // case 'log':
+        // break;
+        // default:
+        // return false;
+        // }
+    };
+
+    const writeCreateApi = async (data: any) => {
+        const categoty = 'dev';
+        const title = '커넵 2차 배포 완료';
+        const img = 'https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202112/16/4ab8f74f-79e5-4c14-bdbe-efe62f05b6ee.jpg';
+        await writePostCreateApi(categoty, title, data, img).then(() => {
+            navigate('/write');
+        });
+    };
+
+    const logCreateApi = async (data: any) => {
+        // await guestBookCommentCreateApi(data, nickNameRef, pwRef).then(() => {
+        //     setEditorState(initialState);
+        // });
+    };
+
+    const guestCommentCreateApi = async (data: any) => {
+        await guestBookCommentCreateApi(data, nickNameRef, pwRef).then(() => {
+            setEditorState(initialState);
+        });
     };
 
     const handlePreview = () => {
-        const data = draftToHtml(convertToRaw(editorState.getCurrentContent()));
+        const data = JSON.stringify(convertToRaw(editorState.getCurrentContent()));
         localStorage.setItem(TEXT_EDITOR_ITEM, data);
         !visiblePreview ? setVisiblePreview(true) : setVisiblePreview(false);
     };

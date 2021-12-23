@@ -19,7 +19,7 @@ export interface PostType {
     category: string;
     title: string;
     date: string;
-    img: string;
+    img?: string;
     body: any;
     starCount: number;
 }

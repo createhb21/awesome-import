@@ -17,8 +17,13 @@ function Write() {
     const getPosts = createSelector(getPost, post => {
         return post;
     });
+
+    const posts = [];
     const { data, loading, error } = useSelector(getPosts);
     const dispatch = useDispatch();
+    for (let key in data) {
+        posts.push(data[key]);
+    }
 
     useEffect(() => {
         if (data) return;
@@ -53,8 +58,8 @@ function Write() {
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat consequatur tempore culpa, consectetur dolores nam praesentium veritatis in quam nesciunt! Reiciendis </p>
                 </header>
                 <ul css={postListStyle(theme)}>
-                    {data &&
-                        data.map((item: PostType) => {
+                    {posts &&
+                        posts.map((item: PostType) => {
                             return <WritePostCardGrid key={item.id} post={item} />;
                         })}
                 </ul>
