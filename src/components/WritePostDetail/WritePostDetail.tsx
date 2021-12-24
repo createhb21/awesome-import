@@ -51,7 +51,7 @@ function WritePostDetail() {
                             <AwesomeRenderer>{data?.body}</AwesomeRenderer>
                         </main>
                     </div>
-                    <PostLoopBtn currentId={+id} data={data} />
+                    {/* <PostLoopBtn currentId={+id} data={data} /> */}
                 </div>
             )}
         </>
@@ -64,6 +64,7 @@ const wrapperStyle = (theme: ITheme) => css`
     ${media.small} {
         padding: 1.125rem;
     }
+    padding: 1.5em;
 `;
 
 const headerStyle = (theme: ITheme) => css`

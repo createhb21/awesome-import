@@ -12,7 +12,7 @@ const HomePage = () => {
         <div css={wrapperStyle(theme)}>
             <header>
                 <h1>Hey, I'm Bummy 👷</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat consequatur tempore culpa, consectetur dolores nam praesentium veritatis in quam nesciunt! Reiciendis </p>
+                <p>안녕하세요 이효범 Createhb21입니다 😃 </p>
             </header>
             <div css={homePageStyle(theme)}>
                 <h2>

@@ -57,7 +57,7 @@ function Write() {
             <div css={wrapperStyle(theme)}>
                 <header>
                     <h1>Write</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat consequatur tempore culpa, consectetur dolores nam praesentium veritatis in quam nesciunt! Reiciendis </p>
+                    <p>Createhb21 👨‍💻, 개발 관련 글을 기록하는 공간입니다 :D</p>
                 </header>
                 <ul css={postListStyle(theme)}>
                     {posts &&

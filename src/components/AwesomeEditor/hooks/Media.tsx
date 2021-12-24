@@ -10,18 +10,22 @@ interface BlockComponentProps {
     block: ContentBlock;
 }
 
-const imgWrapStyle = css`
+const imgWrapStyle = (width: number) => css`
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
+
+    & > img {
+        width: ${width}%;
+    }
 `;
 
 export const Image = (props: BlockComponentProps) => {
     const { block, contentState } = props;
     const { src } = contentState.getEntity(block.getEntityAt(0)).getData();
-    const [width, setWidth] = useState(577);
+    const [width, setWidth] = useState(80);
     const { isSetterMode } = useSelector((state: RootReducerType) => state.ImageSetterReducer);
     const location = window.location.pathname;
 
@@ -39,12 +43,12 @@ export const Image = (props: BlockComponentProps) => {
     };
 
     useEffect(() => {
-        location === '/guestbook' && setWidth(377);
-    });
+        location === '/guestbook' && setWidth(45);
+    }, [location]);
 
     return (
-        <div css={imgWrapStyle}>
-            <img src={src} alt={src} role="presentation" onClick={getSize} width={width} />
+        <div css={imgWrapStyle(width)}>
+            <img src={src} alt={src} role="presentation" onClick={getSize} />
         </div>
     );
 };

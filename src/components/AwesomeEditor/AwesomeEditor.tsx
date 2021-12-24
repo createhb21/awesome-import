@@ -26,6 +26,7 @@ const TextEditor = ({ cellection, guest }: EditorProps) => {
     const initialState = EditorState.createEmpty(linkDecorator);
     const [editorState, setEditorState] = React.useState<EditorState>(initialState);
 
+    const collectionRef = useRef<HTMLSelectElement>(null);
     const firstInputRef = useRef<HTMLInputElement>(null);
     const categoryRef = useRef<HTMLInputElement>(null);
     const pwRef = useRef<HTMLInputElement>(null);
@@ -33,39 +34,39 @@ const TextEditor = ({ cellection, guest }: EditorProps) => {
     const navigate = useNavigate();
     const handleSave = () => {
         const data = convertToRaw(editorState.getCurrentContent());
+        const cellection = collectionRef.current && collectionRef.current.value;
         if (guest) {
             guestCommentCreateApi(data);
             return;
-        } else {
-            writeCreateApi(data);
         }
-        // switch (cellection) {
-        // case 'write':
-        // break;
-        // case 'log':
-        // break;
-        // default:
-        // return false;
-        // }
+        switch (cellection) {
+            case 'write':
+                writeCreateApi(data);
+                break;
+            case 'log':
+                logCreateApi(data);
+                break;
+            default:
+                return false;
+        }
     };
 
     const writeCreateApi = async (data: any) => {
-        const img = 'https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202112/16/4ab8f74f-79e5-4c14-bdbe-efe62f05b6ee.jpg';
+        const img = 'https://user-images.githubusercontent.com/80245801/147321159-11fb28df-fa15-4e0f-ba5e-42fa4d5f060e.png';
         await writePostCreateApi(categoryRef, firstInputRef, data, img).then(() => {
             navigate('/write');
         });
     };
 
     const logCreateApi = async (data: any) => {
-        const title = '크리스마스 이브라니 ㅎㅎ';
-        await logPostCreateApi(title, data).then(() => {
+        await logPostCreateApi(firstInputRef, data).then(() => {
             navigate('/log');
         });
     };
 
     const guestCommentCreateApi = async (data: any) => {
-        await guestBookCommentCreateApi(data, firstInputRef, pwRef).then(() => {
-            setEditorState(initialState);
+        await guestBookCommentCreateApi(data, firstInputRef, pwRef, setEditorState).then(() => {
+            console.log('comment success');
         });
     };
 
@@ -211,6 +212,12 @@ const TextEditor = ({ cellection, guest }: EditorProps) => {
                     {!visiblePreview ? 'Preview' : 'Write'}
                 </button>
             )}
+            {!guest && (
+                <select ref={collectionRef} className="select" name="theme" placeholder="Theme">
+                    <option placeholder="write">write</option>
+                    <option placeholder="log">log</option>
+                </select>
+            )}
         </div>
     );
 };
@@ -287,7 +294,16 @@ const wrapperStyle = (theme: ITheme, visiblePreview: boolean, guest: boolean | u
 
     .select {
         position: absolute;
-        right: 0;
-        top: 0;
+        bottom: 25px;
+        right: 7.7px;
+        color: ${theme.textNormal};
+        background-color: ${theme.background};
+        border-radius: 15px;
+        margin-left: 5rem;
+        padding: 5px;
+        padding-left: 10px;
+        border: none;
+        outline: none;
+        font-size: 0.875rem;
     }
 `;

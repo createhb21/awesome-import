@@ -36,8 +36,8 @@ function App() {
                         <Route path="/edit" element={<AwesomeEditor />} />
                     </Routes>
                 </AppLayout.Main>
+                <MobileFooter />
             </AppLayout>
-            <MobileFooter />
             <ArrowUpBtn icon="arrow_up" text="Arrow_up" />
             <Global styles={GlobalStyle(!isDarkMode ? themeLight : themeDark)} />
         </ThemeProvider>

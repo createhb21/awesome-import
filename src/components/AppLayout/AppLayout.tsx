@@ -78,6 +78,7 @@ const footerStyle = (theme: ITheme) => css`
 const mainStyle = css`
     ${media.xlarge} {
         margin-left: 11.5rem;
+        margin-right: 2.5rem;
     }
     ${media.small} {
         margin-left: 0;
@@ -93,6 +94,6 @@ const mainStyle = css`
 const containerStyle = css`
     outline: none;
     max-width: 1000px;
-    max-height: 100vh;
+    max-height: 100%;
     margin: 0 auto;
 `;
