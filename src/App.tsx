@@ -16,7 +16,6 @@ import { RootReducerType } from './index';
 import SideBar from './components/SideBar';
 import AwesomeEditor from './components/AwesomeEditor/AwesomeEditor';
 import GuestBook from './pages/GuestBook';
-import AwesomeRenderer from './components/AwesomeRenderer';
 
 function App() {
     const { isDarkMode } = useSelector((state: RootReducerType) => state.ThemeSwitchReducer);

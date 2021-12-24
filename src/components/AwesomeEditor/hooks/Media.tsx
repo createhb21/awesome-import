@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ContentBlock, ContentState } from 'draft-js';
 import { css } from '@emotion/react';
 import { useSelector } from 'react-redux';
@@ -23,6 +23,7 @@ export const Image = (props: BlockComponentProps) => {
     const { src } = contentState.getEntity(block.getEntityAt(0)).getData();
     const [width, setWidth] = useState(577);
     const { isSetterMode } = useSelector((state: RootReducerType) => state.ImageSetterReducer);
+    const location = window.location.pathname;
 
     const getSize = () => {
         if (!isSetterMode) return;
@@ -36,6 +37,10 @@ export const Image = (props: BlockComponentProps) => {
             setWidth(Number(responseSize));
         }
     };
+
+    useEffect(() => {
+        location === '/guestbook' && setWidth(377);
+    });
 
     return (
         <div css={imgWrapStyle}>

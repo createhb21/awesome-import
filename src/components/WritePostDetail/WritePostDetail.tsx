@@ -18,11 +18,12 @@ function WritePostDetail() {
     const getPostCreateSelector = createSelector(getPost, post => {
         return post;
     });
+
     const { data, loading, error } = useSelector(getPostCreateSelector);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getPostAction(parseInt(id, 10)));
+        dispatch(getPostAction(id));
         return () => {
             dispatch(clearPost());
         };

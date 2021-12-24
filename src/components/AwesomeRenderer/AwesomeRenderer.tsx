@@ -15,18 +15,8 @@ function AwesomeRenderer({ children, guest }: AwesomeRendererProps) {
     const [editorState, setEditorState] = React.useState<EditorState>(emptyState);
 
     useEffect(() => {
-        if (!guest) {
-            const initialState = EditorState.createWithContent(convertFromRaw(children), linkDecorator);
-            setEditorState(initialState);
-        } else {
-            const blocksFromHtml = htmlToDraft(children);
-            if (blocksFromHtml) {
-                const { contentBlocks, entityMap } = blocksFromHtml;
-                const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
-                const editorState = EditorState.createWithContent(contentState);
-                setEditorState(editorState);
-            }
-        }
+        const initialState = EditorState.createWithContent(convertFromRaw(JSON.parse(children)), linkDecorator);
+        setEditorState(initialState);
     }, [children]);
 
     return (

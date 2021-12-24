@@ -6,18 +6,19 @@ import { WritePostType } from '../../modules/Fetch/FetchPostData';
 
 export type WritePostCardGridProps = {
     post: WritePostType;
+    postId: string;
 };
 
-function TechPostCardGrid({ post }: WritePostCardGridProps) {
+function TechPostCardGrid({ post, postId }: WritePostCardGridProps) {
     const theme = useTheme();
-    const { id, category, title, body, date, img } = post;
-    const { blocks } = body! as any;
+    const { category, title, body, date, img } = post;
+    const formatText = JSON.parse(body).blocks;
 
     return (
         <li css={wrapperStyle(theme)}>
             <Link
                 to={{
-                    pathname: `/write/${id}`,
+                    pathname: `/write/${postId}`,
                 }}
             >
                 <article css={containerStyle(theme)}>
@@ -28,9 +29,10 @@ function TechPostCardGrid({ post }: WritePostCardGridProps) {
                         <h1 css={titleStyle(theme)}>{title}</h1>
                         <div css={summaryStyle(theme)}>
                             <p>
-                                {blocks.map((item: any, index: number) => {
-                                    return <span key={index}>{item.text}</span>;
-                                })}
+                                {formatText &&
+                                    formatText.map((item: any, index: number) => {
+                                        return <span key={index}>{item.text}</span>;
+                                    })}
                             </p>
                             <span>{date}</span>
                         </div>

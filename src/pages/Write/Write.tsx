@@ -18,10 +18,12 @@ function Write() {
         return post;
     });
 
-    const posts = [];
+    const posts: any = [];
+    const postId: any = [];
     const { data, loading, error } = useSelector(getPosts);
     const dispatch = useDispatch();
     for (let key in data) {
+        postId.push(key);
         posts.push(data[key]);
     }
 
@@ -59,8 +61,8 @@ function Write() {
                 </header>
                 <ul css={postListStyle(theme)}>
                     {posts &&
-                        posts.map((item: WritePostType) => {
-                            return <WritePostCardGrid key={item.id} post={item} />;
+                        posts.map((item: WritePostType, index: number) => {
+                            return <WritePostCardGrid key={item.id} post={item} postId={postId[index]} />;
                         })}
                 </ul>
             </div>

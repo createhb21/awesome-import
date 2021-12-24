@@ -15,7 +15,7 @@ export const GET_POST_ERROR = 'GET_POST_ERROR';
 const CLEAR_POST = 'CLEAR_POST';
 
 export interface WritePostType {
-    id: number | string;
+    id: string;
     category: string;
     title: string;
     date: string;
@@ -30,7 +30,7 @@ export const getPosts = async () => {
     return posts;
 };
 
-export const getPostById = async (id: number) => {
+export const getPostById = async (id: any) => {
     const res = await Axios.get(BASE_URL());
     const posts = res.data.posts;
     const defaultUser = {};

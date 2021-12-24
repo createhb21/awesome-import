@@ -62,7 +62,7 @@ function Log() {
                 <div css={writeLogStyle(theme)}>
                     <ul css={postListStyle(theme)}>
                         {posts &&
-                            posts.map((item: any) => {
+                            posts.reverse().map((item: any) => {
                                 return <LogPostCardGrid key={item.id} post={item} />;
                             })}
                     </ul>
