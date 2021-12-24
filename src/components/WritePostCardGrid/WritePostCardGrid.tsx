@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css, useTheme } from '@emotion/react';
 import { Link } from 'react-router-dom';
+import media from '../../lib/styles/media';
 import { ITheme } from '../../lib/styles/Theme';
 import { WritePostType } from '../../modules/Fetch/FetchPostData';
 
@@ -51,8 +52,20 @@ function TechPostCardGrid({ post, postId }: WritePostCardGridProps) {
 export default TechPostCardGrid;
 
 const wrapperStyle = (theme: ITheme) => css`
+    ${media.small} {
+        margin-right: 0;
+        margin-left: 0.15rem;
+    }
+
+        & > article {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+    }
+
     align-items: center;
     line-height: 1.625;
+    margin-right: 4.5rem;
     word-break: break-all;
 
     & > article {
@@ -62,12 +75,22 @@ const wrapperStyle = (theme: ITheme) => css`
 `;
 
 const containerStyle = (theme: ITheme) => css`
+    ${media.small} {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
     padding: 0;
     padding-top: 2rem;
     padding-bottom: 2rem;
 `;
 
 const categoryStyle = (theme: ITheme) => css`
+    ${media.small} {
+        & > span {
+            line-height: 1rem;
+        }
+    }
+
     margin-bottom: 0.5rem;
 
     & > span {
@@ -87,6 +110,11 @@ const contentWrapperStyle = (theme: ITheme) => css`
 `;
 
 const titleStyle = (theme: ITheme) => css`
+    ${media.small} {
+        font-size: 1.15rem;
+        grid-column: 1/8;
+    }
+
     margin: 0;
     grid-column: 1/10;
     font-size: 1.5rem;
@@ -95,6 +123,11 @@ const titleStyle = (theme: ITheme) => css`
 `;
 
 const summaryStyle = (theme: ITheme) => css`
+    ${media.small} {
+        grid-row-start: 2;
+        grid-column: 1/8;
+    }
+
     grid-row-start: 2;
     grid-column: 1/10;
     padding-top: 0.5rem;
@@ -121,6 +154,11 @@ const summaryStyle = (theme: ITheme) => css`
 `;
 
 const imageStyle = (theme: ITheme) => css`
+    ${media.small} {
+        grid-row: 1/3;
+        grid-column: 8/13;
+    }
+
     grid-row: 1/3;
     grid-column: 10/13;
     margin-left: 1.5rem;

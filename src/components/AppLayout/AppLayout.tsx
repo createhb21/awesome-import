@@ -78,7 +78,6 @@ const footerStyle = (theme: ITheme) => css`
 const mainStyle = css`
     ${media.xlarge} {
         margin-left: 11.5rem;
-        margin-right: 2.5rem;
     }
     ${media.small} {
         margin-left: 0;

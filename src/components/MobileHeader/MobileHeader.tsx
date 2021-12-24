@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css, useTheme } from '@emotion/react';
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { logo } from '../../assets/images';
 import palette from '../../lib/palette';
 import media from '../../lib/styles/media';
@@ -10,6 +11,17 @@ import Awesomecon from '../Awesomecon';
 
 function MobileHeader() {
     const theme = useTheme();
+    const navigate = useNavigate();
+
+    const [visible, setVisible] = useState(false);
+    const inviteToGustBook = () => {
+        !visible ? setVisible(true) : setVisible(false);
+    };
+
+    const routeGuestBook = () => {
+        navigate('/guestbook');
+        setVisible(false);
+    };
     return (
         <>
             <header css={[common, headerStyle(theme)]}>
@@ -18,9 +30,12 @@ function MobileHeader() {
                 </Link>
                 <div css={headerRightWrapper}>
                     <div css={headerRight}>
-                        <button css={loginButton}>
+                        <button css={loginButton} onClick={inviteToGustBook}>
                             <Awesomecon name="user_circle" />
                         </button>
+                        <div css={toggleStyle(theme, visible)} onClick={routeGuestBook}>
+                            GustBook
+                        </div>
                     </div>
                 </div>
             </header>
@@ -76,13 +91,35 @@ const headerRight = css`
     align-items: center;
     height: 4rem;
     padding-right: 1rem;
+    position: relative;
 `;
 
 const loginButton = css`
+    cursor: pointer;
     ${resetButton}
     svg {
         width: 1.5rem;
         height: 1.5rem;
         color: ${palette.blueGrey[900]};
     }
+`;
+
+const toggleStyle = (theme: ITheme, visible: boolean) => css`
+    font-size: 0.875rem;
+    position: absolute;
+    display: flex;
+    opacity: ${!visible ? 0 : 1};
+    pointer-events: ${!visible ? 'none' : ''};
+    justify-content: center;
+    align-items: center;
+    padding: 2px;
+    left: -35px;
+    bottom: -10px;
+    width: 70px;
+    color: ${palette.blueGrey[600]};
+    border: 1px solid ${palette.blueGrey[600]};
+    border-radius: 15px;
+    cursor: pointer;
+    transition-duration: 0.45s;
+    transition-property: opacity;
 `;

@@ -30,6 +30,7 @@ function MessageCard({ post }: MessageCardProps) {
 export default MessageCard;
 
 const wrapperStyle = (theme: ITheme) => css`
+    max-width: 100%;
     align-items: center;
     line-height: 1.625;
     word-break: break-all;

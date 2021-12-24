@@ -68,6 +68,9 @@ const wrapperStyle = (theme: ITheme) => css`
 `;
 
 const headerStyle = (theme: ITheme) => css`
+${media.small} {
+    padding-top: 1.5rem;
+    }
     padding-top: 4rem;
     padding-bottom: 3rem;
 

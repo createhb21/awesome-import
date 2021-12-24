@@ -227,6 +227,7 @@ export default TextEditor;
 const wrapperStyle = (theme: ITheme, visiblePreview: boolean, guest: boolean | undefined) => css`
     text-align: center;
     width: 40rem;
+    max-width: 100%;
     position: relative;
 
     & > #func {

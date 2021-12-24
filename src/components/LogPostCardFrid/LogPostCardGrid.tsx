@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css, useTheme } from '@emotion/react';
+import media from '../../lib/styles/media';
 import { ITheme } from '../../lib/styles/Theme';
 import AwesomeRenderer from '../AwesomeRenderer';
 
@@ -36,9 +37,15 @@ function LogPostCardGrid({ post }: LogPostCardGridProps) {
 export default LogPostCardGrid;
 
 const wrapperStyle = (theme: ITheme) => css`
+    ${media.small} {
+        margin-right: 0;
+        margin-left: 0.15rem;
+    }
+
     align-items: center;
     line-height: 1.625;
     word-break: break-all;
+    margin-right: 4.5em;
     border-bottom: 0.2px solid ${theme.grayBorder};
 
     & > article {
