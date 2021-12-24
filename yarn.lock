@@ -2265,20 +2265,13 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
-"@types/draft-js@*", "@types/draft-js@^0.11.7":
+"@types/draft-js@^0.11.7":
   version "0.11.7"
   resolved "https://registry.yarnpkg.com/@types/draft-js/-/draft-js-0.11.7.tgz#5870bfddb66c2ad0dd91c7293cad2793ff9920c1"
   integrity sha512-NeCRIPcfrlUItA46boNG2kxuVhohPdE4Plp3GcxEv11FXZ0kZFa6X8fNPpKrp8AEUqeAr/B0TsX/wp2sYZaK3w==
   dependencies:
     "@types/react" "*"
     immutable "~3.7.4"
-
-"@types/draftjs-to-html@^0.8.1":
-  version "0.8.1"
-  resolved "https://registry.yarnpkg.com/@types/draftjs-to-html/-/draftjs-to-html-0.8.1.tgz#0800a4f6ff19ece49b6a337bfa8b39ed3d08a5fa"
-  integrity sha512-NBkphQs+qZ/sAz/j1pCUaxkPAOx00LTsE88aMSSfcvK+UfCpjHJDqIMCkm6wKotuJvY5w0BtdRazQ0sAaXzPdg==
-  dependencies:
-    "@types/draft-js" "*"
 
 "@types/eslint@^7.2.6":
   version "7.2.6"
@@ -2325,13 +2318,6 @@
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/@types/html-minifier-terser/-/html-minifier-terser-5.1.1.tgz#3c9ee980f1a10d6021ae6632ca3e79ca2ec4fb50"
   integrity sha512-giAlZwstKbmvMk1OO7WXSj4OZ0keXAcl2TQq4LWHiiPH2ByaH7WeUzng+Qej8UPxxv+8lRTuouo0iaNDBuzIBA==
-
-"@types/html-to-draftjs@^1.4.0":
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/@types/html-to-draftjs/-/html-to-draftjs-1.4.0.tgz#bfd712d3c5993e0644b76d2654adeae214678fae"
-  integrity sha512-w7Te62TAk2xkl+f/PRepVfaVbsArRYRACqH7Rv9H97gKqglQye3Cf8EArsKuSsN7vW6/zf1kTCsm/jnSR0gDQA==
-  dependencies:
-    "@types/draft-js" "*"
 
 "@types/istanbul-lib-coverage@*", "@types/istanbul-lib-coverage@^2.0.0", "@types/istanbul-lib-coverage@^2.0.1":
   version "2.0.3"

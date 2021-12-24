@@ -12,8 +12,6 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "@types/draft-js": "^0.11.7",
-    "@types/draftjs-to-html": "^0.8.1",
-    "@types/html-to-draftjs": "^1.4.0",
     "@types/jest": "^26.0.15",
     "@types/lodash": "^4.14.177",
     "@types/moment": "^2.13.0",

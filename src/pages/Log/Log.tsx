@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { css, useTheme } from '@emotion/react';
+import { css, keyframes, useTheme } from '@emotion/react';
 import { Helmet } from 'react-helmet-async';
 import LogPostCardGrid from '../../components/LogPostCardFrid';
 import { ITheme } from '../../lib/styles/Theme';
@@ -10,6 +10,8 @@ import { createSelector } from '@reduxjs/toolkit';
 import { getLogsAction } from '../../modules/Fetch/FetchLogData';
 import { child, get, getDatabase, onValue, ref } from 'firebase/database';
 import firebaseApp from '../../lib/storage/firebase';
+import palette from '../../lib/palette';
+import AwesomeLoader from '../../components/AwesomeLoader/AwesomeLoader';
 
 function Log() {
     const theme = useTheme();
@@ -32,7 +34,7 @@ function Log() {
         dispatch(getLogsAction());
     }, [data, dispatch]);
 
-    if (loading && !data) return <div>loading...</div>;
+    if (loading && !data) return <AwesomeLoader />;
     if (!data) return null;
 
     // firebase sdk

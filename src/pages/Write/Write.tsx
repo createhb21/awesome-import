@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { Helmet } from 'react-helmet-async';
-import { css, useTheme } from '@emotion/react';
+import { css, keyframes, useTheme } from '@emotion/react';
 import { ITheme } from '../../lib/styles/Theme';
 import WritePostCardGrid from '../../components/WritePostCardGrid';
 import { useEffect, useState } from 'react';
@@ -10,6 +10,8 @@ import { getPostsAction, WritePostType } from '../../modules/Fetch/FetchPostData
 import { createSelector } from '@reduxjs/toolkit';
 import { child, get, getDatabase, onValue, ref } from 'firebase/database';
 import firebaseApp from '../../lib/storage/firebase';
+import palette from '../../lib/palette';
+import AwesomeLoader from '../../components/AwesomeLoader/AwesomeLoader';
 
 function Write() {
     const theme = useTheme();
@@ -32,7 +34,7 @@ function Write() {
         dispatch(getPostsAction());
     }, [data, dispatch]);
 
-    if (loading && !data) return <div>loading...</div>;
+    if (loading && !data) return <AwesomeLoader />;
     if (!data) return null;
 
     // firebase sdk
@@ -61,8 +63,8 @@ function Write() {
                 </header>
                 <ul css={postListStyle(theme)}>
                     {posts &&
-                        posts.map((item: WritePostType, index: number) => {
-                            return <WritePostCardGrid key={item.id} post={item} postId={postId[index]} />;
+                        posts.reverse().map((item: WritePostType, index: number) => {
+                            return <WritePostCardGrid key={item.id} post={item} postId={postId[posts.length - (index + 1)]} />;
                         })}
                 </ul>
             </div>

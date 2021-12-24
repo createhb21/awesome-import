@@ -3,6 +3,7 @@ import { css } from '@emotion/react';
 import palette from '../../lib/palette';
 import { NavLink } from 'react-router-dom';
 import AwesomeIcon, { AwesomeIconType } from '../Awesomecon/Awesomecon';
+import { ITheme } from '../../lib/styles/Theme';
 
 export type SidebarItemProps = {
     icon: AwesomeIconType;
@@ -21,18 +22,18 @@ function SidebarItem({ icon, text, to }: SidebarItemProps) {
     );
 }
 
-const linkStyle = css`
+const linkStyle = (theme: ITheme) => css`
     border-radius: 0.5rem;
     height: 3.75rem;
     display: flex;
     align-items: center;
     padding-left: 1rem;
     padding-right: 1rem;
-    color: ${palette.blueGrey[600]};
+    color: ${palette.blueGrey[400]};
     text-decoration: none;
 
     &:hover {
-        background: ${palette.blueGrey[50]};
+        background: ${theme.buttonBgHover};
     }
     svg {
         width: 1.75rem;
@@ -44,8 +45,8 @@ const linkStyle = css`
     }
 
     &.active {
-        background: ${palette.blueGrey[50]};
-        color: ${palette.blueGrey[900]};
+        background: ${theme.buttonBgHover};
+        color: ${palette.cyan[600]};
         span {
             font-weight: bold;
         }

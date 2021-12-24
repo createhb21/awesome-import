@@ -66,6 +66,12 @@ const linkStyle = (theme: ITheme) => css`
     color: ${palette.blueGrey[600]};
     text-decoration: none;
     cursor: pointer;
+    &:hover {
+        color: ${palette.cyan[600]};
+        border-radius: 0.25rem;
+        transition: 0.5s;
+        transition-property: color;
+    }
 
     svg {
         width: 1.75rem;
