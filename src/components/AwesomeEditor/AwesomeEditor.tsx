@@ -133,7 +133,14 @@ const TextEditor = ({ cellection, guest }: EditorProps) => {
         return () => {
             dispatch(switchImageGetterMode());
         };
-    }, [dispatch]);
+    }, [dispatch, guest, visiblePreview]);
+
+    useEffect(() => {
+        const userName = localStorage.getItem('displayName') ?? null;
+        if (userName != null && firstInputRef.current) {
+            firstInputRef.current.value = userName;
+        }
+    }, [dispatch, guest, visiblePreview]);
 
     return (
         <div css={wrapperStyle(theme, visiblePreview, guest)}>

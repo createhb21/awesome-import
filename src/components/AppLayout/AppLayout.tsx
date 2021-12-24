@@ -60,11 +60,9 @@ const footerStyle = (theme: ITheme) => css`
     ${media.small} {
         display: none;
     }
-    padding-left: 2rem;
     margin-left: 16.25rem;
-    padding-top: 1.5rem;
+    padding-top: 1rem;
     padding-bottom: 1.5rem;
-
     margin-top: 2.5rem;
     margin-right: auto;
     margin-left: auto;
@@ -85,7 +83,7 @@ const mainStyle = css`
     }
     padding-left: 2rem;
     margin-left: 16.25rem;
-
+    margin-right: 4.5em;
     padding-top: 3rem;
     padding-bottom: 3rem;
 `;

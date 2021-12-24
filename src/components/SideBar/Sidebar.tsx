@@ -1,11 +1,40 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { Link } from 'react-router-dom';
-import SidebarItem from '../SidebarItem/SidebarItem';
-import ThemeSwitchBtn from '../ThemeSwitchBtn';
 import { logo } from '../../assets/images';
+import ThemeSwitchBtn from '../ThemeSwitchBtn';
+import AuthServiece from '../../hooks/authServiece';
+import SidebarItem from '../SidebarItem/SidebarItem';
+import { useState } from 'react';
 
 function SideBar() {
+    const [visible, setVisible] = useState(false);
+
+    const userIn = async () => {
+        await AuthServiece.login() //
+            .then(result => {
+                setVisible(false);
+                const user = result.user;
+                const userName = user.displayName! as string;
+                localStorage.setItem('uid', user.uid);
+                localStorage.setItem('displayName', userName);
+            })
+            .catch(error => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(errorCode);
+                console.log(errorMessage);
+            });
+    };
+
+    const userOut = async () => {
+        await AuthServiece.logout().then(() => {
+            setVisible(true);
+            localStorage.removeItem('uid');
+            localStorage.removeItem('displayName');
+        });
+    };
+
     return (
         <div css={sidebarStyle}>
             <div className="logo">
@@ -18,6 +47,7 @@ function SideBar() {
                 <SidebarItem icon="flask" text="Log" to="/log" />
                 <SidebarItem icon="plus" text="Plus" to="/guestbook" />
                 <ThemeSwitchBtn icon="globe" mode="side" />
+                {visible ? <button onClick={userIn}>login</button> : <button onClick={userOut}>logout</button>}
             </ul>
         </div>
     );

@@ -10,15 +10,18 @@ interface BlockComponentProps {
     block: ContentBlock;
 }
 
-const imgWrapStyle = (width: number) => css`
+const imgWrapStyle = (width: number, location: string) => css`
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: ${location === '/log' ? 'flex-start' : 'center'};
     align-items: center;
     position: relative;
 
     & > img {
+        margin: 0;
+        padding: 0;
         width: ${width}%;
+        max-height: ${location === '/log' ? '274px' : ''};
     }
 `;
 
@@ -44,10 +47,11 @@ export const Image = (props: BlockComponentProps) => {
 
     useEffect(() => {
         location === '/guestbook' && setWidth(45);
+        location === '/log' && setWidth(50);
     }, [location]);
 
     return (
-        <div css={imgWrapStyle(width)}>
+        <div css={imgWrapStyle(width, location)}>
             <img src={src} alt={src} role="presentation" onClick={getSize} />
         </div>
     );

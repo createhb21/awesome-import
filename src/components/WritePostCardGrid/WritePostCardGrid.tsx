@@ -37,11 +37,13 @@ function TechPostCardGrid({ post, postId }: WritePostCardGridProps) {
                             </p>
                             <span>{date}</span>
                         </div>
-                        <div css={imageStyle(theme)}>
-                            <span>
-                                <img src={img} alt="img" />
-                            </span>
-                        </div>
+                        {img && (
+                            <div css={imageStyle(theme)}>
+                                <span>
+                                    <img src={img} alt="img" />
+                                </span>
+                            </div>
+                        )}
                     </section>
                 </article>
             </Link>
@@ -60,20 +62,7 @@ const wrapperStyle = (theme: ITheme) => css`
     align-items: center;
     line-height: 1.625;
     word-break: break-all;
-    margin-right: 4.5em;
     border-bottom: 0.2px solid ${theme.grayBorder};
-
-
-        & > article {
-            padding-top: 1rem;
-            padding-bottom: 1rem;
-        }
-    }
-
-    align-items: center;
-    line-height: 1.625;
-    margin-right: 4.5rem;
-    word-break: break-all;
 
     & > article {
         padding-top: 2rem;
@@ -186,6 +175,7 @@ const imageStyle = (theme: ITheme) => css`
             object-fit: cover;
             object-position: center;
             transition-delay: 500ms;
+            border-radius: 5px;
         }
     }
 `;

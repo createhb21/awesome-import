@@ -45,7 +45,6 @@ const wrapperStyle = (theme: ITheme) => css`
     align-items: center;
     line-height: 1.625;
     word-break: break-all;
-    margin-right: 4.5em;
     border-bottom: 0.2px solid ${theme.grayBorder};
 
     & > article {

@@ -62,9 +62,15 @@ export default WritePostDetail;
 
 const wrapperStyle = (theme: ITheme) => css`
     ${media.small} {
-        padding: 1.125rem;
+        margin-right: 0;
+        margin-left: 0.125rem;
     }
-    padding: 1.5em;
+
+    align-items: center;
+    line-height: 1.625;
+    word-break: break-all;
+    padding-left: 1rem;
+    padding-right: 1rem;
 `;
 
 const headerStyle = (theme: ITheme) => css`

@@ -16,6 +16,7 @@ import { RootReducerType } from './index';
 import SideBar from './components/SideBar';
 import AwesomeEditor from './components/AwesomeEditor/AwesomeEditor';
 import GuestBook from './pages/GuestBook';
+import Footer from './components/Footer';
 
 function App() {
     const { isDarkMode } = useSelector((state: RootReducerType) => state.ThemeSwitchReducer);
@@ -38,6 +39,7 @@ function App() {
                 </AppLayout.Main>
                 <MobileFooter />
             </AppLayout>
+
             <ArrowUpBtn icon="arrow_up" text="Arrow_up" />
             <Global styles={GlobalStyle(!isDarkMode ? themeLight : themeDark)} />
         </ThemeProvider>
