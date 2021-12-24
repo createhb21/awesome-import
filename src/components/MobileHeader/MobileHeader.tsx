@@ -72,7 +72,6 @@ const headerStyle = (theme: ITheme) => css`
         opacity: 0.785;
         width: 2.5rem;
         height: 2.5rem;
-        margin-left: 1rem;
     }
 `;
 

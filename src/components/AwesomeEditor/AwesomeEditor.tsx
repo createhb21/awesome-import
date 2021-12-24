@@ -35,6 +35,7 @@ const TextEditor = ({ cellection, guest }: EditorProps) => {
     const handleSave = () => {
         const data = convertToRaw(editorState.getCurrentContent());
         const cellection = collectionRef.current && collectionRef.current.value;
+
         if (guest) {
             guestCommentCreateApi(data);
             return;

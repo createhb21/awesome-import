@@ -54,8 +54,15 @@ export default TechPostCardGrid;
 const wrapperStyle = (theme: ITheme) => css`
     ${media.small} {
         margin-right: 0;
-        margin-left: 0.15rem;
+        margin-left: 0.125rem;
     }
+
+    align-items: center;
+    line-height: 1.625;
+    word-break: break-all;
+    margin-right: 4.5em;
+    border-bottom: 0.2px solid ${theme.grayBorder};
+
 
         & > article {
             padding-top: 1rem;

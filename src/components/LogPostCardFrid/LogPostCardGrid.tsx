@@ -39,7 +39,7 @@ export default LogPostCardGrid;
 const wrapperStyle = (theme: ITheme) => css`
     ${media.small} {
         margin-right: 0;
-        margin-left: 0.15rem;
+        margin-left: 0.125rem;
     }
 
     align-items: center;

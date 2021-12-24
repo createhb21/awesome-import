@@ -28,11 +28,20 @@ export const writePostCreateApi = async (categoryRef: any, titleRef: any, data: 
     const title = titleRef.current && titleRef.current.value;
     const formatData = JSON.stringify(data);
 
+    const dataArr: any[] = [];
+    for (let keys in data.entityMap) {
+        dataArr.push(data.entityMap[keys]);
+    }
+    const formatImg = dataArr.find(content => content.type === 'image');
+    const {
+        data: { src },
+    } = formatImg;
+
     const postingData: WritePostType = {
         category,
         title,
         body: formatData,
-        img,
+        img: src,
         date: commentMoment,
         starCount: 0,
         id: newPostKey,
