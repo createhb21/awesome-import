@@ -20,7 +20,7 @@ export const FirebasePosting = (dir: string, postingData: any) => {
     return request;
 };
 
-export const writePostCreateApi = async (categoryRef: any, titleRef: any, data: any, img?: any) => {
+export const writePostCreateApi = async (categoryRef: any, titleRef: any, data: any) => {
     const db = getDatabase(firebaseApp);
     const newPostKey = push(child(ref(db), 'write/posts')).key! as string;
     const commentMoment = moment().format('YYYY년 MM월 DD일 HH:mm');

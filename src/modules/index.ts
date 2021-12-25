@@ -6,14 +6,16 @@ import FetchLogReducer from './Fetch/FetchLogData';
 import FetchPostReducer from './Fetch/FetchPostData';
 import ImageSetterReducer from './ImageSetter';
 import ThemeSwitchReducer from './ThemeSwitch';
+import UserSetReducer from './UseUserSet';
 
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ['ThemeSwitchReducer'],
+    whitelist: ['ThemeSwitchReducer', 'UserSetReducer'],
 };
 
 const rootReducers = combineReducers({
+    UserSetReducer,
     ImageSetterReducer,
     ThemeSwitchReducer,
     FetchPostReducer,

@@ -40,6 +40,13 @@ const TextEditor = ({ cellection, guest }: EditorProps) => {
             guestCommentCreateApi(data);
             return;
         }
+
+        const localUid = localStorage.getItem('uid');
+        if (process.env.REACT_APP_BASE_ADMIN_KEY !== localUid) {
+            alert('권한이 없습니다 😆');
+            return false;
+        }
+
         switch (cellection) {
             case 'write':
                 writeCreateApi(data);
@@ -53,8 +60,7 @@ const TextEditor = ({ cellection, guest }: EditorProps) => {
     };
 
     const writeCreateApi = async (data: any) => {
-        const img = 'https://user-images.githubusercontent.com/80245801/147321159-11fb28df-fa15-4e0f-ba5e-42fa4d5f060e.png';
-        await writePostCreateApi(categoryRef, firstInputRef, data, img).then(() => {
+        await writePostCreateApi(categoryRef, firstInputRef, data).then(() => {
             navigate('/write');
         });
     };
