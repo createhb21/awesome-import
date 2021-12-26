@@ -64,7 +64,7 @@ function Write() {
                 <ul css={postListStyle(theme)}>
                     {posts &&
                         posts.reverse().map((item: WritePostType, index: number) => {
-                            return <WritePostCardGrid key={item.id} post={item} postId={postId[posts.length - (index + 1)]} />;
+                            return <WritePostCardGrid key={index} post={item} postId={postId[posts.length - (index + 1)]} />;
                         })}
                 </ul>
             </div>

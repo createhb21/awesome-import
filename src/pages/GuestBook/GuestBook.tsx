@@ -11,6 +11,7 @@ import { ITheme } from '../../lib/styles/Theme';
 import MessageCard from '../../components/GuestBookGrid';
 import { child, get, getDatabase, onValue, ref } from 'firebase/database';
 import firebaseApp from '../../lib/storage/firebase';
+import AwesomeLoader from '../../components/AwesomeLoader/AwesomeLoader';
 
 export type GuestBookProps = {};
 
@@ -25,13 +26,14 @@ interface GuestBookTypes {
 
 function GuestBook({}: GuestBookProps) {
     const theme = useTheme();
-
+    const [loading, setLoading] = useState(false);
     // firebase
     const db = getDatabase(firebaseApp);
     const guestbookRef = ref(db, 'guestbook');
     const [comments, setComments] = useState<any[]>([]);
 
     useEffect(() => {
+        setLoading(true);
         onValue(guestbookRef, snapshot => {
             const commentData: Array<GuestBookTypes> = [];
             const objdata = snapshot.val();
@@ -39,6 +41,7 @@ function GuestBook({}: GuestBookProps) {
                 commentData.push(objdata[key]);
             }
             setComments(commentData.reverse());
+            setLoading(false);
         });
     }, []);
 
@@ -63,6 +66,8 @@ function GuestBook({}: GuestBookProps) {
     if (loading && !data) return <div>loading...</div>;
     if (!data) return null;
     */
+
+    if (loading) return <AwesomeLoader />;
 
     return (
         <>

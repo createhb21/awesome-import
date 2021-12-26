@@ -15,7 +15,7 @@ export const GET_POST_ERROR = 'GET_POST_ERROR';
 const CLEAR_POST = 'CLEAR_POST';
 
 export interface WritePostType {
-    id: string;
+    uid?: string;
     category: string;
     title: string;
     date: string;

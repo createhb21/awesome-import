@@ -30,12 +30,12 @@ const buttonStyle = (theme: ITheme) => css`
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid black;
-    background: ${theme.buttonBg};
+    border: 1px solid ${theme.text};
+    background: ${theme.background};
     height: 3.375rem;
     padding: 0.75rem 1rem;
     font-size: 1rem;
-    color: ${palette.blueGrey[800]};
+    color: ${theme.textGray};
     border-radius: 0.5rem;
 
     cursor: pointer;

@@ -4,6 +4,7 @@ import firebaseApp from '../lib/storage/firebase';
 import { WritePostType } from '../modules/Fetch/FetchPostData';
 import { child, getDatabase, push, ref, set } from 'firebase/database';
 import { linkDecorator } from '../components/AwesomeEditor/hooks/Link';
+import { getAuth, User } from 'firebase/auth';
 
 export const FirebasePosting = (dir: string, postingData: any) => {
     const db = getDatabase(firebaseApp);
@@ -20,9 +21,7 @@ export const FirebasePosting = (dir: string, postingData: any) => {
     return request;
 };
 
-export const writePostCreateApi = async (categoryRef: any, titleRef: any, data: any) => {
-    const db = getDatabase(firebaseApp);
-    const newPostKey = push(child(ref(db), 'write/posts')).key! as string;
+export const writePostCreateApi = async (categoryRef: any, titleRef: any, data: any, uid?: string) => {
     const commentMoment = moment().format('YYYY년 MM월 DD일 HH:mm');
     const category = categoryRef.current && categoryRef.current.value;
     const title = titleRef.current && titleRef.current.value;
@@ -38,13 +37,13 @@ export const writePostCreateApi = async (categoryRef: any, titleRef: any, data: 
     } = formatImg;
 
     const postingData: WritePostType = {
-        category,
+        uid,
         title,
-        body: formatData,
+        category,
         img: src,
-        date: commentMoment,
         starCount: 0,
-        id: newPostKey,
+        body: formatData,
+        date: commentMoment,
     };
 
     if (!(category === '') && !(title === '') && !(data.blocks[0].text === '')) {
@@ -60,19 +59,17 @@ export const writePostCreateApi = async (categoryRef: any, titleRef: any, data: 
     }
 };
 
-export const logPostCreateApi = async (titleRef: any, data: any) => {
-    const db = getDatabase(firebaseApp);
-    const newPostKey = push(child(ref(db), 'log/posts')).key! as string;
+export const logPostCreateApi = async (titleRef: any, data: any, uid?: string) => {
     const commentMoment = moment().format('YYYY년 MM월 DD일 HH:mm');
     const title = titleRef.current && titleRef.current.value;
     const formatData = JSON.stringify(data);
 
     const postingData: any = {
+        uid,
         title,
         body: formatData,
         date: commentMoment,
         starCount: 0,
-        id: newPostKey,
     };
 
     if (!(title === '') && !(data.blocks[0].text === '')) {

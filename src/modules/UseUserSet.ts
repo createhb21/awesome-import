@@ -15,8 +15,6 @@ type UserDispatchType = userLoginDispatch | userLogoutDispatch;
 export const switchUserLogin = () => async (dispatch: Dispatch<userLoginDispatch>) => {
     const res = await AuthServiece.login();
     const user = res.user;
-    const userName = user.displayName! as string;
-    localStorage.setItem('displayName', userName);
 
     dispatch({
         type: USER_IN,
@@ -24,7 +22,6 @@ export const switchUserLogin = () => async (dispatch: Dispatch<userLoginDispatch
     });
 };
 export const switchUserLogout = () => (dispatch: Dispatch<userLogoutDispatch>) => {
-    localStorage.removeItem('displayName');
     dispatch({
         type: USER_OUT,
     });

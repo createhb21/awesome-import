@@ -1,27 +1,50 @@
 /** @jsxImportSource @emotion/react */
 import { css, useTheme } from '@emotion/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import { RootReducerType } from '../..';
 import { logo } from '../../assets/images';
+import AuthServiece from '../../hooks/authServiece';
 import palette from '../../lib/palette';
 import media from '../../lib/styles/media';
 import { resetButton } from '../../lib/styles/resetButton';
 import { ITheme } from '../../lib/styles/Theme';
+import { switchUserLogin, switchUserLogout } from '../../modules/UseUserSet';
 import Awesomecon from '../Awesomecon';
 
 function MobileHeader() {
     const theme = useTheme();
     const navigate = useNavigate();
+    const [userIn, setUserIn] = useState(false);
 
     const [visible, setVisible] = useState(false);
     const inviteToGustBook = () => {
         !visible ? setVisible(true) : setVisible(false);
+    };
+    const { isUser } = useSelector((state: RootReducerType) => state.UserSetReducer);
+    const dispatch = useDispatch();
+    const googleLogin = async () => {
+        dispatch(switchUserLogin());
+        setVisible(false);
+    };
+
+    const logOut = async () => {
+        await AuthServiece.logout().then(() => {
+            dispatch(switchUserLogout());
+        });
+        setVisible(false);
     };
 
     const routeGuestBook = () => {
         navigate('/guestbook');
         setVisible(false);
     };
+
+    useEffect(() => {
+        isUser ? setUserIn(true) : setTimeout(() => setUserIn(false), 1200);
+    }, [isUser, userIn]);
+
     return (
         <>
             <header css={[common, headerStyle(theme)]}>
@@ -33,8 +56,10 @@ function MobileHeader() {
                         <button css={loginButton} onClick={inviteToGustBook}>
                             <Awesomecon name="user_circle" />
                         </button>
-                        <div css={toggleStyle(theme, visible)} onClick={routeGuestBook}>
-                            GustBook
+                        <div css={toggleStyle(theme, visible)}>
+                            {!userIn && <span onClick={googleLogin}>Login</span>}
+                            {userIn && <span onClick={logOut}>Logout</span>}
+                            <span onClick={routeGuestBook}>GustBook</span>
                         </div>
                     </div>
                 </div>
@@ -107,13 +132,14 @@ const toggleStyle = (theme: ITheme, visible: boolean) => css`
     font-size: 0.875rem;
     position: absolute;
     display: flex;
+    flex-direction: column;
     opacity: ${!visible ? 0 : 1};
     pointer-events: ${!visible ? 'none' : ''};
     justify-content: center;
     align-items: center;
-    padding: 2px;
-    left: -35px;
-    bottom: -10px;
+    padding: 2.5px;
+    left: -45px;
+    bottom: -32px;
     width: 70px;
     color: ${palette.blueGrey[600]};
     border: 1px solid ${palette.blueGrey[600]};
@@ -121,4 +147,21 @@ const toggleStyle = (theme: ITheme, visible: boolean) => css`
     cursor: pointer;
     transition-duration: 0.45s;
     transition-property: opacity;
+    overflow: hidden;
+
+    & > span {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        height: 75%;
+        width: 150%;
+    }
+
+    & > span:first-child {
+        border-bottom: 1px solid ${palette.blueGrey[600]};
+    }
+
+    & > span:hover {
+        color: white;
+    }
 `;

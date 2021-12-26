@@ -34,7 +34,7 @@ function SideBar() {
 
 const sidebarStyle = css`
     ${media.xlarge} {
-        display: none;
+        /* display: none; */
     }
     flex: 1;
     display: flex;

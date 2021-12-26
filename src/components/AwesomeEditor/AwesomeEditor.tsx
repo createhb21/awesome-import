@@ -8,22 +8,22 @@ import { ITheme } from '../../lib/styles/Theme';
 import { linkDecorator } from './hooks/Link';
 import { mediaBlockRenderer } from './hooks/Media';
 import AwesomePreview from '../AwesomePreview';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { switchImageGetterMode, switchImageSetterMode } from '../../modules/ImageSetter';
 import { guestBookCommentCreateApi, logPostCreateApi, writePostCreateApi } from '../../hooks/firebasePosting';
 import { useNavigate } from 'react-router-dom';
+import { RootReducerType } from '../..';
 
 const TEXT_EDITOR_ITEM = 'text-editor-item';
 
 export type EditorProps = {
-    cellection?: string;
     guest?: boolean;
 };
 
-const TextEditor = ({ cellection, guest }: EditorProps) => {
+const TextEditor = ({ guest }: EditorProps) => {
     const theme = useTheme();
-    const [visiblePreview, setVisiblePreview] = React.useState<boolean>(false);
     const initialState = EditorState.createEmpty(linkDecorator);
+    const [visiblePreview, setVisiblePreview] = React.useState<boolean>(false);
     const [editorState, setEditorState] = React.useState<EditorState>(initialState);
 
     const collectionRef = useRef<HTMLSelectElement>(null);
@@ -32,7 +32,10 @@ const TextEditor = ({ cellection, guest }: EditorProps) => {
     const pwRef = useRef<HTMLInputElement>(null);
 
     const navigate = useNavigate();
+    const { isUser, user } = useSelector((state: RootReducerType) => state.UserSetReducer);
     const handleSave = () => {
+        const uid = user?.uid;
+        const adminKey = process.env.REACT_APP_BASE_ADMIN_KEY! as string;
         const data = convertToRaw(editorState.getCurrentContent());
         const cellection = collectionRef.current && collectionRef.current.value;
 
@@ -41,32 +44,30 @@ const TextEditor = ({ cellection, guest }: EditorProps) => {
             return;
         }
 
-        const localUid = localStorage.getItem('uid');
-        if (process.env.REACT_APP_BASE_ADMIN_KEY !== localUid) {
-            alert('권한이 없습니다 😆');
-            return false;
-        }
-
         switch (cellection) {
             case 'write':
-                writeCreateApi(data);
+                if (adminKey === uid) {
+                    writeCreateApi(data, uid);
+                } else alert('권한이 없습니다 😅');
                 break;
             case 'log':
-                logCreateApi(data);
+                if (adminKey === uid) {
+                    logCreateApi(data, uid);
+                } else alert('권한이 없습니다 😅');
                 break;
             default:
                 return false;
         }
     };
 
-    const writeCreateApi = async (data: any) => {
-        await writePostCreateApi(categoryRef, firstInputRef, data).then(() => {
+    const writeCreateApi = async (data: any, uid?: string) => {
+        await writePostCreateApi(categoryRef, firstInputRef, data, uid).then(() => {
             navigate('/write');
         });
     };
 
-    const logCreateApi = async (data: any) => {
-        await logPostCreateApi(firstInputRef, data).then(() => {
+    const logCreateApi = async (data: any, uid?: string) => {
+        await logPostCreateApi(firstInputRef, data, uid).then(() => {
             navigate('/log');
         });
     };
@@ -142,11 +143,10 @@ const TextEditor = ({ cellection, guest }: EditorProps) => {
     }, [dispatch, guest, visiblePreview]);
 
     useEffect(() => {
-        const userName = localStorage.getItem('displayName') ?? null;
-        if (userName != null && firstInputRef.current) {
-            firstInputRef.current.value = userName;
+        if (isUser !== false && firstInputRef.current) {
+            firstInputRef.current.value = user?.displayName! as string;
         }
-    }, [dispatch, guest, visiblePreview]);
+    }, [guest, user, isUser]);
 
     return (
         <div css={wrapperStyle(theme, visiblePreview, guest)}>
