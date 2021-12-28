@@ -13,7 +13,7 @@ import CurrentUserInfo from '../CurrentUserInfo';
 import { useScroll } from '../../hooks/useScroll';
 import { useEffect, useRef, useState } from 'react';
 
-function SideBar() {
+function AwesomeSidebar() {
     const { scrollY } = useScroll();
     const navRef = useRef<HTMLImageElement>(null);
     const [navBarHeight, setNavBarHeight] = useState(0);
@@ -78,4 +78,4 @@ const menuStyle = css`
     flex: 1;
 `;
 
-export default SideBar;
+export default AwesomeSidebar;

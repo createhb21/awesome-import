@@ -13,10 +13,11 @@ import WritePostDetail from './components/WritePostDetail';
 import ArrowUpBtn from './components/ArrowUpBtn';
 import AppLayout from './components/AppLayout';
 import { RootReducerType } from './index';
-import SideBar from './components/SideBar';
+
 import AwesomeEditor from './components/AwesomeEditor/AwesomeEditor';
 import GuestBook from './pages/GuestBook';
 import Footer from './components/Footer';
+import AwesomeSidebar from './components/AwesomeSidebar/AwesomeSidebar';
 
 function App() {
     const { isDarkMode } = useSelector((state: RootReducerType) => state.ThemeSwitchReducer);
@@ -25,7 +26,7 @@ function App() {
             <MobileHeader />
             <AppLayout>
                 <AppLayout.Side>
-                    <SideBar />
+                    <AwesomeSidebar />
                 </AppLayout.Side>
                 <AppLayout.Main>
                     <Routes>
