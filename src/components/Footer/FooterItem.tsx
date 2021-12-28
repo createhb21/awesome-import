@@ -1,48 +1,46 @@
 /** @jsxImportSource @emotion/react */
 import { css, useTheme } from '@emotion/react';
 import palette from '../../lib/palette';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Awesomecon, { AwesomeIconType } from '../Awesomecon/Awesomecon';
 import { ITheme } from '../../lib/styles/Theme';
 
-export type MobilerFooterItemProps = {
+export type FooterItemProps = {
     icon: AwesomeIconType;
-    text: string;
     to: string;
-    ignore?: boolean;
 };
 
-function MobileFooterItem({ icon, to }: MobilerFooterItemProps) {
+function FooterItem({ icon, to }: FooterItemProps) {
     const theme = useTheme();
     return (
-        <NavLink to={to} css={linkStyle(theme)}>
+        // eslint-disable-next-line react/jsx-no-target-blank
+        <a href={to} target="_blank" css={item(theme)}>
             <Awesomecon name={icon} />
-        </NavLink>
+        </a>
     );
 }
 
-const linkStyle = (theme: ITheme) => css`
+const item = (theme: ITheme) => css`
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: ${palette.blueGrey[400]};
     flex: 1;
-
     &:hover {
-        background: ${theme.buttonBgHover};
-        color: ${palette.cyan[600]};
-        border-radius: 0.25rem;
-        transition: 0.5s;
+        color: ${theme.primaryColor};
+        transition: 0.55s;
         transition-property: color;
     }
     svg {
         width: 1.5rem;
         height: 1.5rem;
     }
+    text-decoration: none;
     span {
         font-size: 0.75rem;
     }
+
+    color: ${palette.blueGrey[400]};
 
     &.active {
         color: ${palette.cyan[600]};
@@ -50,4 +48,4 @@ const linkStyle = (theme: ITheme) => css`
     }
 `;
 
-export default MobileFooterItem;
+export default FooterItem;

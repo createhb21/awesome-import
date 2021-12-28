@@ -1,5 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css, useTheme } from '@emotion/react';
+import { useState } from 'react';
+import CopyClipboard from '../../hooks/copyClipboard';
 import media from '../../lib/styles/media';
 import { ITheme } from '../../lib/styles/Theme';
 import AwesomeRenderer from '../AwesomeRenderer';
@@ -17,11 +19,22 @@ export type LogPostCardGridProps = {
 function LogPostCardGrid({ post }: LogPostCardGridProps) {
     const theme = useTheme();
 
+    const [slideImg, setSlideImg] = useState(false);
+    const copyClipboard = () => {
+        CopyClipboard();
+        setSlideImg(true);
+        setTimeout(fadeOutSlideImg, 1000);
+    };
+    const fadeOutSlideImg = () => {
+        setSlideImg(false);
+    };
+
     return (
         <li css={wrapperStyle(theme)}>
             <article>
-                <section css={headerStyle(theme)}>
+                <section css={headerStyle(theme)} onClick={copyClipboard}>
                     <h1>{post.title}</h1>
+                    <span css={copiedClipboard(theme, slideImg)}>copied 😊</span>
                 </section>
                 <section css={dateStyle}>{post.date}</section>
                 <section css={contentStyle}>
@@ -63,6 +76,30 @@ const headerStyle = (theme: ITheme) => css`
         font-weight: 500;
         line-height: 2rem;
     }
+
+    & > h1:hover {
+        color: ${theme.primaryColor};
+        transition: 0.5s;
+        transition-property: color;
+    }
+`;
+
+const copiedClipboard = (theme: ITheme, slideImg: boolean) => css`
+    width: 78px;
+    max-height: 45px;
+    padding: 1px 6px;
+    margin-bottom: 0.25rem;
+    margin-left: 1rem;
+    line-height: 2rem;
+    color: ${theme.buttonText};
+    background: ${theme.primaryColor};
+    opacity: ${slideImg ? 1 : 0};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    transition: 0.35s;
+    transition-property: opacity;
 `;
 
 const dateStyle = (theme: ITheme) => css`

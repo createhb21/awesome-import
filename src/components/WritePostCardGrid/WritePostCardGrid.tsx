@@ -116,6 +116,12 @@ const titleStyle = (theme: ITheme) => css`
     font-size: 1.5rem;
     line-height: 2rem;
     margin-bottom: 0.5rem;
+
+    &:hover {
+        color: ${theme.primaryColor};
+        transition: 0.5s;
+        transition-property: color;
+    }
 `;
 
 const summaryStyle = (theme: ITheme) => css`

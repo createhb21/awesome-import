@@ -35,9 +35,10 @@ const item = (theme: ITheme) => css`
     justify-content: center;
     flex: 1;
     cursor: pointer;
+
     &:hover {
         color: ${palette.cyan[600]};
-        background: ${theme.buttonBgHover};
+        /* background: ${theme.buttonBgHover}; */
         border-radius: 0.25rem;
         transition: 0.5s;
         transition-property: color;

@@ -35,28 +35,6 @@ function ThemeSwitchBtn({ icon }: ThemeSwitchBtnProps) {
 export default ThemeSwitchBtn;
 
 const linkStyle = (theme: ITheme) => css`
-    ${media.small} {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        flex: 1;
-        svg {
-            width: 1.5rem;
-            height: 1.5rem;
-        }
-        text-decoration: none;
-        span {
-            font-size: 0.75rem;
-        }
-
-        color: ${palette.blueGrey[400]};
-
-        &.active {
-            color: ${palette.cyan[600]};
-            border-radius: 0.25rem;
-        }
-    }
     border-radius: 0.5rem;
     height: 3.75rem;
     display: flex;
@@ -66,6 +44,7 @@ const linkStyle = (theme: ITheme) => css`
     color: ${palette.blueGrey[600]};
     text-decoration: none;
     cursor: pointer;
+
     &:hover {
         color: ${palette.cyan[600]};
         border-radius: 0.25rem;

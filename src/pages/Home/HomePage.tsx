@@ -3,6 +3,7 @@ import { css, useTheme } from '@emotion/react';
 import AppLayout from '../../components/AppLayout';
 import Footer from '../../components/Footer';
 import ProjectItem from '../../components/ProjectItem';
+import media from '../../lib/styles/media';
 import { ITheme } from '../../lib/styles/Theme';
 
 const HomePage = () => {
@@ -11,8 +12,7 @@ const HomePage = () => {
     return (
         <div css={wrapperStyle(theme)}>
             <header>
-                <h1>Hey, I'm Bummy 👷</h1>
-                <p>안녕하세요 이효범 Createhb21입니다 😃 </p>
+                <h1>👋 Welcome to @_Import!</h1>
             </header>
             <div css={homePageStyle(theme)}>
                 <h2>
@@ -25,9 +25,6 @@ const HomePage = () => {
                     <ProjectItem title="PAYDAY" date={2021.12} />
                 </ul>
             </div>
-            <AppLayout.Footer>
-                <Footer />
-            </AppLayout.Footer>
         </div>
     );
 };
@@ -60,12 +57,15 @@ const homePageStyle = (theme: ITheme) => css`
 `;
 
 const wrapperStyle = (theme: ITheme) => css`
+    ${media.small} {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
     width: 100%;
     margin-top: 1.525rem;
     margin-right: auto;
     margin-left: auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
     display: block;
 
     & > img {
@@ -81,17 +81,6 @@ const wrapperStyle = (theme: ITheme) => css`
             font-size: 2.25rem;
             line-height: 2.5rem;
             margin-bottom: 1rem;
-        }
-
-        & > p {
-            display: block;
-            margin-block-start: 1em;
-            margin-block-end: 1em;
-            margin-inline-start: 0px;
-            margin-inline-end: 0px;
-            color: ${theme.textGray};
-            font-size: 1rem;
-            line-height: 1.5rem;
         }
     }
 `;

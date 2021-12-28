@@ -36,6 +36,9 @@ function App() {
                         <Route path="/guestbook" element={<GuestBook />} />
                         <Route path="/edit" element={<AwesomeEditor />} />
                     </Routes>
+                    <AppLayout.Footer>
+                        <Footer />
+                    </AppLayout.Footer>
                 </AppLayout.Main>
                 <MobileFooter />
             </AppLayout>

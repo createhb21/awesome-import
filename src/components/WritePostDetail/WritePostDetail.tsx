@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { css, useTheme } from '@emotion/react';
 import { ITheme } from '../../lib/styles/Theme';
 import { useParams } from 'react-router-dom';
@@ -10,9 +10,21 @@ import { RootReducerType } from '../..';
 import AwesomeRenderer from '../AwesomeRenderer';
 import { clearPost, getPostAction } from '../../modules/Fetch/FetchPostData';
 import { createSelector } from '@reduxjs/toolkit';
+import CopyClipboard from '../../hooks/copyClipboard';
 
 function WritePostDetail() {
     const theme = useTheme();
+
+    const [slideImg, setSlideImg] = useState(false);
+    const copyClipboard = () => {
+        CopyClipboard();
+        setSlideImg(true);
+        setTimeout(fadeOutSlideImg, 1000);
+    };
+    const fadeOutSlideImg = () => {
+        setSlideImg(false);
+    };
+
     const { id } = useParams()! as { id: string };
     const getPost = (state: RootReducerType) => state.FetchPostReducer.post;
     const getPostCreateSelector = createSelector(getPost, post => {
@@ -39,7 +51,10 @@ function WritePostDetail() {
                         <div>
                             <span>{data?.category}</span>
                         </div>
-                        <h1>{data?.title}</h1>
+                        <span>
+                            <h1 onClick={copyClipboard}>{data?.title}</h1>
+                            <span css={copiedClipboard(theme, slideImg)}>copied 😊</span>
+                        </span>
                         <span css={infoStyle(theme)}>
                             Createhb21
                             <span>·</span>
@@ -74,21 +89,52 @@ const wrapperStyle = (theme: ITheme) => css`
 `;
 
 const headerStyle = (theme: ITheme) => css`
-${media.small} {
-    padding-top: 1.5rem;
+    ${media.small} {
+        padding-top: 1.5rem;
     }
     padding-top: 4rem;
     padding-bottom: 3rem;
 
     & > div {
-    margin-bottom: .5rem;
+        margin-bottom: 0.5rem;
         & > span {
             font-size: 1rem;
             line-height: 1.5rem;
             background-color: ${theme.primaryColor};
         }
     }
-}
+
+    & > span {
+        display: flex;
+
+        & > h1 {
+            cursor: pointer;
+        }
+
+        & > h1:hover {
+            color: ${theme.primaryColor};
+            transition: 0.5s;
+            transition-property: color;
+        }
+    }
+`;
+
+const copiedClipboard = (theme: ITheme, slideImg: boolean) => css`
+    width: 78px;
+    max-height: 40px;
+    padding: 1px 6px;
+    margin-top: 0.25rem;
+    margin-left: 1rem;
+    line-height: 2rem;
+    color: ${theme.buttonText};
+    background: ${theme.primaryColor};
+    opacity: ${slideImg ? 1 : 0};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    transition: 0.35s;
+    transition-property: opacity;
 `;
 
 const infoStyle = (theme: ITheme) => css`

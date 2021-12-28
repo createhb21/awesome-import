@@ -72,7 +72,7 @@ function GuestBook({}: GuestBookProps) {
     return (
         <>
             <Helmet>
-                <title>@_Import/guestbook</title>
+                <title>@_Import | guestbook</title>
             </Helmet>
             <div css={wrapperStyle(theme)}>
                 <header>

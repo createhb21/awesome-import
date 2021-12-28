@@ -4,21 +4,20 @@ import palette from '../../lib/palette';
 import { NavLink } from 'react-router-dom';
 import AwesomeIcon, { AwesomeIconType } from '../Awesomecon/Awesomecon';
 import { ITheme } from '../../lib/styles/Theme';
+import React from 'react';
 
-export type SidebarItemProps = {
+export type AwesomeLogo = {
     icon: AwesomeIconType;
-    text: string;
     to: string;
 };
 
-function SidebarItem({ icon, text, to }: SidebarItemProps) {
+function SidebarItem({ icon, to }: AwesomeLogo) {
     return (
-        <li>
+        <React.Fragment>
             <NavLink to={to} css={linkStyle}>
                 <AwesomeIcon name={icon} />
-                <span>{text}</span>
             </NavLink>
-        </li>
+        </React.Fragment>
     );
 }
 

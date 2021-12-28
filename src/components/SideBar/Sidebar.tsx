@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { Link } from 'react-router-dom';
-import { logo } from '../../assets/images';
+import { logo_dark, logo_light } from '../../assets/images';
 import ThemeSwitchBtn from '../ThemeSwitchBtn';
 import SidebarItem from '../SidebarItem/SidebarItem';
 import GoogleLoginButton from '../GoogleLoginButton';
@@ -10,16 +10,26 @@ import palette from '../../lib/palette';
 import { useSelector } from 'react-redux';
 import { RootReducerType } from '../..';
 import CurrentUserInfo from '../CurrentUserInfo';
+import { useScroll } from '../../hooks/useScroll';
+import { useEffect, useRef, useState } from 'react';
 
 function SideBar() {
+    const { scrollY } = useScroll();
+    const navRef = useRef<HTMLImageElement>(null);
+    const [navBarHeight, setNavBarHeight] = useState(0);
+
     const { isUser } = useSelector((state: RootReducerType) => state.UserSetReducer);
+    const { isDarkMode } = useSelector((state: RootReducerType) => state.ThemeSwitchReducer);
+
+    useEffect(() => {
+        if (!navRef.current) return;
+        setNavBarHeight(navRef.current?.getBoundingClientRect().height);
+    }, []);
 
     return (
-        <div css={sidebarStyle}>
+        <div css={sidebarStyle(scrollY, navBarHeight)}>
             <div className="logo">
-                <Link to="/">
-                    <img src={logo} alt="logo" />
-                </Link>
+                <Link to="/">{isDarkMode ? <img src={logo_dark} alt="logo" ref={navRef} /> : <img src={logo_light} alt="logo" ref={navRef} />}</Link>
             </div>
             <ul css={menuStyle}>
                 <SidebarItem icon="workspace" text="Write" to="/write" />
@@ -32,23 +42,32 @@ function SideBar() {
     );
 }
 
-const sidebarStyle = css`
+const sidebarStyle = (scrollY: number, navBarHeight: number) => css`
     ${media.xlarge} {
-        /* display: none; */
+        margin-left: -30px;
     }
     flex: 1;
     display: flex;
     flex-direction: column;
+    position: relative;
 
     .logo {
-        width: 50px;
+        position: absolute;
+        top: -18px;
+        width: 118%;
         font-weight: bold;
         font-size: 1.5rem;
-        margin-left: 9.5px;
         color: ${palette.blueGrey[900]};
+
+        transition: 0.25s ease-in-out;
+        transform: ${scrollY > navBarHeight ? 'translateY(-100px)' : ''};
         img {
             display: block;
         }
+    }
+
+    & > .logo:hover {
+        color: ${palette.blueGrey[900]};
     }
 `;
 

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { RootReducerType } from '../..';
-import { logo } from '../../assets/images';
+import { logo_dark, logo_light } from '../../assets/images';
 import AuthServiece from '../../hooks/authServiece';
 import palette from '../../lib/palette';
 import media from '../../lib/styles/media';
@@ -22,6 +22,8 @@ function MobileHeader() {
     const inviteToGustBook = () => {
         !visible ? setVisible(true) : setVisible(false);
     };
+
+    const { isDarkMode } = useSelector((state: RootReducerType) => state.ThemeSwitchReducer);
     const { isUser } = useSelector((state: RootReducerType) => state.UserSetReducer);
     const dispatch = useDispatch();
     const googleLogin = async () => {
@@ -48,12 +50,12 @@ function MobileHeader() {
     return (
         <>
             <header css={[common, headerStyle(theme)]}>
-                <Link to="/">
-                    <img src={logo} className="logo" alt="logo" />
-                </Link>
+                <div className="logo">
+                    <Link to="/">{isDarkMode ? <img src={logo_dark} alt="logo" /> : <img src={logo_light} alt="logo" />}</Link>
+                </div>
                 <div css={headerRightWrapper}>
                     <div css={headerRight}>
-                        <button css={loginButton} onClick={inviteToGustBook}>
+                        <button css={loginButton(theme)} onClick={inviteToGustBook}>
                             <Awesomecon name="user_circle" />
                         </button>
                         <div css={toggleStyle(theme, visible)}>
@@ -84,9 +86,9 @@ const headerStyle = (theme: ITheme) => css`
     align-items: center;
     justify-content: center;
     width: 100%;
-    background: ${theme.buttonBg};
+    background: ${theme.background};
     z-index: 30;
-    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.125);
+    box-shadow: 3.5px 3.5px 16px rgba(0, 0, 0, 0.125);
     a {
         display: flex;
         justify-content: flex-start;
@@ -95,8 +97,9 @@ const headerStyle = (theme: ITheme) => css`
 
     .logo {
         opacity: 0.785;
-        width: 2.5rem;
+        width: 265px;
         height: 2.5rem;
+        margin: auto 0;
     }
 `;
 
@@ -118,13 +121,19 @@ const headerRight = css`
     position: relative;
 `;
 
-const loginButton = css`
+const loginButton = (theme: ITheme) => css`
     cursor: pointer;
     ${resetButton}
     svg {
         width: 1.5rem;
         height: 1.5rem;
-        color: ${palette.blueGrey[900]};
+        color: ${theme.textGray};
+    }
+
+    svg:hover {
+        color: ${theme.primaryColor};
+        transition: 0.5s;
+        transition-property: color;
     }
 `;
 
@@ -139,29 +148,36 @@ const toggleStyle = (theme: ITheme, visible: boolean) => css`
     align-items: center;
     padding: 2.5px;
     left: -45px;
-    bottom: -32px;
+    bottom: -41px;
     width: 70px;
-    color: ${palette.blueGrey[600]};
     border: 1px solid ${palette.blueGrey[600]};
-    border-radius: 15px;
+    border-radius: 5px;
     cursor: pointer;
-    transition-duration: 0.45s;
+    transition-duration: 0.3s;
     transition-property: opacity;
     overflow: hidden;
 
     & > span {
+        padding: 1px 0px;
         display: inline-flex;
         justify-content: center;
         align-items: center;
         height: 75%;
         width: 150%;
+        color: ${theme.textGray};
     }
 
-    & > span:first-child {
+    & > span:first-of-type {
         border-bottom: 1px solid ${palette.blueGrey[600]};
     }
 
+    & > span:last-of-type {
+        padding-top: 0.25rem;
+    }
+
     & > span:hover {
-        color: white;
+        color: ${theme.primaryColor};
+        transition: 0.5s;
+        transition-property: color;
     }
 `;

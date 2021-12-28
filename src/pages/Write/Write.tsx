@@ -12,6 +12,7 @@ import { child, get, getDatabase, onValue, ref } from 'firebase/database';
 import firebaseApp from '../../lib/storage/firebase';
 import palette from '../../lib/palette';
 import AwesomeLoader from '../../components/AwesomeLoader/AwesomeLoader';
+import media from '../../lib/styles/media';
 
 function Write() {
     const theme = useTheme();
@@ -54,7 +55,7 @@ function Write() {
     return (
         <>
             <Helmet>
-                <title>@_Import/write</title>
+                <title>@_Import | write</title>
             </Helmet>
             <div css={wrapperStyle(theme)}>
                 <header>
@@ -81,10 +82,14 @@ const postListStyle = (theme: ITheme) => css`
 `;
 
 const wrapperStyle = (theme: ITheme) => css`
+    ${media.small} {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
     width: 100%;
     margin-top: 1.525rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-bottom: 1rem;
     display: block;
 
     & > img {

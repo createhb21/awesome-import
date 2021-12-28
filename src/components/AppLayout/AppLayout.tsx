@@ -58,11 +58,14 @@ const sidebarStyle = css`
 
 const footerStyle = (theme: ITheme) => css`
     ${media.small} {
-        display: none;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+        border: none;
     }
+    width: 100%;
     margin-left: 16.25rem;
-    padding-top: 1rem;
-    padding-bottom: 1.5rem;
+    padding: 1rem;
+    padding-top: 1.8rem;
     margin-top: 2.5rem;
     margin-right: auto;
     margin-left: auto;
@@ -73,7 +76,7 @@ const footerStyle = (theme: ITheme) => css`
     border-top: 2px solid ${theme.primaryColor};
 `;
 
-const mainStyle = css`
+const mainStyle = (theme: ITheme) => css`
     ${media.xlarge} {
         margin-left: 11.5rem;
     }
