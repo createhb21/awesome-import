@@ -1,15 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import { css, useTheme } from '@emotion/react';
 import { useDispatch } from 'react-redux';
-import palette from '../../lib/palette';
 import { resetButton } from '../../lib/styles/resetButton';
 import { ITheme } from '../../lib/styles/Theme';
 import { switchUserLogin } from '../../modules/UseUserSet';
 import Awesomecon from '../Awesomecon';
 
-export type GoogleLoginButtonProps = {};
-
-function GoogleLoginButton({}: GoogleLoginButtonProps) {
+function GoogleLoginButton() {
     const theme = useTheme();
     const dispatch = useDispatch();
     const userIn = async () => {

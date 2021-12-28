@@ -6,10 +6,8 @@ import AuthServiece from '../../hooks/authServiece';
 import palette from '../../lib/palette';
 import { switchUserLogout } from '../../modules/UseUserSet';
 
-export type CurrentUserInfoProps = {};
-
-function CurrentUserInfo({}: CurrentUserInfoProps) {
-    const { isUser, user } = useSelector((state: RootReducerType) => state.UserSetReducer);
+function CurrentUserInfo() {
+    const { user } = useSelector((state: RootReducerType) => state.UserSetReducer);
 
     const dispatch = useDispatch();
     const logout = async () => {
@@ -18,12 +16,11 @@ function CurrentUserInfo({}: CurrentUserInfoProps) {
         });
     };
 
-    if (!isUser) return null;
     return (
         <div css={block}>
             {user && (
                 <>
-                    <img src={user.photoURL || ''} alt="" />
+                    <img src={user.photoURL} alt="" />
                     <div className="info">
                         <div className="name">{user.displayName}</div>
                         <div className="logout" tabIndex={0} onClick={logout}>

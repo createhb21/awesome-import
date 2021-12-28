@@ -1,16 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import { Helmet } from 'react-helmet-async';
-import { css, keyframes, useTheme } from '@emotion/react';
+import { css, useTheme } from '@emotion/react';
 import { ITheme } from '../../lib/styles/Theme';
 import WritePostCardGrid from '../../components/WritePostCardGrid';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootReducerType } from '../..';
 import { getPostsAction, WritePostType } from '../../modules/Fetch/FetchPostData';
 import { createSelector } from '@reduxjs/toolkit';
-import { child, get, getDatabase, onValue, ref } from 'firebase/database';
-import firebaseApp from '../../lib/storage/firebase';
-import palette from '../../lib/palette';
 import AwesomeLoader from '../../components/AwesomeLoader/AwesomeLoader';
 import media from '../../lib/styles/media';
 
@@ -23,7 +20,7 @@ function Write() {
 
     const posts: any = [];
     const postId: any = [];
-    const { data, loading, error } = useSelector(getPosts);
+    const { data, loading } = useSelector(getPosts);
     const dispatch = useDispatch();
     for (let key in data) {
         postId.push(key);

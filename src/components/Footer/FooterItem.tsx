@@ -1,7 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css, useTheme } from '@emotion/react';
 import palette from '../../lib/palette';
-import { Link } from 'react-router-dom';
 import Awesomecon, { AwesomeIconType } from '../Awesomecon/Awesomecon';
 import { ITheme } from '../../lib/styles/Theme';
 

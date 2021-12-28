@@ -2,9 +2,7 @@
 import { css, keyframes } from '@emotion/react';
 import palette from '../../lib/palette';
 
-export type AwesomeLoaderProps = {};
-
-function AwesomeLoader({}: AwesomeLoaderProps) {
+function AwesomeLoader() {
     return (
         <div css={wrapperStyle}>
             <div css={backGroundStyle}>

@@ -1,16 +1,13 @@
 /** @jsxImportSource @emotion/react */
-import { css, keyframes, useTheme } from '@emotion/react';
+import { css, useTheme } from '@emotion/react';
 import { Helmet } from 'react-helmet-async';
 import LogPostCardGrid from '../../components/LogPostCardFrid';
 import { ITheme } from '../../lib/styles/Theme';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootReducerType } from '../..';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { createSelector } from '@reduxjs/toolkit';
 import { getLogsAction } from '../../modules/Fetch/FetchLogData';
-import { child, get, getDatabase, onValue, ref } from 'firebase/database';
-import firebaseApp from '../../lib/storage/firebase';
-import palette from '../../lib/palette';
 import AwesomeLoader from '../../components/AwesomeLoader/AwesomeLoader';
 import media from '../../lib/styles/media';
 
@@ -24,7 +21,7 @@ function Log() {
     });
 
     const posts = [];
-    const { data, loading, error } = useSelector(getLogs);
+    const { data, loading } = useSelector(getLogs);
     const dispatch = useDispatch();
     for (let key in data) {
         posts.push(data[key]);

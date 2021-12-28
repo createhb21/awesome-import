@@ -2,7 +2,6 @@
 import { css, useTheme } from '@emotion/react';
 import { useState } from 'react';
 import CopyClipboard from '../../hooks/copyClipboard';
-import media from '../../lib/styles/media';
 import { ITheme } from '../../lib/styles/Theme';
 import AwesomeRenderer from '../AwesomeRenderer';
 

@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-
 export default function CopyClipboard() {
     let textarea = document.createElement('textarea');
     textarea.value = window.location.href;

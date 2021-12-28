@@ -4,7 +4,6 @@ import firebaseApp from '../lib/storage/firebase';
 import { WritePostType } from '../modules/Fetch/FetchPostData';
 import { child, getDatabase, push, ref, set } from 'firebase/database';
 import { linkDecorator } from '../components/AwesomeEditor/hooks/Link';
-import { getAuth, User } from 'firebase/auth';
 
 export const FirebasePosting = (dir: string, postingData: any) => {
     const db = getDatabase(firebaseApp);
@@ -104,7 +103,7 @@ export const guestBookCommentCreateApi = async (data: any, nickNameRef: any, pwR
         id: newPostKey,
     };
 
-    if (!(userName === '') && !(password === '') && !(data.blocks[0].text == '')) {
+    if (!(userName === '') && !(password === '') && !(data.blocks[0].text === '')) {
         try {
             await FirebasePosting('guestbook', commentData).then(() => {
                 nickNameRef.current.value = '';

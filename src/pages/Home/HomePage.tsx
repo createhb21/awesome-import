@@ -1,7 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import { css, useTheme } from '@emotion/react';
-import AppLayout from '../../components/AppLayout';
-import Footer from '../../components/Footer';
 import ProjectItem from '../../components/ProjectItem';
 import media from '../../lib/styles/media';
 import { ITheme } from '../../lib/styles/Theme';

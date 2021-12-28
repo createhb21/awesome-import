@@ -9,7 +9,7 @@ import AwesomeEditor from '../../components/AwesomeEditor/AwesomeEditor';
 import { getMsgAction } from '../../modules/Fetch/FetchGuestBook';
 import { ITheme } from '../../lib/styles/Theme';
 import MessageCard from '../../components/GuestBookGrid';
-import { child, get, getDatabase, onValue, ref } from 'firebase/database';
+import { getDatabase, onValue, ref } from 'firebase/database';
 import firebaseApp from '../../lib/storage/firebase';
 import AwesomeLoader from '../../components/AwesomeLoader/AwesomeLoader';
 

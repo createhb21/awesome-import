@@ -4,7 +4,6 @@ import { css, useTheme } from '@emotion/react';
 import { ITheme } from '../../lib/styles/Theme';
 import { useParams } from 'react-router-dom';
 import media from '../../lib/styles/media';
-import PostLoopBtn from '../PostLoopBtn';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootReducerType } from '../..';
 import AwesomeRenderer from '../AwesomeRenderer';
@@ -31,7 +30,7 @@ function WritePostDetail() {
         return post;
     });
 
-    const { data, loading, error } = useSelector(getPostCreateSelector);
+    const { data } = useSelector(getPostCreateSelector);
     const dispatch = useDispatch();
 
     useEffect(() => {

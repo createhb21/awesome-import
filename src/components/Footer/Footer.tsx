@@ -1,12 +1,9 @@
 /** @jsxImportSource @emotion/react */
-import { css, useTheme } from '@emotion/react';
+import { css } from '@emotion/react';
 import React from 'react';
-import media from '../../lib/styles/media';
-import { ITheme } from '../../lib/styles/Theme';
 import FooterItem from './FooterItem';
 
 function Footer() {
-    const theme = useTheme();
     const github = 'https://github.com/createhb21';
     const instagram = 'https://www.instagram.com/creathb21/';
     return (
