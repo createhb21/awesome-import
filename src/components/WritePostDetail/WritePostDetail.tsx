@@ -150,7 +150,7 @@ const infoStyle = (theme: ITheme) => css`
 `;
 
 const contentStyle = (theme: ITheme) => css`
-    color: ${theme.text};
+    color: ${theme.textGray};
 
     & > p {
         margin-bottom: 2rem;

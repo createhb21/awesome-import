@@ -96,8 +96,7 @@ const headerStyle = (theme: ITheme) => css`
     }
 
     .logo {
-        width: 100px;
-        height: 2.5rem;
+        width: 25%;
     }
 `;
 
