@@ -60,7 +60,6 @@ const footerStyle = (theme: ITheme) => css`
     ${media.small} {
         padding-left: 1.5rem;
         padding-right: 1.5rem;
-        border: none;
     }
     width: 100%;
     margin-left: 16.25rem;

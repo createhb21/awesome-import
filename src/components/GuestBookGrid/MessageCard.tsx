@@ -110,7 +110,7 @@ const contentStyle = (theme: ITheme) => css`
     }
 
     & > main {
-        color: ${theme.textGray};
+        color: rgba(75, 85, 99, 0.97);
 
         & > p {
             line-height: 1.625;

@@ -67,6 +67,11 @@ const wrapperStyle = (theme: ITheme) => css`
 `;
 
 const headerStyle = (theme: ITheme) => css`
+    ${media.small} {
+        & > h1 {
+            font-size: 0.25rem;
+        }
+    }
     display: flex;
     align-items: center;
     cursor: pointer;

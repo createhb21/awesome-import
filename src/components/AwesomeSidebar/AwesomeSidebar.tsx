@@ -58,7 +58,6 @@ const sidebarStyle = (scrollY: number, navBarHeight: number) => css`
         font-weight: bold;
         font-size: 1.5rem;
         color: ${palette.blueGrey[900]};
-
         transition: 0.25s ease-in-out;
         transform: ${scrollY > navBarHeight ? 'translateY(-100px)' : ''};
         img {

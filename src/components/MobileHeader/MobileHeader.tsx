@@ -96,10 +96,8 @@ const headerStyle = (theme: ITheme) => css`
     }
 
     .logo {
-        opacity: 0.785;
-        width: 265px;
+        width: 100px;
         height: 2.5rem;
-        margin: auto 0;
     }
 `;
 

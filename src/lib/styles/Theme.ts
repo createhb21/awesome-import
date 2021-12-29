@@ -17,8 +17,8 @@ export interface ITheme {
 
 export const themeLight: Readonly<ITheme> = {
     primaryColor: brandColor,
-    text: darkText.primary,
-    textNormal: darkText.primary,
+    text: 'black',
+    textNormal: 'black',
     textGray: palette.blueGrey[600],
     mainContentText: palette.blueGrey[600],
     background: lightText.primary,
@@ -32,8 +32,8 @@ export const themeLight: Readonly<ITheme> = {
 
 export const themeDark: Readonly<ITheme> = {
     primaryColor: '#3178c6',
-    text: '#BEBFC2',
-    textGray: '#BEBFC2',
+    text: 'white',
+    textGray: 'white',
     textNormal: lightText.primary,
     mainContentText: 'rgba(75, 85, 99, 0.97)',
     background: '#272A33',
