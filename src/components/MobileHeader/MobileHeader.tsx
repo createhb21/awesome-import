@@ -51,7 +51,7 @@ function MobileHeader() {
         <>
             <header css={[common, headerStyle(theme)]}>
                 <div className="logo">
-                    <Link to="/">{isDarkMode ? <img src={logo_dark} alt="logo" /> : <img src={logo_light} alt="logo" />}</Link>
+                    <Link to="/">{isDarkMode ? <img src={logo_dark} alt="logo" style={{ width: '255px' }} /> : <img src={logo_light} alt="logo" style={{ width: '255px' }} />}</Link>
                 </div>
                 <div css={headerRightWrapper}>
                     <div css={headerRight}>
@@ -96,7 +96,7 @@ const headerStyle = (theme: ITheme) => css`
     }
 
     .logo {
-        width: 25%;
+        padding: 5px;
     }
 `;
 

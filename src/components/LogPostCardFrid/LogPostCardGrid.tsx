@@ -34,7 +34,7 @@ function LogPostCardGrid({ post }: LogPostCardGridProps) {
             <article>
                 <section css={headerStyle(theme)} onClick={copyClipboard}>
                     <h1>{post.title}</h1>
-                    <span css={copiedClipboard(theme, slideImg)}>copied 😊</span>
+                    {slideImg && <span css={copiedClipboard(theme, slideImg)}>copied 😊</span>}
                 </section>
                 <section css={dateStyle}>{post.date}</section>
                 <section css={contentStyle}>
@@ -90,7 +90,7 @@ const headerStyle = (theme: ITheme) => css`
 `;
 
 const copiedClipboard = (theme: ITheme, slideImg: boolean) => css`
-    width: 78px;
+    width: 90px;
     max-height: 45px;
     padding: 1px 6px;
     margin-bottom: 0.25rem;

@@ -52,7 +52,7 @@ function WritePostDetail() {
                         </div>
                         <span>
                             <h1 onClick={copyClipboard}>{data?.title}</h1>
-                            <span css={copiedClipboard(theme, slideImg)}>copied 😊</span>
+                            {slideImg && <span css={copiedClipboard(theme, slideImg)}>copied 😊</span>}
                         </span>
                         <span css={infoStyle(theme)}>
                             Createhb21
@@ -100,6 +100,10 @@ const headerStyle = (theme: ITheme) => css`
             font-size: 1rem;
             line-height: 1.5rem;
             background-color: ${theme.primaryColor};
+
+            & > h1 {
+                font-size: ${media.small ? '1.75rem' : '2.25rem'};
+            }
         }
     }
 
@@ -119,7 +123,7 @@ const headerStyle = (theme: ITheme) => css`
 `;
 
 const copiedClipboard = (theme: ITheme, slideImg: boolean) => css`
-    width: 78px;
+    width: 90px;
     max-height: 40px;
     padding: 1px 6px;
     margin-top: 0.25rem;

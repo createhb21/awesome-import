@@ -58,12 +58,6 @@ const wrapperStyle = (theme: ITheme) => css`
     ${media.small} {
         padding-left: 1rem;
         padding-right: 1rem;
-
-        & > header {
-            & > h1 {
-                font-size: 1.5rem;
-            }
-        }
     }
 
     width: 100%;
@@ -82,7 +76,7 @@ const wrapperStyle = (theme: ITheme) => css`
 
         & > h1 {
             font-weight: 700;
-            font-size: 2.25rem;
+            font-size: ${media.small ? '1.75rem' : '2.25rem'}
             line-height: 2.5rem;
             margin-bottom: 1rem;
         }
