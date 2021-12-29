@@ -30,9 +30,7 @@ const linkStyle = (theme: ITheme) => css`
     flex: 1;
 
     &:hover {
-        background: ${theme.buttonBgHover};
         color: ${palette.cyan[600]};
-        border-radius: 0.25rem;
         transition: 0.5s;
         transition-property: color;
     }
@@ -46,7 +44,6 @@ const linkStyle = (theme: ITheme) => css`
 
     &.active {
         color: ${palette.cyan[600]};
-        border-radius: 0.25rem;
     }
 `;
 
