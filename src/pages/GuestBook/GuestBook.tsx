@@ -1,12 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css, useTheme } from '@emotion/react';
-import { createSelector } from '@reduxjs/toolkit';
 import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootReducerType } from '../..';
 import AwesomeEditor from '../../components/AwesomeEditor/AwesomeEditor';
-import { getMsgAction } from '../../modules/Fetch/FetchGuestBook';
 import { ITheme } from '../../lib/styles/Theme';
 import MessageCard from '../../components/GuestBookGrid';
 import { getDatabase, onValue, ref } from 'firebase/database';
@@ -14,6 +10,7 @@ import firebaseApp from '../../lib/storage/firebase';
 import AwesomeLoader from '../../components/AwesomeLoader/AwesomeLoader';
 import { font } from '../../lib/styles/font';
 import media from '../../lib/styles/media';
+import AwesomeMobileEditor from '../../components/AwesomeEditor/AwesomeMobileEditor';
 
 export type GuestBookProps = {};
 
@@ -45,6 +42,13 @@ function GuestBook({}: GuestBookProps) {
             setComments(commentData.reverse());
             setLoading(false);
         });
+    }, []);
+
+    const mediaMedium = 768;
+    const [scrWidth, setScrWidth] = useState<number>(0);
+    useEffect(() => {
+        const screenX = window.screen.width;
+        setScrWidth(screenX);
     }, []);
 
     // redux-thunk
@@ -85,9 +89,7 @@ function GuestBook({}: GuestBookProps) {
                         응원의 한마디! Createhb21님에게 보내보세요 :D
                     </p>
                 </header>
-                <div>
-                    <AwesomeEditor guest />
-                </div>
+                <div>{scrWidth > mediaMedium ? <AwesomeEditor guest /> : <AwesomeMobileEditor />}</div>
                 <div css={writeLogStyle(theme)}>
                     <ul css={postListStyle(theme)}>
                         {comments &&

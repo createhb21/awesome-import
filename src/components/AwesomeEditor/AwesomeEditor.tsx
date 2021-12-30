@@ -152,65 +152,61 @@ const TextEditor = ({ guest }: EditorProps) => {
 
     return (
         <div css={wrapperStyle(theme, visiblePreview, guest)}>
-            {!guest && (
-                <>
-                    <button id="func" onMouseDown={e => handleBlockClick(e, 'header-one')}>
-                        H1
-                    </button>
-                    <button id="func" onMouseDown={e => handleBlockClick(e, 'header-two')}>
-                        H2
-                    </button>
-                    <button id="func" onMouseDown={e => handleBlockClick(e, 'header-three')}>
-                        H3
-                    </button>
-                    <button id="func" onMouseDown={e => handleBlockClick(e, 'unstyled')}>
-                        Normal
-                    </button>
-                    <button id="func" onMouseDown={e => handleTogggleClick(e, 'BOLD')}>
-                        bold
-                    </button>
-                    <button id="func" onMouseDown={e => handleTogggleClick(e, 'UNDERLINE')}>
-                        underline
-                    </button>
-                    <button id="func" onMouseDown={e => handleTogggleClick(e, 'ITALIC')}>
-                        italic
-                    </button>
-                    <button id="func" onMouseDown={e => handleTogggleClick(e, 'STRIKETHROUGH')}>
-                        strikthrough
-                    </button>
-                    <button id="func" onMouseDown={e => handleBlockClick(e, 'ordered-list-item')}>
-                        Ordered List
-                    </button>
-                    <button id="func" onMouseDown={e => handleBlockClick(e, 'unordered-list-item')}>
-                        Unordered List
-                    </button>
-                    <button
-                        id="func"
-                        onMouseDown={e => {
-                            e.preventDefault();
-                            handleInsertImage();
-                        }}
-                    >
-                        image
-                    </button>
-                    <button
-                        id="func"
-                        disabled={editorState.getSelection().isCollapsed()}
-                        onMouseDown={e => {
-                            e.preventDefault();
-                            handleAddLink();
-                        }}
-                    >
-                        link
-                    </button>
-                    <button id="func" disabled={editorState.getUndoStack().size <= 0} onMouseDown={() => setEditorState(EditorState.undo(editorState))}>
-                        ⏪
-                    </button>
-                    <button id="func" disabled={editorState.getRedoStack().size <= 0} onMouseDown={() => setEditorState(EditorState.redo(editorState))}>
-                        ⏩
-                    </button>
-                </>
-            )}
+            <button id="func" onMouseDown={e => handleBlockClick(e, 'header-one')}>
+                H1
+            </button>
+            <button id="func" onMouseDown={e => handleBlockClick(e, 'header-two')}>
+                H2
+            </button>
+            <button id="func" onMouseDown={e => handleBlockClick(e, 'header-three')}>
+                H3
+            </button>
+            <button id="func" onMouseDown={e => handleBlockClick(e, 'unstyled')}>
+                Normal
+            </button>
+            <button id="func" onMouseDown={e => handleTogggleClick(e, 'BOLD')}>
+                bold
+            </button>
+            <button id="func" onMouseDown={e => handleTogggleClick(e, 'UNDERLINE')}>
+                underline
+            </button>
+            <button id="func" onMouseDown={e => handleTogggleClick(e, 'ITALIC')}>
+                italic
+            </button>
+            <button id="func" onMouseDown={e => handleTogggleClick(e, 'STRIKETHROUGH')}>
+                strikthrough
+            </button>
+            <button id="func" onMouseDown={e => handleBlockClick(e, 'ordered-list-item')}>
+                Ordered List
+            </button>
+            <button id="func" onMouseDown={e => handleBlockClick(e, 'unordered-list-item')}>
+                Unordered List
+            </button>
+            <button
+                id="func"
+                onMouseDown={e => {
+                    e.preventDefault();
+                    handleInsertImage();
+                }}
+            >
+                image
+            </button>
+            <button
+                id="func"
+                disabled={editorState.getSelection().isCollapsed()}
+                onMouseDown={e => {
+                    e.preventDefault();
+                    handleAddLink();
+                }}
+            >
+                link
+            </button>
+            <button id="func" disabled={editorState.getUndoStack().size <= 0} onMouseDown={() => setEditorState(EditorState.undo(editorState))}>
+                ⏪
+            </button>
+            <button id="func" disabled={editorState.getRedoStack().size <= 0} onMouseDown={() => setEditorState(EditorState.redo(editorState))}>
+                ⏩
+            </button>
             <div className="user-info">
                 <input type="text" placeholder={!guest ? 'Title' : '닉네임'} ref={firstInputRef} />
                 {!guest && <input type="text" placeholder="category" ref={categoryRef} />}
