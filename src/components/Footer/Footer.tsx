@@ -10,7 +10,7 @@ function Footer() {
     const instagram = 'https://www.instagram.com/creathb21/';
     return (
         <React.Fragment>
-            <div css={copyrightStyle}>© 2021 Cretehb21.</div>
+            <div css={copyrightStyle}>© 2021 Createhb21.</div>
             <div css={linkStyle}>
                 <FooterItem icon="github" to={github} />
                 <FooterItem icon="instagram" to={instagram} />

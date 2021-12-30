@@ -27,8 +27,8 @@ function MessageCard({ post }: MessageCardProps) {
     return (
         <li css={wrapperStyle(theme)}>
             <article>
-                <section css={headerStyle(theme)} onClick={copyClipboard}>
-                    <h1>{post.userName}</h1>
+                <section css={headerStyle(theme)}>
+                    <h1 onClick={copyClipboard}>{post.userName}</h1>
                     {slideImg && <span css={copiedClipboard(theme, slideImg)}>copied 😊</span>}
                 </section>
                 <section css={dateStyle}>{post.date}</section>
