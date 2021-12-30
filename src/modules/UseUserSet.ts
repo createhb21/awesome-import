@@ -12,15 +12,22 @@ interface userLogoutDispatch {
 }
 type UserDispatchType = userLoginDispatch | userLogoutDispatch;
 
-export const switchUserLogin = () => async (dispatch: Dispatch<userLoginDispatch>) => {
-    const res = await AuthServiece.login();
-    const user = res.user;
+export const switchUserLogin = () => async (dispatch: Dispatch<UserDispatchType>) => {
+    try {
+        const res = await AuthServiece.login();
+        const user = res.user;
 
-    dispatch({
-        type: USER_IN,
-        payload: user,
-    });
+        dispatch({
+            type: USER_IN,
+            payload: user,
+        });
+    } catch (err) {
+        dispatch({
+            type: USER_OUT,
+        });
+    }
 };
+
 export const switchUserLogout = () => (dispatch: Dispatch<userLogoutDispatch>) => {
     dispatch({
         type: USER_OUT,

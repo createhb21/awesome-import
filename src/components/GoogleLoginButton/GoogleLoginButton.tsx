@@ -33,7 +33,7 @@ const buttonStyle = (theme: ITheme) => css`
     background: ${theme.background};
     height: 3.375rem;
     padding: 0.75rem 1rem;
-    font-size: ${font.Medium}
+    font-size: ${font.Medium};
     color: ${theme.textGray};
     border-radius: 0.5rem;
 

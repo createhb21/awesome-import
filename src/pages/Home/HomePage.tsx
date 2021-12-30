@@ -91,6 +91,7 @@ const wrapperStyle = (theme: ITheme) => css`
             font-weight: 700;
             font-size: ${font.xxLarge};
             line-height: 2.5rem;
+            margin-top: 0.43rem;
             margin-bottom: 1rem;
         }
     }

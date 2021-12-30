@@ -324,6 +324,9 @@ const wrapperStyle = (theme: ITheme, visiblePreview: boolean, guest: boolean | u
     }
 
     ${media.small} {
+        & > #func {
+            display: none;
+        }
         .select {
             font-size: ${font.mobileSmall} !important;
         }
