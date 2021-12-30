@@ -3,6 +3,8 @@ import { mediaBlockRenderer } from '../AwesomeEditor/hooks/Media';
 import { linkDecorator } from '../AwesomeEditor/hooks/Link';
 import { Editor, EditorState, convertFromRaw } from 'draft-js';
 import styled from '@emotion/styled';
+import media from '../../lib/styles/media';
+import { font } from '../../lib/styles/font';
 
 export type AwesomeRendererProps = {
     children: any;
@@ -27,4 +29,10 @@ function AwesomeRenderer({ children, guest }: AwesomeRendererProps) {
 
 export default AwesomeRenderer;
 
-const Fragment = styled.div``;
+const Fragment = styled.div`
+    ${media.small} {
+        .public-DraftEditor-content {
+            font-size: ${font.Small} !important;
+        }
+    }
+`;
