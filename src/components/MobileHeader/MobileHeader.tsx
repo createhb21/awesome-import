@@ -146,8 +146,9 @@ const toggleStyle = (theme: ITheme, visible: boolean) => css`
     align-items: center;
     padding: 2.5px;
     left: -45px;
-    bottom: -41px;
+    bottom: -45px;
     width: 70px;
+    background-color: ${theme.background};
     border: 1px solid ${palette.blueGrey[600]};
     border-radius: 5px;
     cursor: pointer;
@@ -156,7 +157,7 @@ const toggleStyle = (theme: ITheme, visible: boolean) => css`
     overflow: hidden;
 
     & > span {
-        padding: 1px 0px;
+        padding: 5px 3px;
         display: inline-flex;
         justify-content: center;
         align-items: center;
@@ -167,10 +168,6 @@ const toggleStyle = (theme: ITheme, visible: boolean) => css`
 
     & > span:first-of-type {
         border-bottom: 1px solid ${palette.blueGrey[600]};
-    }
-
-    & > span:last-of-type {
-        padding-top: 0.25rem;
     }
 
     & > span:hover {

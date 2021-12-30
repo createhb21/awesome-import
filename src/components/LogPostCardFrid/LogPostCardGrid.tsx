@@ -33,9 +33,8 @@ function LogPostCardGrid({ post }: LogPostCardGridProps) {
     return (
         <li css={wrapperStyle(theme)}>
             <article>
-                <section css={headerStyle(theme)} onClick={copyClipboard}>
-                    <h1>{post.title}</h1>
-                    {slideImg && <span css={copiedClipboard(theme, slideImg)}>copied 😊</span>}
+                <section css={headerStyle(theme)}>
+                    <h1 onClick={copyClipboard}>{post.title}</h1>
                 </section>
                 <section css={dateStyle}>{post.date}</section>
                 <section css={contentStyle}>
@@ -43,6 +42,13 @@ function LogPostCardGrid({ post }: LogPostCardGridProps) {
                         <AwesomeRenderer>{post.body}</AwesomeRenderer>
                     </main>
                 </section>
+                {slideImg && (
+                    <span css={copiedClipboard(theme, slideImg)}>
+                        <div css={backGroundStyle}>
+                            <div css={copyStyle(theme, slideImg)}>copied 😊</div>
+                        </div>
+                    </span>
+                )}
             </article>
         </li>
     );
@@ -91,18 +97,34 @@ const headerStyle = (theme: ITheme) => css`
 `;
 
 const copiedClipboard = (theme: ITheme, slideImg: boolean) => css`
-    width: 90px;
-    max-height: 45px;
-    padding: 1px 6px;
-    margin-bottom: 0.25rem;
-    margin-left: 1rem;
-    line-height: 2rem;
-    color: ${theme.buttonText};
-    background: ${theme.primaryColor};
-    opacity: ${slideImg ? 1 : 0};
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+`;
+
+const backGroundStyle = css`
+    width: 100%;
+    height: 100%;
+    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
+`;
+
+const copyStyle = (theme: ITheme, slideImg: boolean) => css`
+    position: relative;
+    top: 0px;
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto;
+    text-align: center;
+    z-index: 10;
+    width: 5.5em;
+    color: ${theme.buttonText};
+    background: ${theme.primaryColor};
+    opacity: ${slideImg ? 1 : 0};
     border-radius: 15px;
     transition: 0.35s;
     transition-property: opacity;

@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React, { useEffect, useState } from 'react';
-import { css, useTheme } from '@emotion/react';
+import { css, Theme, useTheme } from '@emotion/react';
 import { ITheme } from '../../lib/styles/Theme';
 import { useParams } from 'react-router-dom';
 import media from '../../lib/styles/media';
@@ -11,18 +11,21 @@ import { clearPost, getPostAction } from '../../modules/Fetch/FetchPostData';
 import { createSelector } from '@reduxjs/toolkit';
 import CopyClipboard from '../../hooks/copyClipboard';
 import { font } from '../../lib/styles/font';
+import palette from '../../lib/palette';
 
 function WritePostDetail() {
     const theme = useTheme();
-
+    const screenX = window.screen.width;
+    const mediaMedium = 768;
     const [slideImg, setSlideImg] = useState(false);
+    const [mobileSlideImg, mobileSetSlideImg] = useState(false);
     const copyClipboard = () => {
         CopyClipboard();
-        setSlideImg(true);
+        screenX >= mediaMedium ? setSlideImg(true) : mobileSetSlideImg(true);
         setTimeout(fadeOutSlideImg, 1000);
     };
     const fadeOutSlideImg = () => {
-        setSlideImg(false);
+        screenX >= mediaMedium ? setSlideImg(false) : mobileSetSlideImg(false);
     };
 
     const { id } = useParams()! as { id: string };
@@ -66,7 +69,13 @@ function WritePostDetail() {
                             <AwesomeRenderer>{data?.body}</AwesomeRenderer>
                         </main>
                     </div>
-                    {/* <PostLoopBtn currentId={+id} data={data} /> */}
+                    {mobileSlideImg && (
+                        <span css={mobileCopiedClipboard(theme, mobileSlideImg)}>
+                            <div css={backGroundStyle}>
+                                <div css={copyStyle(theme, mobileSlideImg)}>copied 😊</div>
+                            </div>
+                        </span>
+                    )}
                 </div>
             )}
         </>
@@ -125,19 +134,50 @@ const headerStyle = (theme: ITheme) => css`
     }
 `;
 
-const copiedClipboard = (theme: ITheme, slideImg: boolean) => css`
+const copiedClipboard = (theme: Theme, slideImg: boolean) => css`
     width: 90px;
     max-height: 40px;
     padding: 1px 6px;
     margin-top: 0.25rem;
     margin-left: 1rem;
     line-height: 2rem;
+    border-radius: 15px;
     color: ${theme.buttonText};
     background: ${theme.primaryColor};
     opacity: ${slideImg ? 1 : 0};
     display: flex;
     justify-content: center;
     align-items: center;
+`;
+const mobileCopiedClipboard = (theme: ITheme, mobileSlideImg: boolean) => css`
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+`;
+
+const backGroundStyle = css`
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+const copyStyle = (theme: ITheme, mobileSlideImg: boolean) => css`
+    position: relative;
+    top: 0px;
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto;
+    text-align: center;
+    z-index: 10;
+    width: 5.5em;
+    color: ${theme.buttonText};
+    background: ${theme.primaryColor};
+    opacity: ${mobileSlideImg ? 1 : 0};
     border-radius: 15px;
     transition: 0.35s;
     transition-property: opacity;
