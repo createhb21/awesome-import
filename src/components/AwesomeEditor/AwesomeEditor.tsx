@@ -38,7 +38,7 @@ const TextEditor = ({ guest }: EditorProps) => {
     const handleSave = () => {
         const uid = user?.uid;
         const adminKey = process.env.REACT_APP_BASE_ADMIN_KEY! as string;
-        const data = convertToRaw(editorState.getCurrentContent());
+        const data = editorState.getCurrentContent();
         const cellection = collectionRef.current && collectionRef.current.value;
 
         if (guest) {
@@ -244,6 +244,7 @@ const wrapperStyle = (theme: ITheme, visiblePreview: boolean, guest: boolean | u
     text-align: center;
     max-width: 100%;
     position: relative;
+    margin-top: ${guest ? '' : '5rem'};
 
     & > #func {
         border: none;

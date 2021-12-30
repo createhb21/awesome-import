@@ -22,7 +22,7 @@ export const themeLight: Readonly<ITheme> = {
     textNormal: darkText.primary,
     mainContentText: palette.blueGrey[600],
     background: lightText.primary,
-    grayBorder: palette.blueGrey[50],
+    grayBorder: '#e5e7eb',
     buttonText: darkText.primary,
     buttonTextHover: lightText.primary,
     buttonBorder: darkText.primary,

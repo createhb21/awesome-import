@@ -10,9 +10,6 @@ import firebaseApp from '../../lib/storage/firebase';
 import AwesomeLoader from '../../components/AwesomeLoader/AwesomeLoader';
 import { font } from '../../lib/styles/font';
 import media from '../../lib/styles/media';
-import AwesomeMobileEditor from '../../components/AwesomeEditor/AwesomeMobileEditor';
-
-export type GuestBookProps = {};
 
 interface GuestBookTypes {
     userName: string;
@@ -23,7 +20,7 @@ interface GuestBookTypes {
     id: any;
 }
 
-function GuestBook({}: GuestBookProps) {
+function GuestBook() {
     const theme = useTheme();
     const [loading, setLoading] = useState(false);
     // firebase
@@ -44,35 +41,6 @@ function GuestBook({}: GuestBookProps) {
         });
     }, []);
 
-    const mediaMedium = 768;
-    const [scrWidth, setScrWidth] = useState<number>(0);
-    useEffect(() => {
-        const screenX = window.screen.width;
-        setScrWidth(screenX);
-    }, []);
-
-    // redux-thunk
-    /*
-    const getMessage = (state: RootReducerType) => state.FetchGuestBookReducer.posts;
-    const getMessages = createSelector(getMessage, message => {
-        return message;
-    });
-    const { data, loading, error } = useSelector(getMessages);
-    const comments = [];
-    for (let key in data) {
-        comments.push(data[key]);
-    }
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        if (data) return;
-        dispatch(getMsgAction());
-    }, [data, dispatch]);
-
-    if (loading && !data) return <div>loading...</div>;
-    if (!data) return null;
-    */
-
     if (loading) return <AwesomeLoader />;
 
     return (
@@ -89,7 +57,9 @@ function GuestBook({}: GuestBookProps) {
                         응원의 한마디! Createhb21님에게 보내보세요 :D
                     </p>
                 </header>
-                <div>{scrWidth > mediaMedium ? <AwesomeEditor guest /> : <AwesomeMobileEditor />}</div>
+                <div>
+                    <AwesomeEditor guest />
+                </div>
                 <div css={writeLogStyle(theme)}>
                     <ul css={postListStyle(theme)}>
                         {comments &&
