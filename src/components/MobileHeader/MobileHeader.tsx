@@ -7,6 +7,7 @@ import { RootReducerType } from '../..';
 import { logo_dark, logo_light } from '../../assets/images';
 import AuthServiece from '../../hooks/authServiece';
 import palette from '../../lib/palette';
+import { font } from '../../lib/styles/font';
 import media from '../../lib/styles/media';
 import { resetButton } from '../../lib/styles/resetButton';
 import { ITheme } from '../../lib/styles/Theme';
@@ -135,7 +136,7 @@ const loginButton = (theme: ITheme) => css`
 `;
 
 const toggleStyle = (theme: ITheme, visible: boolean) => css`
-    font-size: 0.875rem;
+    font-size: ${font.Small};
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -176,5 +177,9 @@ const toggleStyle = (theme: ITheme, visible: boolean) => css`
         color: ${theme.primaryColor};
         transition: 0.5s;
         transition-property: color;
+    }
+
+    ${media.small} {
+        font-size: ${font.mobileSmall} !important;
     }
 `;

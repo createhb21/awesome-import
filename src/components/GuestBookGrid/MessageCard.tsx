@@ -2,6 +2,8 @@
 import { css, useTheme } from '@emotion/react';
 import { useState } from 'react';
 import CopyClipboard from '../../hooks/copyClipboard';
+import { font } from '../../lib/styles/font';
+import media from '../../lib/styles/media';
 import { ITheme } from '../../lib/styles/Theme';
 import AwesomeRenderer from '../AwesomeRenderer';
 
@@ -61,7 +63,7 @@ const headerStyle = (theme: ITheme) => css`
     max-height: 22px;
 
     & > h1 {
-        font-size: 1rem;
+        font-size: ${font.Medium};
         font-weight: 500;
         line-height: 2rem;
     }
@@ -70,6 +72,12 @@ const headerStyle = (theme: ITheme) => css`
         color: ${theme.primaryColor};
         transition: 0.5s;
         transition-property: color;
+    }
+
+    ${media.small} {
+        & > h1 {
+            font-size: ${font.mobileMedium};
+        }
     }
 `;
 
@@ -91,8 +99,11 @@ const copiedClipboard = (theme: ITheme, slideImg: boolean) => css`
 `;
 
 const dateStyle = (theme: ITheme) => css`
+    ${media.small} {
+        font-size: ${font.mobileXSmall} !important;
+    }
     margin-top: 0.24rem;
-    font-size: 0.75rem;
+    font-size: ${font.xSmall};
     line-height: 1.25rem;
     color: ${theme.textGray};
 `;

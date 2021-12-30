@@ -12,6 +12,7 @@ import { RootReducerType } from '../..';
 import CurrentUserInfo from '../CurrentUserInfo';
 import { useScroll } from '../../hooks/useScroll';
 import { useEffect, useRef, useState } from 'react';
+import { font } from '../../lib/styles/font';
 
 function AwesomeSidebar() {
     const { scrollY } = useScroll();
@@ -56,7 +57,7 @@ const sidebarStyle = (scrollY: number, navBarHeight: number) => css`
         top: -18px;
         width: 118%;
         font-weight: bold;
-        font-size: 1.5rem;
+        font-size: ${font.xLarge}
         color: ${palette.blueGrey[900]};
         transition: 0.25s ease-in-out;
         transform: ${scrollY > navBarHeight ? 'translateY(-100px)' : ''};
@@ -67,6 +68,12 @@ const sidebarStyle = (scrollY: number, navBarHeight: number) => css`
 
     & > .logo:hover {
         color: ${palette.blueGrey[900]};
+    }
+
+    ${media.small} {
+        .logo {
+            font-size: ${font.mobileXLarge} !important;
+        }
     }
 `;
 

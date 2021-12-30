@@ -10,6 +10,7 @@ import { getPostsAction, WritePostType } from '../../modules/Fetch/FetchPostData
 import { createSelector } from '@reduxjs/toolkit';
 import AwesomeLoader from '../../components/AwesomeLoader/AwesomeLoader';
 import media from '../../lib/styles/media';
+import { font } from '../../lib/styles/font';
 
 function Write() {
     const theme = useTheme();
@@ -82,6 +83,16 @@ const wrapperStyle = (theme: ITheme) => css`
     ${media.small} {
         padding-left: 1rem;
         padding-right: 1rem;
+
+        & > header {
+            & > h1 {
+                font-size: ${font.mobileXXLarge} !important;
+            }
+
+            & > p {
+                font-size: ${font.mobileMedium} !important;
+            }
+        }
     }
 
     width: 100%;
@@ -99,7 +110,7 @@ const wrapperStyle = (theme: ITheme) => css`
 
         & > h1 {
             font-weight: 700;
-            font-size: 2.25rem;
+            font-size: ${font.xxLarge};
             line-height: 2.5rem;
             margin-bottom: 1rem;
         }
@@ -111,7 +122,7 @@ const wrapperStyle = (theme: ITheme) => css`
             margin-inline-start: 0px;
             margin-inline-end: 0px;
             color: ${theme.textGray};
-            font-size: 1rem;
+            font-size: ${font.Medium};
             line-height: 1.5rem;
         }
     }

@@ -12,6 +12,8 @@ import MessageCard from '../../components/GuestBookGrid';
 import { getDatabase, onValue, ref } from 'firebase/database';
 import firebaseApp from '../../lib/storage/firebase';
 import AwesomeLoader from '../../components/AwesomeLoader/AwesomeLoader';
+import { font } from '../../lib/styles/font';
+import media from '../../lib/styles/media';
 
 export type GuestBookProps = {};
 
@@ -130,7 +132,7 @@ const wrapperStyle = (theme: ITheme) => css`
 
         & > h1 {
             font-weight: 700;
-            font-size: 2.25rem;
+            font-size: ${font.xxLarge};
             line-height: 2.5rem;
             margin-bottom: 1rem;
         }
@@ -142,8 +144,20 @@ const wrapperStyle = (theme: ITheme) => css`
             margin-inline-start: 0px;
             margin-inline-end: 0px;
             color: ${theme.textGray};
-            font-size: 1rem;
+            font-size: ${font.Medium};
             line-height: 1.5rem;
+        }
+    }
+
+    ${media.small} {
+        & > header {
+            & > h1 {
+                font-size: ${font.mobileXXLarge} !important;
+            }
+
+            & > p {
+                font-size: ${font.mobileMedium} !important;
+            }
         }
     }
 `;

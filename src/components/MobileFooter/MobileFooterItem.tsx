@@ -4,6 +4,8 @@ import palette from '../../lib/palette';
 import { NavLink } from 'react-router-dom';
 import Awesomecon, { AwesomeIconType } from '../Awesomecon/Awesomecon';
 import { ITheme } from '../../lib/styles/Theme';
+import { font } from '../../lib/styles/font';
+import media from '../../lib/styles/media';
 
 export type MobilerFooterItemProps = {
     icon: AwesomeIconType;
@@ -39,11 +41,17 @@ const linkStyle = (theme: ITheme) => css`
         height: 1.5rem;
     }
     span {
-        font-size: 0.75rem;
+        font-size: ${font.xSmall};
     }
 
     &.active {
         color: ${palette.cyan[600]};
+    }
+
+    ${media.small} {
+        span {
+            font-size: ${font.mobileXSmall} !important;
+        }
     }
 `;
 

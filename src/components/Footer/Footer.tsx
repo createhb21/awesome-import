@@ -1,6 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import React from 'react';
+import { font } from '../../lib/styles/font';
+import media from '../../lib/styles/media';
 import FooterItem from './FooterItem';
 
 function Footer() {
@@ -18,7 +20,10 @@ function Footer() {
 }
 
 const copyrightStyle = css`
-    font-size: 0.875rem;
+${media.small} {
+    font-size: ${font.mobileSmall} !important;
+}
+    font-size: ${font.Small}
     line-height: 1.25rem;
 `;
 

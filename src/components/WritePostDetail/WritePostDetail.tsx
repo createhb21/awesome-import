@@ -10,6 +10,7 @@ import AwesomeRenderer from '../AwesomeRenderer';
 import { clearPost, getPostAction } from '../../modules/Fetch/FetchPostData';
 import { createSelector } from '@reduxjs/toolkit';
 import CopyClipboard from '../../hooks/copyClipboard';
+import { font } from '../../lib/styles/font';
 
 function WritePostDetail() {
     const theme = useTheme();
@@ -90,6 +91,12 @@ const wrapperStyle = (theme: ITheme) => css`
 const headerStyle = (theme: ITheme) => css`
     ${media.small} {
         padding-top: 1.5rem;
+
+        & > div {
+            & > span {
+                font-size: ${font.mobileMedium} !important;
+            }
+        }
     }
     padding-top: 4rem;
     padding-bottom: 3rem;
@@ -97,13 +104,9 @@ const headerStyle = (theme: ITheme) => css`
     & > div {
         margin-bottom: 0.5rem;
         & > span {
-            font-size: 1rem;
+            font-size: ${font.Medium};
             line-height: 1.5rem;
             background-color: ${theme.primaryColor};
-
-            & > h1 {
-                font-size: ${media.small ? '1.75rem' : '2.25rem'};
-            }
         }
     }
 
@@ -142,7 +145,7 @@ const copiedClipboard = (theme: ITheme, slideImg: boolean) => css`
 
 const infoStyle = (theme: ITheme) => css`
     color: ${theme.textGray};
-    font-size: 0.875rem;
+    font-size: ${font.Small};
     line-height: 1.25rem;
     display: inline-flex;
     align-items: center;
@@ -150,6 +153,10 @@ const infoStyle = (theme: ITheme) => css`
     & > span {
         margin-left: 0.375rem;
         margin-right: 0.375rem;
+    }
+
+    &{media.small} {
+        font-size: ${font.mobileSmall} !important;
     }
 `;
 
@@ -159,11 +166,5 @@ const contentStyle = (theme: ITheme) => css`
     & > p {
         margin-bottom: 2rem;
         line-height: 1.625;
-    }
-
-    & > h2 {
-        font-size: 1.875rem;
-        line-height: 2.25rem;
-        margin-top: 8rem;
     }
 `;

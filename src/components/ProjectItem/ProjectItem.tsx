@@ -1,5 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css, useTheme } from '@emotion/react';
+import { font } from '../../lib/styles/font';
+import media from '../../lib/styles/media';
 import { ITheme } from '../../lib/styles/Theme';
 
 export type MainSectionListProps = {
@@ -25,7 +27,7 @@ export default MainSectionList;
 
 const portFolioStyle = (theme: ITheme) => css`
     margin-left: 1rem;
-    font-size: 0.875rem;
+    font-size: ${font.Small};
     line-height: 1.25rem;
     width: 60%;
     color: ${theme.textGray};
@@ -34,6 +36,10 @@ const portFolioStyle = (theme: ITheme) => css`
 
     & > p {
         margin: 0;
+    }
+
+    ${media.small} {
+        font-size: ${font.mobileSmall} !important;
     }
 `;
 
@@ -54,8 +60,16 @@ const listStyle = (theme: ITheme) => css`
             width: 10rem;
             white-space: nowrap;
             font-weight: 700;
-            font-size: 1.125rem;
+            font-size: ${font.Large};
             line-height: 1.75rem;
+        }
+    }
+
+    ${media.small} {
+        & > div {
+            & > h3 {
+                font-size: ${font.mobileLarge} !important;
+            }
         }
     }
 `;

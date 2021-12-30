@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css, useTheme } from '@emotion/react';
 import { Link } from 'react-router-dom';
+import { font } from '../../lib/styles/font';
 import media from '../../lib/styles/media';
 import { ITheme } from '../../lib/styles/Theme';
 import { WritePostType } from '../../modules/Fetch/FetchPostData';
@@ -92,7 +93,7 @@ const categoryStyle = (theme: ITheme) => css`
     & > span {
         display: inline-block;
         opacity: 0.7;
-        font-size: 1rem;
+        font-size: ${font.Medium};
         line-height: 1.5rem;
         padding-left: 0.375rem;
         padding-right: 0.375rem;
@@ -107,13 +108,13 @@ const contentWrapperStyle = (theme: ITheme) => css`
 
 const titleStyle = (theme: ITheme) => css`
     ${media.small} {
-        font-size: 1.15rem;
+        font-size: ${font.Large};
         grid-column: 1/8;
     }
 
     margin: 0;
     grid-column: 1/10;
-    font-size: 1.5rem;
+    font-size: ${font.xLarge};
     line-height: 2rem;
     margin-bottom: 0.5rem;
 
@@ -134,7 +135,7 @@ const summaryStyle = (theme: ITheme) => css`
     grid-column: 1/10;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
-    font-size: 1rem;
+    font-size: ${font.Medium};
     line-height: 1.5rem
     display: flex;
     justify-content: center;

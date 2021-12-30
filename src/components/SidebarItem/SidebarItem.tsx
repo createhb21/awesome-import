@@ -4,6 +4,8 @@ import palette from '../../lib/palette';
 import { NavLink } from 'react-router-dom';
 import AwesomeIcon, { AwesomeIconType } from '../Awesomecon/Awesomecon';
 import { ITheme } from '../../lib/styles/Theme';
+import { font } from '../../lib/styles/font';
+import media from '../../lib/styles/media';
 
 export type SidebarItemProps = {
     icon: AwesomeIconType;
@@ -43,7 +45,7 @@ const linkStyle = (theme: ITheme) => css`
         height: 1.75rem;
     }
     span {
-        font-size: 1.125rem;
+        font-size: ${font.Large};
         margin-left: 1rem;
     }
 
@@ -52,6 +54,12 @@ const linkStyle = (theme: ITheme) => css`
         color: ${palette.cyan[600]};
         span {
             font-weight: bold;
+        }
+    }
+
+    ${media.small} {
+        span {
+            font-size: ${font.mobileLarge} !important;
         }
     }
 `;

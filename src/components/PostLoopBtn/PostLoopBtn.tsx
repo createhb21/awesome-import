@@ -2,6 +2,8 @@
 import { ITheme } from '../../lib/styles/Theme';
 import { useNavigate } from 'react-router-dom';
 import { css, useTheme } from '@emotion/react';
+import { font } from '../../lib/styles/font';
+import media from '../../lib/styles/media';
 
 export type PostRoofBtnProps = {
     currentId: number;
@@ -38,9 +40,15 @@ const wrapperStyle = (theme: ITheme) => css`
         max-height: 50px;
         border: none;
         border-radius: 35px;
-        font-size: 0.85rem;
+        font-size: ${font.Small};
         font-weight: 500;
         background-color: ${theme.primaryColor};
         cursor: pointer;
+    }
+
+    ${media.small} {
+        & > button {
+            font-size: ${font.mobileSmall} !important;
+        }
     }
 `;

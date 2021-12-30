@@ -13,6 +13,8 @@ import { switchImageGetterMode, switchImageSetterMode } from '../../modules/Imag
 import { guestBookCommentCreateApi, logPostCreateApi, writePostCreateApi } from '../../hooks/firebasePosting';
 import { useNavigate } from 'react-router-dom';
 import { RootReducerType } from '../..';
+import { font } from '../../lib/styles/font';
+import media from '../../lib/styles/media';
 
 const TEXT_EDITOR_ITEM = 'text-editor-item';
 
@@ -318,6 +320,12 @@ const wrapperStyle = (theme: ITheme, visiblePreview: boolean, guest: boolean | u
         padding-left: 10px;
         border: none;
         outline: none;
-        font-size: 0.875rem;
+        font-size: ${font.Small};
+    }
+
+    ${media.small} {
+        .select {
+            font-size: ${font.mobileSmall} !important;
+        }
     }
 `;

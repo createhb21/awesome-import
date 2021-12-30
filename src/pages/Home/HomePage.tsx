@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css, useTheme } from '@emotion/react';
 import ProjectItem from '../../components/ProjectItem';
+import { font } from '../../lib/styles/font';
 import media from '../../lib/styles/media';
 import { ITheme } from '../../lib/styles/Theme';
 
@@ -52,12 +53,24 @@ const homePageStyle = (theme: ITheme) => css`
             margin-right: 0.5rem;
         }
     }
+
+    &{media.small} {
+        & > h2 {
+            font-size: 1.0625rem !important;
+        }
+    }
 `;
 
 const wrapperStyle = (theme: ITheme) => css`
     ${media.small} {
         padding-left: 1rem;
         padding-right: 1rem;
+
+        & > header {
+            & > h1 {
+                font-size: ${font.mobileXXLarge} !important;
+            }
+        }
     }
 
     width: 100%;
@@ -76,7 +89,7 @@ const wrapperStyle = (theme: ITheme) => css`
 
         & > h1 {
             font-weight: 700;
-            font-size: ${media.small ? '1.75rem' : '2.25rem'}
+            font-size: ${font.xxLarge};
             line-height: 2.5rem;
             margin-bottom: 1rem;
         }

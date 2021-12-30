@@ -3,6 +3,8 @@ import { css, useTheme } from '@emotion/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootReducerType } from '../..';
 import palette from '../../lib/palette';
+import { font } from '../../lib/styles/font';
+import media from '../../lib/styles/media';
 import { ITheme } from '../../lib/styles/Theme';
 import { switchThemeDark, switchThemeLight } from '../../modules/ThemeSwitch';
 import Awesomecon, { AwesomeIconType } from '../Awesomecon/Awesomecon';
@@ -33,6 +35,7 @@ const item = (theme: ITheme) => css`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    color: ${palette.blueGrey[400]};
     flex: 1;
     cursor: pointer;
 
@@ -49,8 +52,12 @@ const item = (theme: ITheme) => css`
     }
     text-decoration: none;
     span {
-        font-size: 0.75rem;
+        font-size: ${font.xSmall};
     }
 
-    color: ${palette.blueGrey[400]};
+    ${media.small} {
+        span {
+            font-size: ${font.mobileXSmall} !important;
+        }
+    }
 `;

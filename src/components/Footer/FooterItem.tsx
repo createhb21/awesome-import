@@ -3,6 +3,8 @@ import { css, useTheme } from '@emotion/react';
 import palette from '../../lib/palette';
 import Awesomecon, { AwesomeIconType } from '../Awesomecon/Awesomecon';
 import { ITheme } from '../../lib/styles/Theme';
+import { font } from '../../lib/styles/font';
+import media from '../../lib/styles/media';
 
 export type FooterItemProps = {
     icon: AwesomeIconType;
@@ -36,7 +38,7 @@ const item = (theme: ITheme) => css`
     }
     text-decoration: none;
     span {
-        font-size: 0.75rem;
+        font-size: ${font.xSmall};
     }
 
     color: ${palette.blueGrey[400]};
@@ -44,6 +46,12 @@ const item = (theme: ITheme) => css`
     &.active {
         color: ${palette.cyan[600]};
         border-radius: 0.25rem;
+    }
+
+    ${media.small} {
+        span {
+            font-size: ${font.mobileXSmall} !important;
+        }
     }
 `;
 

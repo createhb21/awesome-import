@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootReducerType } from '../..';
 import AuthServiece from '../../hooks/authServiece';
 import palette from '../../lib/palette';
+import { font } from '../../lib/styles/font';
+import media from '../../lib/styles/media';
 import { switchUserLogout } from '../../modules/UseUserSet';
 
 function CurrentUserInfo() {
@@ -46,7 +48,7 @@ const block = css`
     }
     .info {
         .name {
-            font-size: 1rem;
+            font-size: ${font.Medium};
             font-weight: 600;
             color: ${palette.blueGrey[800]};
         }
@@ -54,7 +56,7 @@ const block = css`
             display: inline-block;
             text-decoration: underline;
             margin-top: 0.25rem;
-            font-size: 0.75rem;
+            font-size: ${font.xSmall}
             color: ${palette.blueGrey[400]};
             cursor: pointer;
             outline: none;
@@ -64,6 +66,18 @@ const block = css`
             }
             &:focus-visible {
                 outline: 1px solid ${palette.cyan[600]};
+            }
+        }
+    }
+
+
+    ${media.small} {
+        .info {
+            .name {
+                font-size: ${font.mobileMedium} !important;
+            }
+            .logout {
+                font-size: ${font.mobileXSmall} !important;
             }
         }
     }

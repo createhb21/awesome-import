@@ -1,6 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css, useTheme } from '@emotion/react';
 import { useDispatch } from 'react-redux';
+import { font } from '../../lib/styles/font';
+import media from '../../lib/styles/media';
 import { resetButton } from '../../lib/styles/resetButton';
 import { ITheme } from '../../lib/styles/Theme';
 import { switchUserLogin } from '../../modules/UseUserSet';
@@ -31,7 +33,7 @@ const buttonStyle = (theme: ITheme) => css`
     background: ${theme.background};
     height: 3.375rem;
     padding: 0.75rem 1rem;
-    font-size: 1rem;
+    font-size: ${font.Medium}
     color: ${theme.textGray};
     border-radius: 0.5rem;
 
@@ -42,6 +44,10 @@ const buttonStyle = (theme: ITheme) => css`
     transition: all ease-in 0.125s;
     &:hover {
         box-shadow: 0px 0.25rem 0.5rem rgb(0 0 0 / 11%);
+    }
+
+    ${media.small} {
+        font-size: ${font.mobileMedium}!important;
     }
 `;
 
