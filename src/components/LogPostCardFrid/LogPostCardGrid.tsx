@@ -20,14 +20,17 @@ export type LogPostCardGridProps = {
 function LogPostCardGrid({ post }: LogPostCardGridProps) {
     const theme = useTheme();
 
+    const screenX = window.screen.width;
+    const mediaMedium = 768;
     const [slideImg, setSlideImg] = useState(false);
+    const [mobileSlideImg, mobileSetSlideImg] = useState(false);
     const copyClipboard = () => {
         CopyClipboard();
-        setSlideImg(true);
+        screenX >= mediaMedium ? setSlideImg(true) : mobileSetSlideImg(true);
         setTimeout(fadeOutSlideImg, 1000);
     };
     const fadeOutSlideImg = () => {
-        setSlideImg(false);
+        screenX >= mediaMedium ? setSlideImg(false) : mobileSetSlideImg(false);
     };
 
     return (
@@ -35,6 +38,7 @@ function LogPostCardGrid({ post }: LogPostCardGridProps) {
             <article>
                 <section css={headerStyle(theme)}>
                     <h1 onClick={copyClipboard}>{post.title}</h1>
+                    {slideImg && <span css={copiedClipboard(theme, slideImg)}>copied 😊</span>}
                 </section>
                 <section css={dateStyle}>{post.date}</section>
                 <section css={contentStyle}>
@@ -42,10 +46,10 @@ function LogPostCardGrid({ post }: LogPostCardGridProps) {
                         <AwesomeRenderer>{post.body}</AwesomeRenderer>
                     </main>
                 </section>
-                {slideImg && (
-                    <span css={copiedClipboard(theme, slideImg)}>
+                {mobileSlideImg && (
+                    <span css={mobileCopiedClipboard(theme, mobileSlideImg)}>
                         <div css={backGroundStyle}>
-                            <div css={copyStyle(theme, slideImg)}>copied 😊</div>
+                            <div css={copyStyle(theme, mobileSlideImg)}>copied 😊</div>
                         </div>
                     </span>
                 )}
@@ -95,13 +99,27 @@ const headerStyle = (theme: ITheme) => css`
         transition-property: color;
     }
 `;
-
 const copiedClipboard = (theme: ITheme, slideImg: boolean) => css`
+    width: 90px;
+    min-height: 32px;
+    padding: 1px 6px;
+    margin-left: 1rem;
+    border-radius: 15px;
+    color: ${theme.buttonText};
+    background: ${theme.primaryColor};
+    opacity: ${slideImg ? 1 : 0};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+const mobileCopiedClipboard = (theme: ITheme, mobileSlideImg: boolean) => css`
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    z-index: 99;
 `;
 
 const backGroundStyle = css`
@@ -113,7 +131,7 @@ const backGroundStyle = css`
     align-items: center;
 `;
 
-const copyStyle = (theme: ITheme, slideImg: boolean) => css`
+const copyStyle = (theme: ITheme, mobileSlideImg: boolean) => css`
     position: relative;
     top: 0px;
     display: flex;
@@ -124,7 +142,7 @@ const copyStyle = (theme: ITheme, slideImg: boolean) => css`
     width: 5.5em;
     color: ${theme.buttonText};
     background: ${theme.primaryColor};
-    opacity: ${slideImg ? 1 : 0};
+    opacity: ${mobileSlideImg ? 1 : 0};
     border-radius: 15px;
     transition: 0.35s;
     transition-property: opacity;

@@ -134,13 +134,12 @@ const headerStyle = (theme: ITheme) => css`
     }
 `;
 
-const copiedClipboard = (theme: Theme, slideImg: boolean) => css`
+const copiedClipboard = (theme: ITheme, slideImg: boolean) => css`
     width: 90px;
-    max-height: 40px;
+    max-height: 32px;
     padding: 1px 6px;
-    margin-top: 0.25rem;
+    margin-top: 0.53rem;
     margin-left: 1rem;
-    line-height: 2rem;
     border-radius: 15px;
     color: ${theme.buttonText};
     background: ${theme.primaryColor};
@@ -155,6 +154,7 @@ const mobileCopiedClipboard = (theme: ITheme, mobileSlideImg: boolean) => css`
     left: 0;
     width: 100%;
     height: 100%;
+    z-index: 99;
 `;
 
 const backGroundStyle = css`
