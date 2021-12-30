@@ -27,11 +27,16 @@ export const writePostCreateApi = async (categoryRef: any, titleRef: any, data: 
     const inputData = convertToRaw(data);
     const formatData = JSON.stringify(inputData);
 
+    console.log(data);
+    console.log(inputData);
+
     const dataArr: any[] = [];
-    for (let keys in data.entityMap) {
-        dataArr.push(data.entityMap[keys]);
+    for (let keys in inputData.entityMap) {
+        dataArr.push(inputData.entityMap[keys]);
     }
     const formatImg = dataArr.find(content => content.type === 'image');
+    console.log(formatImg);
+
     const {
         data: { src },
     } = formatImg;
