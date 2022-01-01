@@ -23,6 +23,8 @@ ReactDOM.render(
     <React.StrictMode>
         <HelmetProvider>
             <Helmet>
+                <title>awesome import</title>
+                <link rel="icon" href={logo} />
                 <meta property="og:url" content={currentUrl} />
                 <meta property="og:title" content="awesome import" />
                 <meta property="og:description" content="Createhb21 • awesome import" />
