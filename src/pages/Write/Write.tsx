@@ -11,6 +11,7 @@ import { createSelector } from '@reduxjs/toolkit';
 import AwesomeLoader from '../../components/AwesomeLoader/AwesomeLoader';
 import media from '../../lib/styles/media';
 import { font } from '../../lib/styles/font';
+import { logo } from '../../assets/images';
 
 function Write() {
     const theme = useTheme();
@@ -54,6 +55,9 @@ function Write() {
         <>
             <Helmet>
                 <title>awesome import • write</title>
+                <meta property="og:title" content="awesome import • write" />
+                <meta property="og:description" content="Createhb21 • awesome import" />
+                <meta property="og:image" content={logo} />
             </Helmet>
             <div css={wrapperStyle(theme)}>
                 <header>

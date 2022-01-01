@@ -10,6 +10,7 @@ import firebaseApp from '../../lib/storage/firebase';
 import AwesomeLoader from '../../components/AwesomeLoader/AwesomeLoader';
 import { font } from '../../lib/styles/font';
 import media from '../../lib/styles/media';
+import { logo } from '../../assets/images';
 
 interface GuestBookTypes {
     userName: string;
@@ -47,6 +48,9 @@ function GuestBook() {
         <>
             <Helmet>
                 <title>awesome import • guestbook</title>
+                <meta property="og:title" content="awesome import • guestbook" />
+                <meta property="og:description" content="Createhb21 • awesome import" />
+                <meta property="og:image" content={logo} />
             </Helmet>
             <div css={wrapperStyle(theme)}>
                 <header>
