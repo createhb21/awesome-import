@@ -13,7 +13,7 @@ interface BlockComponentProps {
 const imgWrapStyle = (width: number, location: string) => css`
     width: 100%;
     display: flex;
-    justify-content: ${location === '/log' ? 'flex-start' : 'center'};
+    justify-content: ${location === '/log' || location === '/guestbook' ? 'flex-start' : 'center'};
     align-items: center;
     position: relative;
 
@@ -21,7 +21,7 @@ const imgWrapStyle = (width: number, location: string) => css`
         margin: 0;
         padding: 0;
         width: ${width}%;
-        max-height: ${location === '/log' ? '274px' : ''};
+        max-height: ${location === '/log' || location === '/guestbook' ? '274px' : ''};
     }
 `;
 
