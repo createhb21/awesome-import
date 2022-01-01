@@ -18,12 +18,15 @@ const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk
 const persistor = persistStore(store);
 export type RootReducerType = ReturnType<typeof rootReducer>;
 
+const currentUrl = window.location.href;
 ReactDOM.render(
     <React.StrictMode>
         <HelmetProvider>
             <Helmet>
-                <title>awesome import</title>
-                <link rel="icon" href={logo} />
+                <meta property="og:url" content={currentUrl} />
+                <meta property="og:title" content="awesome import" />
+                <meta property="og:description" content="Createhb21 • awesome import" />
+                <meta property="og:image" content={logo} />
             </Helmet>
             <Provider store={store}>
                 <PersistGate loading={null} persistor={persistor}>
