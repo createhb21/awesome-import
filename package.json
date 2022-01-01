@@ -1,71 +1,73 @@
 {
-  "name": "awesome-import",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@emotion/babel-preset-css-prop": "^11.2.0",
-    "@emotion/core": "^11.0.0",
-    "@emotion/react": "^11.7.0",
-    "@emotion/styled": "^11.6.0",
-    "@reduxjs/toolkit": "^1.6.2",
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "@types/draft-js": "^0.11.7",
-    "@types/jest": "^26.0.15",
-    "@types/lodash": "^4.14.177",
-    "@types/moment": "^2.13.0",
-    "@types/node": "^12.0.0",
-    "@types/randomcolor": "^0.5.6",
-    "@types/react": "^17.0.0",
-    "@types/react-dom": "^17.0.0",
-    "@types/react-helmet": "^6.1.5",
-    "@types/react-redux": "^7.1.20",
-    "@types/redux": "^3.6.0",
-    "@types/redux-logger": "^3.0.9",
-    "@types/redux-persist": "^4.3.1",
-    "@types/redux-thunk": "^2.1.0",
-    "axios": "^0.24.0",
-    "draft-js": "^0.11.7",
-    "firebase": "^9.6.1",
-    "moment": "^2.29.1",
-    "randomcolor": "^0.6.2",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-helmet-async": "^1.2.1",
-    "react-redux": "^7.2.6",
-    "react-router-dom": "^6.0.2",
-    "react-scripts": "4.0.3",
-    "redux": "^4.1.2",
-    "redux-devtools-extension": "^2.13.9",
-    "redux-logger": "^3.0.6",
-    "redux-persist": "^6.0.0",
-    "redux-thunk": "^2.4.1",
-    "typescript": "^4.1.2",
-    "web-vitals": "^1.0.1"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+    "name": "awesome-import",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "@emotion/babel-preset-css-prop": "^11.2.0",
+        "@emotion/core": "^11.0.0",
+        "@emotion/react": "^11.7.0",
+        "@emotion/styled": "^11.6.0",
+        "@reduxjs/toolkit": "^1.6.2",
+        "@testing-library/jest-dom": "^5.11.4",
+        "@testing-library/react": "^11.1.0",
+        "@testing-library/user-event": "^12.1.10",
+        "@types/draft-js": "^0.11.7",
+        "@types/jest": "^26.0.15",
+        "@types/lodash": "^4.14.177",
+        "@types/moment": "^2.13.0",
+        "@types/node": "^12.0.0",
+        "@types/randomcolor": "^0.5.6",
+        "@types/react": "^17.0.0",
+        "@types/react-dom": "^17.0.0",
+        "@types/react-helmet": "^6.1.5",
+        "@types/react-redux": "^7.1.20",
+        "@types/redux": "^3.6.0",
+        "@types/redux-logger": "^3.0.9",
+        "@types/redux-persist": "^4.3.1",
+        "@types/redux-thunk": "^2.1.0",
+        "axios": "^0.24.0",
+        "draft-js": "^0.11.7",
+        "firebase": "^9.6.1",
+        "moment": "^2.29.1",
+        "randomcolor": "^0.6.2",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "react-helmet-async": "^1.2.1",
+        "react-redux": "^7.2.6",
+        "react-router-dom": "^6.0.2",
+        "react-scripts": "4.0.3",
+        "react-snap": "^1.23.0",
+        "redux": "^4.1.2",
+        "redux-devtools-extension": "^2.13.9",
+        "redux-logger": "^3.0.6",
+        "redux-persist": "^6.0.0",
+        "redux-thunk": "^2.4.1",
+        "typescript": "^4.1.2",
+        "web-vitals": "^1.0.1"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject",
+        "postbuild": "react-snap"
+    },
+    "eslintConfig": {
+        "extends": [
+            "react-app",
+            "react-app/jest"
+        ]
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    }
 }

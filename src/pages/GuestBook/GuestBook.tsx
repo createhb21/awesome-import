@@ -48,6 +48,7 @@ function GuestBook() {
         <>
             <Helmet>
                 <title>awesome import • guestbook</title>
+                <meta property="og:site_name" content="awesome import • guestbook" />
                 <meta property="og:title" content="awesome import • guestbook" />
                 <meta property="og:description" content="Createhb21 • awesome import" />
                 <meta property="og:image" content={logo} />
