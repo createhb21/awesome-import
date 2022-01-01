@@ -53,7 +53,7 @@ function Log() {
     return (
         <>
             <Helmet>
-                <title>@_Import | log</title>
+                <title>awesome import • log</title>
             </Helmet>
             <div css={wrapperStyle(theme)}>
                 <header>

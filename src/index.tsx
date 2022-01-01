@@ -12,9 +12,9 @@ import { BrowserRouter } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import rootReducer from './modules';
-import logger from 'redux-logger';
+import { logo } from './assets/images';
 
-const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk, logger)));
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 const persistor = persistStore(store);
 export type RootReducerType = ReturnType<typeof rootReducer>;
 
@@ -22,7 +22,8 @@ ReactDOM.render(
     <React.StrictMode>
         <HelmetProvider>
             <Helmet>
-                <title>@_Import</title>
+                <title>awesome import</title>
+                <link rel="icon" href={logo} />
             </Helmet>
             <Provider store={store}>
                 <PersistGate loading={null} persistor={persistor}>

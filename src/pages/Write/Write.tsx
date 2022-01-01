@@ -53,7 +53,7 @@ function Write() {
     return (
         <>
             <Helmet>
-                <title>@_Import | write</title>
+                <title>awesome import • write</title>
             </Helmet>
             <div css={wrapperStyle(theme)}>
                 <header>

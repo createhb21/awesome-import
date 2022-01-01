@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React, { useEffect, useState } from 'react';
-import { css, Theme, useTheme } from '@emotion/react';
+import { css, useTheme } from '@emotion/react';
 import { ITheme } from '../../lib/styles/Theme';
 import { useParams } from 'react-router-dom';
 import media from '../../lib/styles/media';
@@ -11,7 +11,6 @@ import { clearPost, getPostAction } from '../../modules/Fetch/FetchPostData';
 import { createSelector } from '@reduxjs/toolkit';
 import CopyClipboard from '../../hooks/copyClipboard';
 import { font } from '../../lib/styles/font';
-import palette from '../../lib/palette';
 
 function WritePostDetail() {
     const theme = useTheme();

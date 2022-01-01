@@ -46,7 +46,7 @@ function GuestBook() {
     return (
         <>
             <Helmet>
-                <title>@_Import | guestbook</title>
+                <title>awesome import • guestbook</title>
             </Helmet>
             <div css={wrapperStyle(theme)}>
                 <header>
