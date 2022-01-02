@@ -55,6 +55,7 @@ function Log() {
         <>
             <Helmet>
                 <title>awesome import • log</title>
+                <meta property="og:site_name" content="awesome import • log" />
                 <meta property="og:title" content="awesome import • log" />
                 <meta property="og:description" content="Createhb21 • awesome import" />
                 <meta property="og:image" content={logo} />

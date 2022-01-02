@@ -55,6 +55,7 @@ function Write() {
         <>
             <Helmet>
                 <title>awesome import • write</title>
+                <meta property="og:site_name" content="awesome import • write" />
                 <meta property="og:title" content="awesome import • write" />
                 <meta property="og:description" content="Createhb21 • awesome import" />
                 <meta property="og:image" content={logo} />
