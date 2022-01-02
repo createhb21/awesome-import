@@ -12,13 +12,6 @@ import media from '../../lib/styles/media';
 import { font } from '../../lib/styles/font';
 import Meta from '../../components/Meta/Meta';
 
-const currentUrl = window.location.href;
-const metaData = {
-    title: 'awesome import • write',
-    description: 'Createhb21 • awesome import • write',
-    url: currentUrl,
-};
-
 function Write() {
     const theme = useTheme();
     const getPost = (state: RootReducerType) => state.FetchPostReducer.posts;
@@ -39,6 +32,13 @@ function Write() {
         if (data) return;
         dispatch(getPostsAction());
     }, [data, dispatch]);
+
+    const currentUrl = window.location.href;
+    const metaData = {
+        title: 'awesome import • write',
+        description: 'Createhb21 • awesome import • write',
+        url: currentUrl,
+    };
 
     if (loading && !data) return <AwesomeLoader />;
     if (!data) return null;

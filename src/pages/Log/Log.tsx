@@ -12,13 +12,6 @@ import media from '../../lib/styles/media';
 import { font } from '../../lib/styles/font';
 import Meta from '../../components/Meta/Meta';
 
-const currentUrl = window.location.href;
-const metaData = {
-    title: 'awesome import • log',
-    description: 'Createhb21 • awesome import • log',
-    url: currentUrl,
-};
-
 function Log() {
     const theme = useTheme();
 
@@ -39,6 +32,13 @@ function Log() {
         if (data) return;
         dispatch(getLogsAction());
     }, [data, dispatch]);
+
+    const currentUrl = window.location.href;
+    const metaData = {
+        title: 'awesome import • log',
+        description: 'Createhb21 • awesome import • log',
+        url: currentUrl,
+    };
 
     if (loading && !data) return <AwesomeLoader />;
     if (!data) return null;

@@ -11,13 +11,6 @@ import { font } from '../../lib/styles/font';
 import media from '../../lib/styles/media';
 import Meta from '../../components/Meta/Meta';
 
-const currentUrl = window.location.href;
-const metaData = {
-    title: 'awesome import • guestbook',
-    description: 'Createhb21 • awesome import • guestbook',
-    url: currentUrl,
-};
-
 interface GuestBookTypes {
     userName: string;
     password: number;
@@ -48,6 +41,13 @@ function GuestBook() {
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    const currentUrl = window.location.href;
+    const metaData = {
+        title: 'awesome import • guestbook',
+        description: 'Createhb21 • awesome import • guestbook',
+        url: currentUrl,
+    };
 
     if (loading) return <AwesomeLoader />;
 
