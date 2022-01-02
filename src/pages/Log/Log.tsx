@@ -1,6 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import { css, useTheme } from '@emotion/react';
-import { Helmet } from 'react-helmet-async';
 import LogPostCardGrid from '../../components/LogPostCardFrid';
 import { ITheme } from '../../lib/styles/Theme';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,7 +10,14 @@ import { getLogsAction } from '../../modules/Fetch/FetchLogData';
 import AwesomeLoader from '../../components/AwesomeLoader/AwesomeLoader';
 import media from '../../lib/styles/media';
 import { font } from '../../lib/styles/font';
-import { logo } from '../../assets/images';
+import Meta from '../../components/Meta/Meta';
+
+const currentUrl = window.location.href;
+const metaData = {
+    title: 'awesome import • log',
+    description: 'Createhb21 • awesome import • log',
+    url: currentUrl,
+};
 
 function Log() {
     const theme = useTheme();
@@ -53,13 +59,7 @@ function Log() {
 
     return (
         <>
-            <Helmet>
-                <title>awesome import • log</title>
-                <meta property="og:site_name" content="awesome import • log" />
-                <meta property="og:title" content="awesome import • log" />
-                <meta property="og:description" content="Createhb21 • awesome import" />
-                <meta property="og:image" content={logo} />
-            </Helmet>
+            <Meta metaData={metaData} />
             <div css={wrapperStyle(theme)}>
                 <header>
                     <h1>Log</h1>

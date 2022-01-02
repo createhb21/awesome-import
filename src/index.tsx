@@ -13,6 +13,7 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import rootReducer from './modules';
 import { logo } from './assets/images';
+import Meta from './components/Meta/Meta';
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 const persistor = persistStore(store);
@@ -20,20 +21,17 @@ export type RootReducerType = ReturnType<typeof rootReducer>;
 
 const rootElement = document.getElementById('root') as HTMLElement;
 const currentUrl = window.location.href;
+const metaData = {
+    title: 'awesome import',
+    description: 'Createhb21 • awesome import',
+    url: currentUrl,
+};
 
 if (rootElement.hasChildNodes()) {
     hydrate(
         <React.StrictMode>
             <HelmetProvider>
-                <Helmet>
-                    <title>awesome import</title>
-                    <link rel="icon" href={logo} />
-                    <meta property="og:url" content={currentUrl} />
-                    <meta property="og:site_name" content="awesome import" />
-                    <meta property="og:title" content="awesome import" />
-                    <meta property="og:description" content="Createhb21 • awesome import" />
-                    <meta property="og:image" content={logo} />
-                </Helmet>
+                <Meta metaData={metaData} />
                 <Provider store={store}>
                     <PersistGate loading={null} persistor={persistor}>
                         <BrowserRouter>

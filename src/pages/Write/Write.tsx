@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-import { Helmet } from 'react-helmet-async';
 import { css, useTheme } from '@emotion/react';
 import { ITheme } from '../../lib/styles/Theme';
 import WritePostCardGrid from '../../components/WritePostCardGrid';
@@ -11,7 +10,14 @@ import { createSelector } from '@reduxjs/toolkit';
 import AwesomeLoader from '../../components/AwesomeLoader/AwesomeLoader';
 import media from '../../lib/styles/media';
 import { font } from '../../lib/styles/font';
-import { logo } from '../../assets/images';
+import Meta from '../../components/Meta/Meta';
+
+const currentUrl = window.location.href;
+const metaData = {
+    title: 'awesome import • write',
+    description: 'Createhb21 • awesome import • write',
+    url: currentUrl,
+};
 
 function Write() {
     const theme = useTheme();
@@ -53,13 +59,7 @@ function Write() {
 
     return (
         <>
-            <Helmet>
-                <title>awesome import • write</title>
-                <meta property="og:site_name" content="awesome import • write" />
-                <meta property="og:title" content="awesome import • write" />
-                <meta property="og:description" content="Createhb21 • awesome import" />
-                <meta property="og:image" content={logo} />
-            </Helmet>
+            <Meta metaData={metaData} />
             <div css={wrapperStyle(theme)}>
                 <header>
                     <h1>Write</h1>

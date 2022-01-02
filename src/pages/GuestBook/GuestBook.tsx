@@ -1,7 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css, useTheme } from '@emotion/react';
 import { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import AwesomeEditor from '../../components/AwesomeEditor/AwesomeEditor';
 import { ITheme } from '../../lib/styles/Theme';
 import MessageCard from '../../components/GuestBookGrid';
@@ -10,7 +9,14 @@ import firebaseApp from '../../lib/storage/firebase';
 import AwesomeLoader from '../../components/AwesomeLoader/AwesomeLoader';
 import { font } from '../../lib/styles/font';
 import media from '../../lib/styles/media';
-import { logo } from '../../assets/images';
+import Meta from '../../components/Meta/Meta';
+
+const currentUrl = window.location.href;
+const metaData = {
+    title: 'awesome import • guestbook',
+    description: 'Createhb21 • awesome import • guestbook',
+    url: currentUrl,
+};
 
 interface GuestBookTypes {
     userName: string;
@@ -47,13 +53,7 @@ function GuestBook() {
 
     return (
         <>
-            <Helmet>
-                <title>awesome import • guestbook</title>
-                <meta property="og:site_name" content="awesome import • guestbook" />
-                <meta property="og:title" content="awesome import • guestbook" />
-                <meta property="og:description" content="Createhb21 • awesome import" />
-                <meta property="og:image" content={logo} />
-            </Helmet>
+            <Meta metaData={metaData} />
             <div css={wrapperStyle(theme)}>
                 <header>
                     <h1>GuestBook</h1>

@@ -11,6 +11,7 @@ import { clearPost, getPostAction } from '../../modules/Fetch/FetchPostData';
 import { createSelector } from '@reduxjs/toolkit';
 import CopyClipboard from '../../hooks/copyClipboard';
 import { font } from '../../lib/styles/font';
+import Meta from '../Meta/Meta';
 
 function WritePostDetail() {
     const theme = useTheme();
@@ -43,10 +44,18 @@ function WritePostDetail() {
         };
     }, [dispatch, id]);
 
+    const currentUrl = window.location.href;
+    const metaData = {
+        title: data?.title,
+        description: 'Createhb21 • awesome import • write',
+        url: currentUrl,
+    };
+
     if (!data) return null;
 
     return (
         <>
+            <Meta metaData={metaData} />
             {data && (
                 <div css={wrapperStyle(theme)}>
                     <header css={headerStyle(theme)}>
