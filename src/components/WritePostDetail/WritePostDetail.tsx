@@ -49,6 +49,7 @@ function WritePostDetail() {
         title: data?.title,
         description: 'Createhb21 • awesome import • write',
         url: currentUrl,
+        image: data?.img,
     };
 
     if (!data) return null;

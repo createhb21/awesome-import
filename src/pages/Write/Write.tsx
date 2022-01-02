@@ -11,6 +11,7 @@ import AwesomeLoader from '../../components/AwesomeLoader/AwesomeLoader';
 import media from '../../lib/styles/media';
 import { font } from '../../lib/styles/font';
 import Meta from '../../components/Meta/Meta';
+import { logo } from '../../assets/images';
 
 function Write() {
     const theme = useTheme();
@@ -38,6 +39,7 @@ function Write() {
         title: 'awesome import • write',
         description: 'Createhb21 • awesome import • write',
         url: currentUrl,
+        image: logo,
     };
 
     if (loading && !data) return <AwesomeLoader />;

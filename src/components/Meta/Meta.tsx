@@ -12,33 +12,36 @@ export interface MetaTypes {
         title: string;
         description: string;
         url: string;
+        image: string;
     };
 }
 
 const Meta = ({ metaData }: MetaTypes) => {
     const lang = locales['en'];
     const title = metaData.title;
-    const description = metaData.description;
     const currentUrl = metaData.url;
+    const description = metaData.description;
+    const image = metaData.image;
 
     return (
         <Helmet titleTemplate="%s">
             <html lang={lang} />
-            <meta charSet="utf-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <meta name="theme-color" content="#000000" />
             <title>{title}</title>
+            {!image && <link rel="icon" href={logo} />}
             <meta name="description" content={description} />
-            <link rel="icon" href={logo} />
+            {image ? <link rel="image_src" href={image} /> : null}
+            {image ? <meta itemProp="image" content={image} /> : null}
+            {/* og */}
             <meta property="og:url" content={currentUrl} />
             <meta property="og:site_name" content="awesome import" />
             <meta property="og:title" content={title} />
+            <meta property="og:image" content={image} />
             {description ? <meta property="og:description" content={description} /> : null}
-            <meta property="og:image" content={logo} />
+            {/* twitter */}
             <meta name="twitter:card" content="summary_large_image" />
             <meta name="twitter:title" content={title} />
             {description ? <meta name="twitter:description" content={description} /> : null}
-            <meta name="twitter:image" content={logo} /> : null
+            <meta name="twitter:image" content={image} /> : null
             <meta name="twitter:site" content="awesome import" />
         </Helmet>
     );

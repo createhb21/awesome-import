@@ -11,6 +11,7 @@ import AwesomeLoader from '../../components/AwesomeLoader/AwesomeLoader';
 import media from '../../lib/styles/media';
 import { font } from '../../lib/styles/font';
 import Meta from '../../components/Meta/Meta';
+import { logo } from '../../assets/images';
 
 function Log() {
     const theme = useTheme();
@@ -38,6 +39,7 @@ function Log() {
         title: 'awesome import • log',
         description: 'Createhb21 • awesome import • log',
         url: currentUrl,
+        image: logo,
     };
 
     if (loading && !data) return <AwesomeLoader />;

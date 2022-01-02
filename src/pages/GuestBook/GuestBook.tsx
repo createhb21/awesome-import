@@ -10,6 +10,7 @@ import AwesomeLoader from '../../components/AwesomeLoader/AwesomeLoader';
 import { font } from '../../lib/styles/font';
 import media from '../../lib/styles/media';
 import Meta from '../../components/Meta/Meta';
+import { logo } from '../../assets/images';
 
 interface GuestBookTypes {
     userName: string;
@@ -47,6 +48,7 @@ function GuestBook() {
         title: 'awesome import • guestbook',
         description: 'Createhb21 • awesome import • guestbook',
         url: currentUrl,
+        image: logo,
     };
 
     if (loading) return <AwesomeLoader />;
