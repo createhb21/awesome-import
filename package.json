@@ -36,10 +36,6 @@
         "react-redux": "^7.2.6",
         "react-router-dom": "^6.0.2",
         "react-scripts": "4.0.3",
-<<<<<<< HEAD
-=======
-        "react-snap": "^1.23.0",
->>>>>>> df2463f6097b66cd856a3bd40c0716306f434c31
         "redux": "^4.1.2",
         "redux-devtools-extension": "^2.13.9",
         "redux-logger": "^3.0.6",
@@ -52,12 +48,7 @@
         "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
-<<<<<<< HEAD
         "eject": "react-scripts eject"
-=======
-        "eject": "react-scripts eject",
-        "postbuild": "react-snap"
->>>>>>> df2463f6097b66cd856a3bd40c0716306f434c31
     },
     "eslintConfig": {
         "extends": [
@@ -76,11 +67,8 @@
             "last 1 firefox version",
             "last 1 safari version"
         ]
-<<<<<<< HEAD
     },
     "resolutions": {
         "react-error-overlay": "6.0.9"
-=======
->>>>>>> df2463f6097b66cd856a3bd40c0716306f434c31
     }
 }
