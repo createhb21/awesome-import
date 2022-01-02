@@ -23,6 +23,7 @@ export const Link = (props: DraftDecoratorComponentProps) => {
         } else {
             setLinkColor(randomLinkColor);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [location]);
     return (
         <a rel="noopener noreferrer" target="_blank" href={url} css={getColorStyle(linkColor, location)}>

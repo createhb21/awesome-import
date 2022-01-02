@@ -87,7 +87,6 @@ const wrapperStyle = (theme: ITheme) => css`
     ${media.small} {
         padding-left: 1rem;
         padding-right: 1rem;
-
         & > header {
             & > h1 {
                 font-size: ${font.mobileXXLarge} !important;

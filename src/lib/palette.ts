@@ -327,6 +327,7 @@ export const darkBg = {
 
 export const brandColor = 'rgba(49, 120, 198, 0.332)';
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
     red: red,
     pink: pink,

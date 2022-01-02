@@ -10,7 +10,7 @@ export type PostRoofBtnProps = {
     data: any;
 };
 
-function PostRoofBtn({ currentId, data }: PostRoofBtnProps) {
+function PostRoofBtn({ currentId }: PostRoofBtnProps) {
     const theme = useTheme();
     const navigate = useNavigate();
     const roofToOtherPost = (num: boolean) => {
