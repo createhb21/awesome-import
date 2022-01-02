@@ -29,7 +29,6 @@ const Meta = ({ metaData }: MetaTypes) => {
             <title>{title}</title>
             {!image && <link rel="icon" href={logo} />}
             <meta name="description" content={description} />
-            {image ? <link rel="image_src" href={image} /> : null}
             {image ? <meta itemProp="image" content={image} /> : null}
             {/* og */}
             <meta property="og:url" content={currentUrl} />
