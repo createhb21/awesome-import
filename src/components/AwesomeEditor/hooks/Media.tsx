@@ -21,14 +21,15 @@ const imgWrapStyle = (width: number, location: string) => css`
         margin: 0;
         padding: 0;
         width: ${width}%;
-        max-height: ${location === '/log' || location === '/guestbook' ? '274px' : ''};
+        max-height: ${location === '/log' || location === '/guestbook' ? '274px' : '455px'};
+        border-radius: 5px;
     }
 `;
 
 export const Image = (props: BlockComponentProps) => {
     const { block, contentState } = props;
     const { src } = contentState.getEntity(block.getEntityAt(0)).getData();
-    const [width, setWidth] = useState(80);
+    const [width, setWidth] = useState(98);
     const { isSetterMode } = useSelector((state: RootReducerType) => state.ImageSetterReducer);
     const location = window.location.pathname;
 

@@ -34,12 +34,13 @@ function Write() {
         dispatch(getPostsAction());
     }, [data, dispatch]);
 
+    let last = posts.length - 1;
     const currentUrl = window.location.href;
     const metaData = {
         title: 'awesome import • write',
         description: 'Createhb21 • awesome import • write',
         url: currentUrl,
-        image: logo,
+        image: posts[last]?.img,
     };
 
     if (loading && !data) return <AwesomeLoader />;
