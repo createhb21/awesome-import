@@ -11,7 +11,6 @@ import AwesomeLoader from '../../components/AwesomeLoader/AwesomeLoader';
 import media from '../../lib/styles/media';
 import { font } from '../../lib/styles/font';
 import Meta from '../../components/Meta/Meta';
-import { logo } from '../../assets/images';
 
 function Write() {
     const theme = useTheme();

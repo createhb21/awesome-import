@@ -2,15 +2,23 @@
 import React, { useEffect, useState } from 'react';
 import { CompositeDecorator, DraftDecoratorComponentProps } from 'draft-js';
 import randomColor from 'randomcolor';
-import { css } from '@emotion/react';
+import { css, useTheme } from '@emotion/react';
 import palette from '../../../lib/palette';
+import { ITheme } from '../../../lib/styles/Theme';
 
-const getColorStyle = (linkColor: string, location: string) => css`
+const getColorStyle = (linkColor: string, location: string, theme: ITheme) => css`
     color: ${linkColor};
     border-bottom: ${location !== '/guestbook' && '2px solid rgba(143,254,191,0.87)'};
+
+    &:hover {
+        color: ${theme.primaryColor};
+        transition: 0.7s;
+        transition-property: color;
+    }
 `;
 
 export const Link = (props: DraftDecoratorComponentProps) => {
+    const theme = useTheme();
     const randomLinkColor = randomColor();
     const location = window.location.pathname;
     const blueGrayColor = palette.blueGrey[300];
@@ -26,7 +34,7 @@ export const Link = (props: DraftDecoratorComponentProps) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [location]);
     return (
-        <a rel="noopener noreferrer" target="_blank" href={url} css={getColorStyle(linkColor, location)}>
+        <a rel="noopener noreferrer" target="_blank" href={url} css={getColorStyle(linkColor, location, theme)}>
             {props.children}
         </a>
     );

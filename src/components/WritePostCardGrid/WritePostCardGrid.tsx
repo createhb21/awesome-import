@@ -104,6 +104,14 @@ const categoryStyle = (theme: ITheme) => css`
 const contentWrapperStyle = (theme: ITheme) => css`
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
+
+    &:hover {
+        & > h1 {
+            color: ${theme.primaryColor};
+            transition: 0.5s;
+            transition-property: color;
+        }
+    }
 `;
 
 const titleStyle = (theme: ITheme) => css`
@@ -117,12 +125,6 @@ const titleStyle = (theme: ITheme) => css`
     font-size: ${font.xLarge};
     line-height: 2rem;
     margin-bottom: 0.5rem;
-
-    &:hover {
-        color: ${theme.primaryColor};
-        transition: 0.5s;
-        transition-property: color;
-    }
 `;
 
 const summaryStyle = (theme: ITheme) => css`

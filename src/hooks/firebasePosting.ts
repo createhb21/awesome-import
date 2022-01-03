@@ -94,7 +94,7 @@ export const logPostCreateApi = async (titleRef: any, data: any, uid?: string) =
 export const guestBookCommentCreateApi = async (data: any, nickNameRef: any, pwRef: any, setEditorState: any) => {
     const db = getDatabase(firebaseApp);
     const newPostKey = push(child(ref(db), 'guestbook')).key;
-    const commentMoment = moment().format('YYYY년MM월DD일 HH:mm:ss');
+    const commentMoment = moment().format('YYYY년 MM월 DD일 HH:mm:ss');
     const initialState = EditorState.createEmpty(linkDecorator);
 
     const inputData = convertToRaw(data);
