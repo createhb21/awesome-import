@@ -38,7 +38,7 @@ export const GlobalStyle = (theme: ITheme) => css`
     * {
         box-sizing: border-box;
     }
-
+    /* 
     *::-webkit-scrollbar {
         width: 0px;
         background: none;
@@ -46,10 +46,14 @@ export const GlobalStyle = (theme: ITheme) => css`
 
     *::-webkit-scrollbar-track {
         background: none;
-    }
+    } */
 
     code {
-        font-family: 'Fira Mono', source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+        font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+    }
+
+    pre {
+        font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
     }
 
     input,

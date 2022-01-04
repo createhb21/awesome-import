@@ -1,4 +1,5 @@
 import '@emotion/react';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Theme } from './Theme';
 
 declare module '@emotion/react' {
@@ -15,5 +16,8 @@ declare module '@emotion/react' {
         buttonBorder: string;
         buttonBg: string;
         buttonBgHover: string;
+        quoteBorder: string;
+        quoteBackground: string;
+        codeBackground: string;
     }
 }

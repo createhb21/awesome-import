@@ -13,6 +13,9 @@ export interface ITheme {
     buttonBorder: string;
     buttonBg: string;
     buttonBgHover: string;
+    quoteBorder: string;
+    quoteBackground: string;
+    codeBackground: string;
 }
 
 export const themeLight: Readonly<ITheme> = {
@@ -28,6 +31,9 @@ export const themeLight: Readonly<ITheme> = {
     buttonBorder: darkText.primary,
     buttonBg: lightText.primary,
     buttonBgHover: '#C9D1D9',
+    quoteBorder: '#2196f3',
+    quoteBackground: '#e3f2fd',
+    codeBackground: '#F7F6F3',
 };
 
 export const themeDark: Readonly<ITheme> = {
@@ -43,4 +49,7 @@ export const themeDark: Readonly<ITheme> = {
     buttonBorder: '#C9D1D9',
     buttonBg: '#161b22',
     buttonBgHover: palette.blueGrey[900],
+    quoteBorder: '#59C5EC',
+    quoteBackground: '#354A53',
+    codeBackground: '#272C34',
 };
