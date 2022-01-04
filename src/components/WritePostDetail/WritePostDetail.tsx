@@ -127,7 +127,7 @@ const headerStyle = (theme: ITheme) => css`
         }
     }
     padding-top: 4rem;
-    padding-bottom: 3rem;
+    padding-bottom: 1rem;
 
     & > div {
         margin-bottom: 0.5rem;
