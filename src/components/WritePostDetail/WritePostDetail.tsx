@@ -83,8 +83,8 @@ function WritePostDetail() {
                             <AwesomeRenderer>{data?.body}</AwesomeRenderer>
                         </main>
                         <div css={tagsWrapperStyle}>
-                            {tags.map(tag => {
-                                return <span># {tag}</span>;
+                            {tags.map((tag, i) => {
+                                return <span key={i}># {tag}</span>;
                             })}
                         </div>
                     </div>

@@ -131,6 +131,7 @@ const summaryStyle = (theme: ITheme) => css`
     ${media.small} {
         grid-row-start: 2;
         grid-column: 1/8;
+        font-size: ${font.mobileMedium};
     }
 
     grid-row-start: 2;
@@ -138,11 +139,8 @@ const summaryStyle = (theme: ITheme) => css`
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     font-size: ${font.Medium};
-    line-height: 1.5rem
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
+    line-height: 1.5rem;
+
     & > p {
         height: 3rem;
         color: ${theme.mainContentText};
