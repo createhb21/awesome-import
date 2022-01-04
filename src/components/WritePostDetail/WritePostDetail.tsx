@@ -37,6 +37,11 @@ function WritePostDetail() {
     const { data } = useSelector(getPostCreateSelector);
     const dispatch = useDispatch();
 
+    let tags = [];
+    for (let key in data?.tags) {
+        tags.push(key);
+    }
+
     useEffect(() => {
         dispatch(getPostAction(id));
         return () => {
@@ -77,6 +82,11 @@ function WritePostDetail() {
                         <main css={contentStyle(theme)}>
                             <AwesomeRenderer>{data?.body}</AwesomeRenderer>
                         </main>
+                        <div css={tagsWrapperStyle}>
+                            {tags.map(tag => {
+                                return <span># {tag}</span>;
+                            })}
+                        </div>
                     </div>
                     {mobileSlideImg && (
                         <span css={mobileCopiedClipboard(theme, mobileSlideImg)}>
@@ -211,9 +221,42 @@ const infoStyle = (theme: ITheme) => css`
 
 const contentStyle = (theme: ITheme) => css`
     color: ${theme.textGray};
-
+    margin-bottom: 1.5rem;
     & > p {
         margin-bottom: 2rem;
         line-height: 1.625;
+    }
+`;
+
+const tagsWrapperStyle = (theme: ITheme) => css`
+    ${media.small} {
+        & > span {
+            font-size: ${font.mobileSmall} !important;
+        }
+    }
+
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    border-top: 0.5px solid ${theme.grayBorder};
+
+    & > span {
+        color: ${theme.textGray};
+        padding: 0.3rem 3px;
+        padding-top: 1.2rem;
+        font-size: ${font.Small};
+        font-weight: 700;
+
+        &:hover {
+            color: ${theme.primaryColor};
+            transform: translateY(-15%);
+            transition: ease-in-out 0.25s;
+            transition-property: color, transform;
+        }
+
+        &:last-of-type {
+            margin-right: 5px;
+        }
     }
 `;

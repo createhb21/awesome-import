@@ -108,7 +108,7 @@ const contentWrapperStyle = (theme: ITheme) => css`
     &:hover {
         & > h1 {
             color: ${theme.primaryColor};
-            transition: 0.5s;
+            transition: 0.2s;
             transition-property: color;
         }
     }
