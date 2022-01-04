@@ -71,18 +71,6 @@ const wrapperStyle = (theme: ITheme) => css`
         margin-bottom: 10px;
     }
 
-    .editor-container .editor-inner .content-container .align-left div {
-        text-align: left;
-    }
-
-    .editor-container .editor-inner .content-container .align-center div {
-        text-align: center;
-    }
-
-    .editor-container .editor-inner .content-container .align-right div {
-        text-align: right;
-    }
-
     .editor-container .editor-inner {
         border: none;
         border-radius: 4px;

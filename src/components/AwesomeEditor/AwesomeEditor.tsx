@@ -198,22 +198,7 @@ const TextEditor = ({ guest }: EditorProps): JSX.Element => {
     };
 
     const handlePreview = () => {
-        const options = {
-            blockStyleFn: (block: any) => {
-                if (block.getType() === 'left' || block.getType() === 'center' || block.getType() === 'right') {
-                    return {
-                        style: {
-                            'text-align': block.getType(),
-                        },
-                    };
-                }
-            },
-        };
-
         const data = JSON.stringify(convertToRaw(editorState.getCurrentContent()));
-        // const data = JSON.stringify(stateToHTML(editorState.getCurrentContent(), options));
-        console.log(data);
-
         localStorage.setItem(TEXT_EDITOR_ITEM, data);
         !visiblePreview ? setVisiblePreview(true) : setVisiblePreview(false);
     };
