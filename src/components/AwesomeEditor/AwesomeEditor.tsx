@@ -337,30 +337,15 @@ const wrapperStyle = (theme: ITheme, visiblePreview: boolean, guest: boolean | u
     margin-top: ${guest ? '' : '5rem'};
 
     .DraftEditor-root {
-        /* max-height: ${guest ? '115px' : '800px'};
-        overflow-y: auto; */
         margin: 1rem 0;
         margin-bottom: 2rem;
         border-radius: 0.5rem;
     }
 
-    .DraftEditor-editorContainer {
-    }
-
     .public-DraftEditor-content {
         padding: 1.5rem;
-
         border: 1px solid ${theme.grayBorder};
         border-radius: 8px;
-    }
-
-    .editor-container {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        justify-content: center;
     }
 
     .editor-container .editor-inner {
@@ -372,12 +357,6 @@ const wrapperStyle = (theme: ITheme, visiblePreview: boolean, guest: boolean | u
     }
 
     .editor-container .editor-inner .toolbar-container {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
         margin-bottom: 10px;
     }
 
@@ -401,8 +380,8 @@ const wrapperStyle = (theme: ITheme, visiblePreview: boolean, guest: boolean | u
     }
 
     .editor-container .editor-inner .content-container blockquote {
-        border-left: 5px solid #2196f3;
-        background-color: #e3f2fd;
+        border-left: 5px solid ${theme.quoteBorder};
+        background-color: ${theme.quoteBackground};
         padding: 15px 10px 15px 20px;
     }
 
@@ -412,19 +391,40 @@ const wrapperStyle = (theme: ITheme, visiblePreview: boolean, guest: boolean | u
     }
 
     .editor-container .editor-inner .content-container pre {
-        color: #abb2bf;
-        padding: 10px;
-        font-size: 0.785rem;
+        color: ${theme.textGray};
+        padding: 7px;
+        font-size: ${font.Small};
+        background-color: ${theme.codeBackground};
+        -webkit-box-shadow: 0px 1px 10px rgba(19, 24, 48, 0.35);
+        box-shadow: 0px 1px 10px rgba(19, 24, 48, 0.35);
+        border-radius: 8px;
     }
 
-    .editor-container .editor-inner .content-container pre:nth-of-type(odd) {
-        font-family: monospace;
-        background-color: #282c34;
+    .editor-container .editor-inner .content-container pre pre {
+        background-color: ${theme.codeBackground};
+        -webkit-box-shadow: 0.5px 0.5px 10px ${theme.grayBorder} -0.5px -0.5px 10px ${theme.grayBorder};
+        box-shadow: 0px -0.7px 1px rgba(19, 24, 48, 0.25), 0px 0.25px 1px rgba(19, 24, 48, 0.25);
+        border-radius: 8px;
+        padding: 25px;
+        padding-top: 45px;
+        position: relative;
     }
 
-    .editor-container .editor-inner .content-container pre:nth-of-type(even) {
-        font-family: monospace;
-        background-color: #2d3138;
+    .editor-container .editor-inner .content-container pre pre::before {
+        content: '🔴 🟡 🟢';
+        width: 70px;
+        display: inline-flex;
+        justify-content: space-around;
+        align-items: center;
+        position: absolute;
+        top: 7px;
+        left: 21px;
+        box-shadow: 0px -1px 1px rgba(19, 24, 48, 0.25);
+        border-radius: 8px;
+    }
+
+    .editor-container .editor-inner .content-container pre pre span {
+        font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New' !important;
     }
 
     .toolbar-inner {
@@ -490,6 +490,32 @@ const wrapperStyle = (theme: ITheme, visiblePreview: boolean, guest: boolean | u
     ${media.small} {
         .select {
             font-size: ${font.mobileSmall} !important;
+        }
+
+        .public-DraftEditor-content {
+            font-size: ${font.mobileSmall} !important;
+        }
+
+        .editor-container .editor-inner .content-container blockquote {
+            border-left: 5px solid ${theme.quoteBorder};
+            background-color: ${theme.quoteBackground};
+            padding: 10px 10px 10px 20px;
+        }
+
+        .content-container blockquote {
+            font-size: 0.7rem;
+            line-height: 1rem;
+            word-break: break-all;
+            white-space: pre-wrap;
+        }
+
+        .editor-container .editor-inner .content-container pre {
+            font-size: 0.6rem;
+        }
+
+        .editor-container .editor-inner .content-container pre pre::before {
+            width: 50px;
+            left: 19px;
         }
     }
 `;

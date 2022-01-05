@@ -107,18 +107,17 @@ const wrapperStyle = (theme: ITheme) => css`
 
     ${media.small} {
         .public-DraftEditor-content {
-            font-size: ${font.mobileSmall} !important;
+            font-size: ${font.Small} !important;
         }
 
         .editor-container .editor-inner .content-container blockquote {
-            border-left: 5px solid ${theme.quoteBorder};
-            background-color: ${theme.quoteBackground};
-            padding: 10px 10px 10px 20px;
+            padding-top: 5px;
+            padding-bottom: 5px;
         }
 
         .content-container blockquote {
-            font-size: 0.7rem;
-            line-height: 1rem;
+            font-size: 0.8rem;
+            line-height: 1.1rem;
             word-break: break-all;
             white-space: pre-wrap;
         }
@@ -128,7 +127,7 @@ const wrapperStyle = (theme: ITheme) => css`
         }
 
         .editor-container .editor-inner .content-container pre pre::before {
-            width: 50px;
+            width: 53px;
             left: 19px;
         }
     }

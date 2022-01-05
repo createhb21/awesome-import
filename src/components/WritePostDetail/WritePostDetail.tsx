@@ -214,7 +214,7 @@ const infoStyle = (theme: ITheme) => css`
         margin-right: 0.375rem;
     }
 
-    &{media.small} {
+    {media.small} {
         font-size: ${font.mobileSmall} !important;
     }
 `;
