@@ -387,7 +387,7 @@ const wrapperStyle = (theme: ITheme, visiblePreview: boolean, guest: boolean | u
 
     .content-container blockquote {
         font-size: 1rem;
-        line-height: 0.2;
+        line-height: 1.625;
     }
 
     .editor-container .editor-inner .content-container pre {

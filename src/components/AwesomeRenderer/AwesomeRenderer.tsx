@@ -111,8 +111,7 @@ const wrapperStyle = (theme: ITheme) => css`
         }
 
         .editor-container .editor-inner .content-container blockquote {
-            padding-top: 5px;
-            padding-bottom: 5px;
+            line-height: 1.825;
         }
 
         .content-container blockquote {
