@@ -12,6 +12,7 @@ import { createSelector } from '@reduxjs/toolkit';
 import CopyClipboard from '../../hooks/copyClipboard';
 import { font } from '../../lib/styles/font';
 import Meta from '../Meta/Meta';
+import thumbnail from '../../assets/images/thumbnail.png';
 
 function WritePostDetail() {
     const theme = useTheme();
@@ -73,6 +74,7 @@ function WritePostDetail() {
                             {slideImg && <span css={copiedClipboard(theme, slideImg)}>copied 😊</span>}
                         </span>
                         <span css={infoStyle(theme)}>
+                            <img src={thumbnail} alt="thumbnail" />
                             Createhb21
                             <span>·</span>
                             {data?.date}
@@ -209,7 +211,15 @@ const infoStyle = (theme: ITheme) => css`
     display: inline-flex;
     align-items: center;
 
-    & > span {
+    & > img {
+        width: 2.1rem;
+        height: 2.1rem;
+        border-radius: 50%;
+        margin-right: 8px;
+        cursor:pointer;
+    }
+
+    & > span:last-of-type {
         margin-left: 0.375rem;
         margin-right: 0.375rem;
     }
