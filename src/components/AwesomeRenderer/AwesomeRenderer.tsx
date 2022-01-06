@@ -60,7 +60,7 @@ const wrapperStyle = (theme: ITheme) => css`
     .editor-container .editor-inner .content-container blockquote {
         border-left: 5px solid ${theme.quoteBorder};
         background-color: ${theme.quoteBackground};
-        padding: 10px 10px 10px 20px;
+        padding: 12px 10px 10px 20px;
     }
 
     .content-container blockquote {

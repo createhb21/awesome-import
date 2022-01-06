@@ -74,7 +74,7 @@ export const logPostCreateApi = async (titleRef: any, data: any, uid?: string) =
         starCount: 0,
     };
 
-    if (!(title === '') && !(inputData.blocks[0].text === '')) {
+    if (!(title === '') && !(inputData == null)) {
         try {
             await FirebasePosting('log/posts', postingData).then(() => {
                 console.log('success');

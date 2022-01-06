@@ -39,7 +39,7 @@ export const themeLight: Readonly<ITheme> = {
 export const themeDark: Readonly<ITheme> = {
     primaryColor: '#3178c6',
     text: 'white',
-    textGray: '#BEBFC2',
+    textGray: '#EBEBEB',
     textNormal: lightText.primary,
     mainContentText: 'rgba(75, 85, 99, 0.97)',
     background: '#272A33',
