@@ -16,6 +16,10 @@ import { RootReducerType } from '../..';
 import { font } from '../../lib/styles/font';
 import media from '../../lib/styles/media';
 
+import '../../lib/styles/Prism.css';
+import Prism from 'prismjs';
+const PrismDecorator = require('draft-js-prism');
+
 const TEXT_EDITOR_ITEM = 'text-editor-item';
 
 export type Toggles = {
@@ -42,6 +46,14 @@ const TextEditor = ({ guest }: EditorProps): JSX.Element => {
         UNDERLINE: false,
         STRIKETHROUGH: false,
     });
+
+    const onChange = (newState: EditorState) => {
+        const decorator = new PrismDecorator({
+            prism: Prism,
+            defaultSyntax: 'javascript',
+        });
+        setEditorState(EditorState.set(newState, { decorator }));
+    };
 
     useEffect(() => {
         const inlineStyle = editorState.getCurrentInlineStyle();
@@ -296,7 +308,7 @@ const TextEditor = ({ guest }: EditorProps): JSX.Element => {
                     )}
                     {!visiblePreview ? (
                         <div className="content-container">
-                            <Editor editorState={editorState} onChange={setEditorState} handleKeyCommand={handleKeyCommand} blockStyleFn={getBlockStyle} blockRendererFn={mediaBlockRenderer} />
+                            <Editor editorState={editorState} onChange={onChange} handleKeyCommand={handleKeyCommand} blockStyleFn={getBlockStyle} blockRendererFn={mediaBlockRenderer} />
                         </div>
                     ) : (
                         <AwesomePreview />

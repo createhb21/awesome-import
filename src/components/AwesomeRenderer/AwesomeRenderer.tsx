@@ -8,6 +8,10 @@ import { font } from '../../lib/styles/font';
 import { ITheme } from '../../lib/styles/Theme';
 import { css, useTheme } from '@emotion/react';
 
+import '../../lib/styles/Prism.css';
+import Prism from 'prismjs';
+const PrismDecorator = require('draft-js-prism');
+
 export type AwesomeRendererProps = {
     children: any;
     guest?: boolean;
@@ -20,7 +24,12 @@ function AwesomeRenderer({ children, guest }: AwesomeRendererProps) {
 
     useEffect(() => {
         const initialState = EditorState.createWithContent(convertFromRaw(JSON.parse(children)), linkDecorator);
-        setEditorState(initialState);
+
+        const decorator = new PrismDecorator({
+            prism: Prism,
+            defaultSyntax: 'javascript',
+        });
+        setEditorState(EditorState.set(initialState, { decorator }));
     }, [children]);
 
     return (
