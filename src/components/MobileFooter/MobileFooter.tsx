@@ -11,7 +11,7 @@ function MobileFooter() {
     return (
         <React.Fragment>
             <footer css={[common, footerStyle(theme)]}>
-                <MobileFooterItem icon="workspace" text="Write" to="/write" />
+                <MobileFooterItem icon="workspace" text="Dev" to="/dev" />
                 <MobileFooterItem icon="flask" text="Log" to="/log" />
                 <MobileThemeSwitch icon="globe" />
             </footer>

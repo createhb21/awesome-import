@@ -181,7 +181,7 @@ const TextEditor = ({ guest }: EditorProps): JSX.Element => {
 
     const writeCreateApi = async (data: any, uid?: string) => {
         await writePostCreateApi(categoryRef, firstInputRef, data, uid).then(() => {
-            navigate('/write');
+            navigate('/dev');
         });
     };
 
