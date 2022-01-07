@@ -31,8 +31,8 @@ function App() {
                 <AppLayout.Main>
                     <Routes>
                         <Route path="/" element={<HomePage />} />
-                        <Route path="/write" element={<Write />} />
-                        <Route path="/write/:id" element={<WritePostDetail />} />
+                        <Route path="/dev" element={<Write />} />
+                        <Route path="/dev/:id" element={<WritePostDetail />} />
                         <Route path="/log" element={<Log />} />
                         <Route path="/guestbook" element={<GuestBook />} />
                         <Route path="/edit" element={<AwesomeEditor />} />

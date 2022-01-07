@@ -33,7 +33,7 @@ function AwesomeSidebar() {
                 <Link to="/">{isDarkMode ? <img src={logo_dark} alt="logo" ref={navRef} /> : <img src={logo_light} alt="logo" ref={navRef} />}</Link>
             </div>
             <ul css={menuStyle}>
-                <SidebarItem icon="workspace" text="Write" to="/write" />
+                <SidebarItem icon="workspace" text="Dev" to="/dev" />
                 <SidebarItem icon="flask" text="Log" to="/log" />
                 <SidebarItem icon="plus" text="Plus" to="/guestbook" />
                 <ThemeSwitchBtn icon="globe" mode="side" />

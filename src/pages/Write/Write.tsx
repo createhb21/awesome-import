@@ -36,8 +36,8 @@ function Write() {
     let last = posts.length - 1;
     const currentUrl = window.location.href;
     const metaData = {
-        title: 'awesome import • write',
-        description: 'Createhb21 • awesome import • write',
+        title: 'awesome import • dev',
+        description: 'Createhb21 • awesome import • dev',
         url: currentUrl,
         image: posts[last]?.img,
     };
@@ -64,7 +64,7 @@ function Write() {
             <Meta metaData={metaData} />
             <div css={wrapperStyle(theme)}>
                 <header>
-                    <h1>Write</h1>
+                    <h1>Dev</h1>
                     <p>Createhb21 👨‍💻, 개발 관련 글을 기록하는 공간입니다 :D</p>
                 </header>
                 <ul css={postListStyle(theme)}>

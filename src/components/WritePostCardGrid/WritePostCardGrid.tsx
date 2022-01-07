@@ -20,7 +20,7 @@ function TechPostCardGrid({ post, postId }: WritePostCardGridProps) {
         <li css={wrapperStyle(theme)}>
             <Link
                 to={{
-                    pathname: `/write/${postId}`,
+                    pathname: `/dev/${postId}`,
                 }}
             >
                 <article css={containerStyle(theme)}>

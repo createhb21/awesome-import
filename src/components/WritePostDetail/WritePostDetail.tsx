@@ -215,7 +215,7 @@ const infoStyle = (theme: ITheme) => css`
         width: 2.1rem;
         height: 2.1rem;
         border-radius: 50%;
-        margin-right: 8px;
+        margin-right: 10px;
         cursor:pointer;
     }
 
