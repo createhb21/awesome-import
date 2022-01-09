@@ -2,7 +2,7 @@
 import React, { useEffect, useRef } from 'react';
 import 'moment/locale/ko';
 import { css, useTheme } from '@emotion/react';
-import { Editor, EditorState, RichUtils, AtomicBlockUtils, DraftEditorCommand, convertToRaw, getDefaultKeyBinding, Modifier } from 'draft-js';
+import { Editor, EditorState, RichUtils, AtomicBlockUtils, DraftEditorCommand, convertToRaw, getDefaultKeyBinding } from 'draft-js';
 import 'draft-js/dist/Draft.css';
 import { ITheme } from '../../lib/styles/Theme';
 import { linkDecorator } from './hooks/Link';
