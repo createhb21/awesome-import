@@ -2,7 +2,7 @@
 import React, { useEffect, useRef } from 'react';
 import 'moment/locale/ko';
 import { css, useTheme } from '@emotion/react';
-import { Editor, EditorState, RichUtils, AtomicBlockUtils, DraftEditorCommand, convertToRaw } from 'draft-js';
+import { Editor, EditorState, RichUtils, AtomicBlockUtils, DraftEditorCommand, convertToRaw, getDefaultKeyBinding, Modifier } from 'draft-js';
 import 'draft-js/dist/Draft.css';
 import { ITheme } from '../../lib/styles/Theme';
 import { linkDecorator } from './hooks/Link';
@@ -19,6 +19,7 @@ import media from '../../lib/styles/media';
 import '../../lib/styles/Prism.css';
 import Prism from 'prismjs';
 const PrismDecorator = require('draft-js-prism');
+const CodeUtils = require('draft-js-code');
 
 const TEXT_EDITOR_ITEM = 'text-editor-item';
 
@@ -103,12 +104,36 @@ const TextEditor = ({ guest }: EditorProps): JSX.Element => {
     };
 
     const handleKeyCommand = (command: DraftEditorCommand) => {
-        const newState = RichUtils.handleKeyCommand(editorState, command);
+        let newState;
+        if (CodeUtils.hasSelectionInBlock(editorState)) {
+            newState = CodeUtils.handleKeyCommand(editorState, command);
+        }
+        if (!newState) {
+            newState = RichUtils.handleKeyCommand(editorState, command);
+        }
         if (newState) {
-            setEditorState(newState);
+            onChange(newState);
             return 'handled';
         }
         return 'not-handled';
+    };
+
+    const mapKeyToEditorCommand = (e: any) => {
+        if (e.keyCode === 9 /* TAB */) {
+            onChange(CodeUtils.onTab(e, editorState));
+            return;
+        }
+        if (e.keyCode === 13 /* RETURN */) {
+            if (CodeUtils.hasSelectionInBlock(editorState)) {
+                onChange(CodeUtils.handleReturn(e, editorState));
+                return;
+            }
+        }
+        if (CodeUtils.hasSelectionInBlock(editorState)) {
+            const command = CodeUtils.getKeyBinding(e);
+            if (command) return command;
+        }
+        return getDefaultKeyBinding(e);
     };
 
     const handleTogggleClick = (e: React.MouseEvent, inlineStyle: string) => {
@@ -193,7 +218,7 @@ const TextEditor = ({ guest }: EditorProps): JSX.Element => {
 
     const writeCreateApi = async (data: any, uid?: string) => {
         await writePostCreateApi(categoryRef, firstInputRef, data, uid).then(() => {
-            navigate('/dev');
+            // navigate('/dev');
         });
     };
 
@@ -307,8 +332,15 @@ const TextEditor = ({ guest }: EditorProps): JSX.Element => {
                         </div>
                     )}
                     {!visiblePreview ? (
-                        <div className="content-container">
-                            <Editor editorState={editorState} onChange={onChange} handleKeyCommand={handleKeyCommand} blockStyleFn={getBlockStyle} blockRendererFn={mediaBlockRenderer} />
+                        <div className="content-container line-numbers">
+                            <Editor
+                                editorState={editorState}
+                                onChange={onChange}
+                                handleKeyCommand={handleKeyCommand}
+                                blockStyleFn={getBlockStyle}
+                                blockRendererFn={mediaBlockRenderer}
+                                keyBindingFn={mapKeyToEditorCommand}
+                            />
                         </div>
                     ) : (
                         <AwesomePreview />
@@ -360,7 +392,7 @@ const wrapperStyle = (theme: ITheme, visiblePreview: boolean, guest: boolean | u
         border-radius: 8px;
     }
 
-    .editor-container .editor-inner {
+    .content-container .editor-inner {
         margin: 10px 0px 0px 0px;
         padding: 10px;
         -webkit-box-shadow: 0px 1px 4px rgba(19, 24, 48, 0.2);
