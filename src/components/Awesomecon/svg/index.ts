@@ -21,6 +21,7 @@ import { ReactComponent as notion } from './notion.svg';
 import { ReactComponent as github } from './github.svg';
 import { ReactComponent as instagram } from './instagram.svg';
 import { ReactComponent as logo } from './logo.svg';
+import { ReactComponent as folder } from './folder.svg';
 
 export {
     react,
@@ -46,4 +47,5 @@ export {
     github,
     instagram,
     logo,
+    folder,
 };

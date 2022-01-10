@@ -11,6 +11,14 @@ export default function AppLayout({ children }: AppLayoutProps) {
     return <div css={containerStyle}>{children}</div>;
 }
 
+export type HeaderProps = {
+    children: React.ReactNode;
+};
+
+function Header({ children }: HeaderProps) {
+    return <header css={headerStyle}>{children}</header>;
+}
+
 export type SideProps = {
     children: React.ReactNode;
 };
@@ -35,10 +43,20 @@ function Main({ children }: MainProps) {
     return <main css={mainStyle}>{children}</main>;
 }
 
+AppLayout.Header = Header;
 AppLayout.Side = Side;
 AppLayout.Footer = Footer;
 AppLayout.Main = Main;
 
+const headerStyle = css`
+    width: 10rem;
+    height: auto;
+    display: flex;
+    margin-left: 46.25rem;
+    ${media.small} {
+        display: none;
+    }
+`;
 const sidebarStyle = css`
     width: 16.25rem;
     height: 100%;
@@ -62,7 +80,6 @@ const footerStyle = (theme: ITheme) => css`
         padding-right: 1.5rem;
     }
     width: 100%;
-    margin-left: 16.25rem;
     padding: 1rem;
     padding-top: 1.8rem;
     margin-top: 2.5rem;

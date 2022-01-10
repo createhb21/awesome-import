@@ -50,6 +50,7 @@ const homePageStyle = (theme: ITheme) => css`
         background-color: ${theme.primaryColor};
 
         & > span {
+            display: inline;
             margin-right: 0.5rem;
         }
     }

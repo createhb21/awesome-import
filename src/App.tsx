@@ -18,6 +18,8 @@ import AwesomeEditor from './components/AwesomeEditor/AwesomeEditor';
 import GuestBook from './pages/GuestBook';
 import Footer from './components/Footer';
 import AwesomeSidebar from './components/AwesomeSidebar/AwesomeSidebar';
+import ShowBasedOnTags from './pages/TagsAndCategories/ShowBasedOnTags';
+import Header from './components/Header/Header';
 
 function App() {
     const { isDarkMode } = useSelector((state: RootReducerType) => state.ThemeSwitchReducer);
@@ -25,6 +27,9 @@ function App() {
         <ThemeProvider theme={!isDarkMode ? themeLight : themeDark}>
             <MobileHeader />
             <AppLayout>
+                <AppLayout.Header>
+                    <Header />
+                </AppLayout.Header>
                 <AppLayout.Side>
                     <AwesomeSidebar />
                 </AppLayout.Side>
@@ -36,6 +41,7 @@ function App() {
                         <Route path="/log" element={<Log />} />
                         <Route path="/guestbook" element={<GuestBook />} />
                         <Route path="/edit" element={<AwesomeEditor />} />
+                        <Route path="/categories" element={<ShowBasedOnTags />} />
                     </Routes>
                     <AppLayout.Footer>
                         <Footer />
