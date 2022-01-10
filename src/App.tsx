@@ -18,7 +18,7 @@ import AwesomeEditor from './components/AwesomeEditor/AwesomeEditor';
 import GuestBook from './pages/GuestBook';
 import Footer from './components/Footer';
 import AwesomeSidebar from './components/AwesomeSidebar/AwesomeSidebar';
-import ShowBasedOnTags from './pages/TagsAndCategories/ShowBasedOnTags';
+import ShowBasedOnTags from './pages/TagsAndCategories/ShowBasedOnCateg';
 import Header from './components/Header/Header';
 
 function App() {

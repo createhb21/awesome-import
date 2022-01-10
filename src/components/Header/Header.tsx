@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useScroll } from '../../hooks/useScroll';
 
 function Header() {
@@ -21,7 +21,9 @@ function Header() {
 
     return (
         <div ref={navRef} css={wrapperStyle(scrollY, navBarHeight)}>
-            <span onClick={routingCategory}>Category</span>
+            <NavLink onClick={routingCategory} to="/categories">
+                Categories
+            </NavLink>
         </div>
     );
 }
@@ -30,7 +32,7 @@ export default Header;
 
 const wrapperStyle = (scrollY: number, navBarHeight: number) => css`
     width: 100%;
-    span {
+    a {
         padding-top: 2rem;
         padding-left: 4.5rem;
         position: absolute;
@@ -39,5 +41,9 @@ const wrapperStyle = (scrollY: number, navBarHeight: number) => css`
         transform: ${scrollY > navBarHeight ? 'translateY(-500px)' : ''};
         transition: 0.25s ease-in-out;
         transition-property: transform;
+
+        &.active {
+            font-weight: bold;
+        }
     }
 `;

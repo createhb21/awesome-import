@@ -5,8 +5,9 @@ import { useEffect, useState } from 'react';
 import AwesomeLoader from '../../components/AwesomeLoader/AwesomeLoader';
 import firebaseApp from '../../lib/storage/firebase';
 import CategoryGridCard from '../../components/CategoryGrid/CategoryGridCard';
+import media from '../../lib/styles/media';
 
-function ShowBasedOnTags() {
+function ShowBasedOnCateg() {
     const [loading, setLoading] = useState(false);
     const db = getDatabase(firebaseApp);
     const postRef = ref(db, 'write');
@@ -33,7 +34,7 @@ function ShowBasedOnTags() {
 
     return (
         <div css={wrapperStyle}>
-            <h1>Category</h1>
+            <h1>All Categories</h1>
             <ul css={postListStyle}>
                 {categories &&
                     categories.map((item: any, index: number) => {
@@ -44,9 +45,12 @@ function ShowBasedOnTags() {
     );
 }
 
-export default ShowBasedOnTags;
+export default ShowBasedOnCateg;
 
 const wrapperStyle = css`
+    ${media.small} {
+        padding-left: 1rem;
+    }
     margin-top: 5rem;
 `;
 

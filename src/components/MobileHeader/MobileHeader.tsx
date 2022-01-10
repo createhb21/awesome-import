@@ -44,6 +44,11 @@ function MobileHeader() {
         setVisible(false);
     };
 
+    const routeCategories = () => {
+        navigate('/categories');
+        setVisible(false);
+    };
+
     useEffect(() => {
         isUser ? setUserIn(true) : setTimeout(() => setUserIn(false), 1200);
     }, [isUser, userIn]);
@@ -63,6 +68,7 @@ function MobileHeader() {
                             {!userIn && <span onClick={googleLogin}>Login</span>}
                             {userIn && <span onClick={logOut}>Logout</span>}
                             <span onClick={routeGuestBook}>GustBook</span>
+                            <span onClick={routeCategories}>Categories</span>
                         </div>
                     </div>
                 </div>
@@ -164,10 +170,11 @@ const toggleStyle = (theme: ITheme, visible: boolean) => css`
         height: 75%;
         width: 150%;
         color: ${theme.textGray};
+        border-bottom: 1px solid ${palette.blueGrey[600]};
     }
 
-    & > span:first-of-type {
-        border-bottom: 1px solid ${palette.blueGrey[600]};
+    & > span:last-of-type {
+        border: none;
     }
 
     & > span:hover {
