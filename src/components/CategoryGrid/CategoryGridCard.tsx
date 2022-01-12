@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Awesomecon from '../Awesomecon';
 import palette from '../../lib/palette';
 import { ITheme } from '../../lib/styles/Theme';
+import media from '../../lib/styles/media';
 
 export type CategoryGridCardProps = {
     posts: any;
@@ -43,6 +44,15 @@ function CategoryGridCard({ posts, item }: CategoryGridCardProps) {
 export default CategoryGridCard;
 
 const gridStyle = (theme: ITheme) => css`
+    ${media.small} {
+        padidng: 0 1rem;
+
+        span {
+            h3 {
+                font-size: 1rem;
+            }
+        }
+    }
     width: 100%;
 
     span {
@@ -68,6 +78,8 @@ const gridStyle = (theme: ITheme) => css`
     ul {
         padding-top: 0.15rem;
         padding-left: 1.55rem;
+        max-height: 150px;
+        overflow-y: scroll;
     }
     li {
         padding: 0.15rem;

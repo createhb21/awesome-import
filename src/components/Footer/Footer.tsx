@@ -7,7 +7,7 @@ import FooterItem from './FooterItem';
 
 function Footer() {
     const github = 'https://github.com/createhb21';
-    const instagram = 'https://www.instagram.com/creathb21/';
+    const instagram = 'https://www.instagram.com/createhb21/';
     return (
         <React.Fragment>
             <div css={copyrightStyle}>© 2021 Createhb21.</div>
