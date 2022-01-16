@@ -1,36 +1,36 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { getDatabase, onValue, ref } from 'firebase/database';
 import { useEffect, useState } from 'react';
 import AwesomeLoader from '../../components/AwesomeLoader/AwesomeLoader';
-import firebaseApp from '../../lib/storage/firebase';
 import CategoryGridCard from '../../components/CategoryGrid/CategoryGridCard';
 import media from '../../lib/styles/media';
+import { RootReducerType } from '../..';
+import { useDispatch, useSelector } from 'react-redux';
+import { getPostsAction } from '../../modules/Fetch/FetchPostData';
 
 function ShowBasedOnCateg() {
-    const [loading, setLoading] = useState(false);
-    const db = getDatabase(firebaseApp);
-    const postRef = ref(db, 'write');
     const [posts, setPosts] = useState<any[]>([]);
     const [categories, setCategories] = useState<any[]>([]);
+    const { data, loading } = useSelector((state: RootReducerType) => state.FetchPostReducer.posts);
+
+    const dispatch = useDispatch();
+    useEffect(() => {
+        if (data) return;
+        dispatch(getPostsAction());
+    }, [data, dispatch]);
 
     useEffect(() => {
-        setLoading(true);
-        onValue(postRef, snapshot => {
-            const postData: any = [];
-            const objdata = snapshot.val().posts;
-            for (let key in objdata) {
-                postData.push(objdata[key]);
-            }
-            setPosts(postData);
-            const newCategories = [...new Set(postData.map((cate: any) => cate.category))];
-            setCategories(newCategories);
-            setLoading(false);
-        });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+        const postData: any = [];
+        const objdata = data;
+        for (let key in objdata) {
+            postData.push(objdata[key]);
+        }
+        setPosts(postData);
+        const newCategories = [...new Set(postData.map((cate: any) => cate.category))];
+        setCategories(newCategories);
+    }, [data]);
 
-    if (loading) return <AwesomeLoader />;
+    if (loading && !data) return <AwesomeLoader />;
 
     return (
         <div css={wrapperStyle}>

@@ -2,32 +2,27 @@
 import { css, useTheme } from '@emotion/react';
 import { ITheme } from '../../lib/styles/Theme';
 import WritePostCardGrid from '../../components/WritePostCardGrid';
-import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootReducerType } from '../..';
 import { getPostsAction, WritePostType } from '../../modules/Fetch/FetchPostData';
-import { createSelector } from '@reduxjs/toolkit';
 import AwesomeLoader from '../../components/AwesomeLoader/AwesomeLoader';
 import media from '../../lib/styles/media';
 import { font } from '../../lib/styles/font';
 import Meta from '../../components/Meta/Meta';
+import { useEffect } from 'react';
 
 function Write() {
     const theme = useTheme();
-    const getPost = (state: RootReducerType) => state.FetchPostReducer.posts;
-    const getPosts = createSelector(getPost, post => {
-        return post;
-    });
 
     const posts: any = [];
     const postId: any = [];
-    const { data, loading } = useSelector(getPosts);
-    const dispatch = useDispatch();
+    const { data, loading } = useSelector((state: RootReducerType) => state.FetchPostReducer.posts);
     for (let key in data) {
         postId.push(key);
         posts.push(data[key]);
     }
 
+    const dispatch = useDispatch();
     useEffect(() => {
         if (data) return;
         dispatch(getPostsAction());

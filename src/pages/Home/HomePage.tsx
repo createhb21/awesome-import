@@ -1,12 +1,20 @@
 /** @jsxImportSource @emotion/react */
 import { css, useTheme } from '@emotion/react';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import ProjectItem from '../../components/ProjectItem';
 import { font } from '../../lib/styles/font';
 import media from '../../lib/styles/media';
 import { ITheme } from '../../lib/styles/Theme';
+import { getPostsAction } from '../../modules/Fetch/FetchPostData';
 
 const HomePage = () => {
     const theme = useTheme();
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getPostsAction());
+    }, [dispatch]);
 
     return (
         <div css={wrapperStyle(theme)}>
