@@ -7,7 +7,7 @@ import media from '../../lib/styles/media';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootReducerType } from '../..';
 import AwesomeRenderer from '../AwesomeRenderer';
-import { clearPost, getPostAction } from '../../modules/Fetch/FetchPostData';
+import { getPostAction } from '../../modules/Fetch/FetchPostData';
 import { createSelector } from '@reduxjs/toolkit';
 import CopyClipboard from '../../hooks/copyClipboard';
 import { font } from '../../lib/styles/font';
