@@ -7,7 +7,7 @@ import media from '../../lib/styles/media';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootReducerType } from '../..';
 import AwesomeRenderer from '../AwesomeRenderer';
-import { getPostAction } from '../../modules/Fetch/FetchPostData';
+import { clearPost, getPostAction } from '../../modules/Fetch/FetchPostData';
 import { createSelector } from '@reduxjs/toolkit';
 import CopyClipboard from '../../hooks/copyClipboard';
 import { font } from '../../lib/styles/font';
@@ -44,9 +44,11 @@ function WritePostDetail() {
     }
 
     useEffect(() => {
-        if (data) return;
         dispatch(getPostAction(id));
-    }, [dispatch, id, data]);
+        return () => {
+            dispatch(clearPost());
+        };
+    }, [dispatch, id]);
 
     const currentUrl = window.location.href;
     const metaData = {
