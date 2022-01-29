@@ -47,4 +47,5 @@ const buttonStyle = (scrollY: number, theme: ITheme) => css`
     background-color: ${theme.primaryColor};
     opacity: ${scrollY >= 300 ? 1 : 0};
     pointer-events: ${scrollY >= 300 ? 'auto' : 'none'};
+    z-index: 9999;
 `;

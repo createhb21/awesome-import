@@ -44,11 +44,9 @@ function WritePostDetail() {
     }
 
     useEffect(() => {
+        if (data) return;
         dispatch(getPostAction(id));
-        return () => {
-            dispatch(clearPost());
-        };
-    }, [dispatch, id]);
+    }, [dispatch, id, data]);
 
     const currentUrl = window.location.href;
     const metaData = {
