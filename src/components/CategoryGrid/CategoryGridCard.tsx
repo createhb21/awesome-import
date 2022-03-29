@@ -79,8 +79,16 @@ const gridStyle = (theme: ITheme) => css`
         padding-top: 0.15rem;
         padding-left: 1.55rem;
         max-height: 150px;
-        overflow-y: scroll;
+        overflow-y: auto;
     }
+    ul::-webkit-scrollbar {
+        width: 0px;
+        background: none;
+    }
+    ul::-webkit-scrollbar-track {
+        background: none;
+    }
+
     li {
         padding: 0.15rem;
         font-size: 0.875rem;
