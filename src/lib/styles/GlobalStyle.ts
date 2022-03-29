@@ -18,7 +18,8 @@ export const GlobalStyle = (theme: ITheme) => css`
         box-sizing: border-box;
         vertical-align: baseline;
 
-        Light mode @media (prefers-color-scheme: light) {
+        /* Light mode */
+        @media (prefers-color-scheme: light) {
             html {
                 background: white;
                 color: black;
@@ -36,15 +37,6 @@ export const GlobalStyle = (theme: ITheme) => css`
 
     * {
         box-sizing: border-box;
-    }
-
-    *::-webkit-scrollbar {
-        width: 0px;
-        background: none;
-    }
-
-    *::-webkit-scrollbar-track {
-        background: none;
     }
 
     code {
