@@ -21,7 +21,6 @@ const imgWrapStyle = (width: number, location: string) => css`
         margin: 0;
         padding: 0;
         width: ${width}%;
-        max-height: ${location === '/log' || location === '/guestbook' ? '274px' : '455px'};
         border-radius: 7px;
     }
 `;
