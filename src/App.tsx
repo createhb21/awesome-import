@@ -1,10 +1,7 @@
-import Log from './pages/Log';
-import Write from './pages/Write';
-import HomePage from './pages/Home/HomePage';
 import { Global } from '@emotion/react';
 import { useSelector } from 'react-redux';
 import { ThemeProvider } from '@emotion/react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import GlobalStyle from './lib/styles/GlobalStyle';
 import { themeDark, themeLight } from './lib/styles/Theme';
 import MobileHeader from './components/MobileHeader';
@@ -14,6 +11,8 @@ import ArrowUpBtn from './components/ArrowUpBtn';
 import AppLayout from './components/AppLayout';
 import { RootReducerType } from './index';
 
+import Log from './pages/Log';
+import Write from './pages/Write';
 import AwesomeEditor from './components/AwesomeEditor/AwesomeEditor';
 import GuestBook from './pages/GuestBook';
 import Footer from './components/Footer';
@@ -35,7 +34,7 @@ function App() {
                 </AppLayout.Side>
                 <AppLayout.Main>
                     <Routes>
-                        <Route path="/" element={<HomePage />} />
+                        <Route path="/" element={<Navigate to="/dev" replace />} />
                         <Route path="/dev" element={<Write />} />
                         <Route path="/dev/:id" element={<WritePostDetail />} />
                         <Route path="/log" element={<Log />} />
